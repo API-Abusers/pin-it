@@ -11,6 +11,8 @@ import LBTATools
 
 class MakePostViewController: LBTAFormController {
 
+    let postButton = UIButton(title: "Post", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), target: self, action: #selector(sendPost))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .dark
@@ -29,10 +31,15 @@ class MakePostViewController: LBTAFormController {
         descField.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         formContainerStackView.addArrangedSubview(descField)
         
+        formContainerStackView.addArrangedSubview(postButto)
 
         // Do any additional setup after loading the view.
     }
     
+    
+    @objc fileprivate func sendPost() {
+        // make post request
+    }
 
     /*
     // MARK: - Navigation
