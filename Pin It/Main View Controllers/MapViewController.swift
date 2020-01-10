@@ -46,6 +46,7 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func showPostView(_ sender: Any) {
+        self.present(MakePostViewController(), animated: true)
     }
     
 }

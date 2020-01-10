@@ -6,6 +6,8 @@ target 'Pin It' do
   use_frameworks!
 
   # Pods for Pin It
+  pod "LBTAComponents"
+  pod "LBTATools"
 
   target 'Pin ItTests' do
     inherit! :search_paths
