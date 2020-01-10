@@ -44,6 +44,10 @@ class MapViewController: UIViewController {
         map.addAnnotation(annotation)
         
     }
+    
+    @IBAction func showPostView(_ sender: Any) {
+    }
+    
 }
 
 
@@ -52,17 +56,15 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let loc = locations[0]
         
+        print("loc")
+        print(loc)
+        
         let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10) // Zoom
         let currLoc: CLLocationCoordinate2D = CLLocationCoordinate2DMake(loc.coordinate.latitude, loc.coordinate.longitude) // Location
         let region: MKCoordinateRegion = MKCoordinateRegion(center: currLoc, span: span) // Set region
         map.setRegion(region, animated: true) // Update map
         
         self.map.showsUserLocation = true // Show blue dot
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
