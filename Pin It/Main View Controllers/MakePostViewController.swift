@@ -14,30 +14,33 @@ class MakePostViewController: LBTAFormController {
 
     var titleField = IndentedTextField()
     var descField = UITextField()
-    
     let postButton = UIButton(title: "Post", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), target: self, action: #selector(sendPost))
+    let exitButton = UIButton(title: "Exit", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1), target: self, action: #selector(exitView))
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .dark
         view.backgroundColor = #colorLiteral(red: 0.1260543499, green: 0.1356953156, blue: 0.1489139211, alpha: 1)
         
+        // Setting up view layout
         formContainerStackView.axis = .vertical
         formContainerStackView.spacing = 25
         formContainerStackView.layoutMargins = .init(top: 25, left: 25, bottom: 0, right: 25)
         
+        // Title field
         titleField = IndentedTextField(placeholder: "Title", padding: 12, cornerRadius: 5, backgroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), isSecureTextEntry: false)
         titleField.constrainHeight(50)
         formContainerStackView.addArrangedSubview(titleField)
         
+        // Description field
         descField = UITextField(placeholder: "Description")
-//        let descField = UITextField()
         descField.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         formContainerStackView.addArrangedSubview(descField)
         
+        // Buttons
         formContainerStackView.addArrangedSubview(postButton)
-
-        // Do any additional setup after loading the view.
+        formContainerStackView.addArrangedSubview(exitButton)
     }
     
     
@@ -65,6 +68,10 @@ class MakePostViewController: LBTAFormController {
         
     }
 
+    @objc fileprivate func exitView() {
+        self.dismiss(animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 

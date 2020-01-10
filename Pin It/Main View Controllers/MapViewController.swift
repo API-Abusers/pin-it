@@ -13,6 +13,7 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var map: MKMapView!
     let manager = CLLocationManager()
+    let postPage = MakePostViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,7 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func showPostView(_ sender: Any) {
-        self.present(MakePostViewController(), animated: true)
+        self.present(postPage, animated: true)
     }
     
 }
