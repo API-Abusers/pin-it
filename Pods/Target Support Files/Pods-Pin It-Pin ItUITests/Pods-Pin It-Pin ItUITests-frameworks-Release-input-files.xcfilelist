@@ -1,3 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Pin It-Pin ItUITests/Pods-Pin It-Pin ItUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework
 ${BUILT_PRODUCTS_DIR}/LBTATools/LBTATools.framework

@@ -105,6 +105,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		730A785423C8DCD000EED69B /* Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Helper Classes";
+			sourceTree = "<group>";
+		};
 		7391DC6423C655110051A1B9 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +137,7 @@
 		7391DC6F23C655110051A1B9 /* Pin It */ = {
 			isa = PBXGroup;
 			children = (
+				730A785423C8DCD000EED69B /* Helper Classes */,
 				7391DC7023C655110051A1B9 /* AppDelegate.swift */,
 				7391DC7223C655110051A1B9 /* SceneDelegate.swift */,
 				739638BF23C83E4600DB4D8B /* Main View Controllers */,

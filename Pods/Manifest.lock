@@ -1,20 +1,24 @@
 PODS:
+  - Alamofire (4.9.1)
   - LBTAComponents (1.1)
   - LBTATools (1.0.12)
 
 DEPENDENCIES:
+  - Alamofire
   - LBTAComponents
   - LBTATools
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - LBTAComponents
     - LBTATools
 
 SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   LBTAComponents: 2e7719683ddcf1cdf7280700438c0c6a5f7da550
   LBTATools: 389a901a01b9a56bea5682c40cd6e23530f40015
 
-PODFILE CHECKSUM: 2750d004bf6bfe31a5182c1ba4d0d6334755d7c5
+PODFILE CHECKSUM: 2a63a528bea1440c60446d7e09e87366a91c717b
 
 COCOAPODS: 1.8.4
