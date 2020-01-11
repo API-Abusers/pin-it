@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		189227557AF5336A6A365347 /* Pods_Pin_It_Pin_ItUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72BFBE8A4F1EDDFDF50116F6 /* Pods_Pin_It_Pin_ItUITests.framework */; };
 		5967F68426F2C5DA8A528977 /* Pods_Pin_ItTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A469CD5D4B904F65B55F1303 /* Pods_Pin_ItTests.framework */; };
+		73013D2023C97604000817E4 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1F23C97604000817E4 /* UIImageExtension.swift */; };
+		73013D2623C97615000817E4 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D2323C97615000817E4 /* Entry.swift */; };
+		73013D2723C97615000817E4 /* EntriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D2423C97615000817E4 /* EntriesManager.swift */; };
 		7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7023C655110051A1B9 /* AppDelegate.swift */; };
 		7391DC7323C655110051A1B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7223C655110051A1B9 /* SceneDelegate.swift */; };
 		7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7423C655110051A1B9 /* MapViewController.swift */; };
@@ -45,6 +48,9 @@
 		4D2728D40CEED548B3A95224 /* Pods_Pin_It.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pin_It.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5921119ACDAA0C424EA818A2 /* Pods-Pin It-Pin ItUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pin It-Pin ItUITests.release.xcconfig"; path = "Target Support Files/Pods-Pin It-Pin ItUITests/Pods-Pin It-Pin ItUITests.release.xcconfig"; sourceTree = "<group>"; };
 		72BFBE8A4F1EDDFDF50116F6 /* Pods_Pin_It_Pin_ItUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pin_It_Pin_ItUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73013D1F23C97604000817E4 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		73013D2323C97615000817E4 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		73013D2423C97615000817E4 /* EntriesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesManager.swift; sourceTree = "<group>"; };
 		7391DC6D23C655110051A1B9 /* Pin It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pin It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7391DC7023C655110051A1B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7391DC7223C655110051A1B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +111,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		73013D1E23C97604000817E4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				73013D1F23C97604000817E4 /* UIImageExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		73013D2123C97615000817E4 /* Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+				73013D2323C97615000817E4 /* Entry.swift */,
+				73013D2423C97615000817E4 /* EntriesManager.swift */,
+			);
+			path = "Helper Classes";
+			sourceTree = "<group>";
+		};
+		73013D2823C97641000817E4 /* Story Boards */ = {
+			isa = PBXGroup;
+			children = (
+				7391DC7623C655110051A1B9 /* Main.storyboard */,
+				7391DC7E23C655130051A1B9 /* LaunchScreen.storyboard */,
+			);
+			path = "Story Boards";
+			sourceTree = "<group>";
+		};
 		730A785423C8DCD000EED69B /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,10 +172,11 @@
 				730A785423C8DCD000EED69B /* Helper Classes */,
 				7391DC7023C655110051A1B9 /* AppDelegate.swift */,
 				7391DC7223C655110051A1B9 /* SceneDelegate.swift */,
+				73013D2123C97615000817E4 /* Helper Classes */,
 				739638BF23C83E4600DB4D8B /* Main View Controllers */,
-				7391DC7623C655110051A1B9 /* Main.storyboard */,
+				73013D2823C97641000817E4 /* Story Boards */,
+				73013D1E23C97604000817E4 /* Extensions */,
 				7391DC7C23C655130051A1B9 /* Assets.xcassets */,
-				7391DC7E23C655130051A1B9 /* LaunchScreen.storyboard */,
 				7391DC8123C655130051A1B9 /* Info.plist */,
 				7391DC7923C655110051A1B9 /* Pin_It.xcdatamodeld */,
 			);
@@ -429,11 +462,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73013D2623C97615000817E4 /* Entry.swift in Sources */,
 				7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */,
 				739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */,
 				7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */,
 				7391DC7B23C655110051A1B9 /* Pin_It.xcdatamodeld in Sources */,
 				7391DC7323C655110051A1B9 /* SceneDelegate.swift in Sources */,
+				73013D2023C97604000817E4 /* UIImageExtension.swift in Sources */,
+				73013D2723C97615000817E4 /* EntriesManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
