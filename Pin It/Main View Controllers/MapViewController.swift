@@ -27,16 +27,23 @@ class MapViewController: UIViewController {
         
         // adding test annotation
         let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 3, longitudeDelta: 3)
-        let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 40.328562, longitude: 126.734141)
+        let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 39.328562, longitude: 126.734141)
         let region = MKCoordinateRegion(center: location, span: span)
         map.setRegion(region, animated: true)
         createAnnotation(title: "North Korea", sub: "Worker's paradise", loc: location)
-        
-        
+        updateMap()
         
     }
     
-    // Create an annotation
+    // MARK: Update Map
+    func updateMap() {
+        let entires = EntriesManager.getEntriesFromServer()
+        for e in entires {
+            createAnnotation(title: e.title, sub: e.username, loc: CLLocationCoordinate2DMake(e.location[0], e.location[1]))
+        }
+    }
+    
+    // MARK: Create an Annotation
     func createAnnotation(title: String, sub: String, loc: CLLocationCoordinate2D) {
         let annotation = MKPointAnnotation()
         annotation.coordinate = loc
@@ -52,6 +59,9 @@ class MapViewController: UIViewController {
     
 }
 
+extension MapViewController: MKMapViewDelegate {
+//    func mapView
+}
 
 extension MapViewController: CLLocationManagerDelegate {
     // Extracting Location
