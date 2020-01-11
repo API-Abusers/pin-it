@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		189227557AF5336A6A365347 /* Pods_Pin_It_Pin_ItUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72BFBE8A4F1EDDFDF50116F6 /* Pods_Pin_It_Pin_ItUITests.framework */; };
 		5967F68426F2C5DA8A528977 /* Pods_Pin_ItTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A469CD5D4B904F65B55F1303 /* Pods_Pin_ItTests.framework */; };
+		73013D0323C93C7B000817E4 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D0223C93C7B000817E4 /* Entry.swift */; };
+		73013D0523C93CA8000817E4 /* EntriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D0423C93CA8000817E4 /* EntriesManager.swift */; };
+		73013D1123C96426000817E4 /* MiniEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73013D1023C96426000817E4 /* MiniEntryView.xib */; };
+		73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */; };
+		73013D1A23C968B4000817E4 /* MiniEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1923C968B4000817E4 /* MiniEntryView.swift */; };
+		73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1C23C970DD000817E4 /* UIImageExtension.swift */; };
 		7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7023C655110051A1B9 /* AppDelegate.swift */; };
 		7391DC7323C655110051A1B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7223C655110051A1B9 /* SceneDelegate.swift */; };
 		7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7423C655110051A1B9 /* MapViewController.swift */; };
 		7391DC7823C655110051A1B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7391DC7623C655110051A1B9 /* Main.storyboard */; };
-		7391DC7B23C655110051A1B9 /* Pin_It.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7923C655110051A1B9 /* Pin_It.xcdatamodeld */; };
 		7391DC7D23C655130051A1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7391DC7C23C655130051A1B9 /* Assets.xcassets */; };
 		7391DC8023C655130051A1B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7391DC7E23C655130051A1B9 /* LaunchScreen.storyboard */; };
 		7391DC8B23C655130051A1B9 /* Pin_ItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC8A23C655130051A1B9 /* Pin_ItTests.swift */; };
@@ -45,12 +50,17 @@
 		4D2728D40CEED548B3A95224 /* Pods_Pin_It.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pin_It.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5921119ACDAA0C424EA818A2 /* Pods-Pin It-Pin ItUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pin It-Pin ItUITests.release.xcconfig"; path = "Target Support Files/Pods-Pin It-Pin ItUITests/Pods-Pin It-Pin ItUITests.release.xcconfig"; sourceTree = "<group>"; };
 		72BFBE8A4F1EDDFDF50116F6 /* Pods_Pin_It_Pin_ItUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pin_It_Pin_ItUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73013D0223C93C7B000817E4 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		73013D0423C93CA8000817E4 /* EntriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesManager.swift; sourceTree = "<group>"; };
+		73013D1023C96426000817E4 /* MiniEntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiniEntryView.xib; sourceTree = "<group>"; };
+		73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniEntryViewModel.swift; sourceTree = "<group>"; };
+		73013D1923C968B4000817E4 /* MiniEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MiniEntryView.swift; path = ../../../../../../Desktop/MiniEntryView.swift; sourceTree = "<group>"; };
+		73013D1C23C970DD000817E4 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		7391DC6D23C655110051A1B9 /* Pin It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pin It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7391DC7023C655110051A1B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7391DC7223C655110051A1B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7391DC7423C655110051A1B9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7391DC7723C655110051A1B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7391DC7A23C655110051A1B9 /* Pin_It.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pin_It.xcdatamodel; sourceTree = "<group>"; };
 		7391DC7C23C655130051A1B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7391DC7F23C655130051A1B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7391DC8123C655130051A1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,9 +115,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		73013D0923C961BE000817E4 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				7391DC7E23C655130051A1B9 /* LaunchScreen.storyboard */,
+				7391DC7623C655110051A1B9 /* Main.storyboard */,
+				73013D1023C96426000817E4 /* MiniEntryView.xib */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		73013D1423C965CE000817E4 /* Mini Views */ = {
+			isa = PBXGroup;
+			children = (
+				73013D1923C968B4000817E4 /* MiniEntryView.swift */,
+			);
+			path = "Mini Views";
+			sourceTree = "<group>";
+		};
+		73013D1B23C970D0000817E4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				73013D1C23C970DD000817E4 /* UIImageExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		730A785423C8DCD000EED69B /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
+				73013D0223C93C7B000817E4 /* Entry.swift */,
+				73013D0423C93CA8000817E4 /* EntriesManager.swift */,
+				73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */,
 			);
 			path = "Helper Classes";
 			sourceTree = "<group>";
@@ -137,15 +176,15 @@
 		7391DC6F23C655110051A1B9 /* Pin It */ = {
 			isa = PBXGroup;
 			children = (
-				730A785423C8DCD000EED69B /* Helper Classes */,
 				7391DC7023C655110051A1B9 /* AppDelegate.swift */,
 				7391DC7223C655110051A1B9 /* SceneDelegate.swift */,
+				730A785423C8DCD000EED69B /* Helper Classes */,
 				739638BF23C83E4600DB4D8B /* Main View Controllers */,
-				7391DC7623C655110051A1B9 /* Main.storyboard */,
+				73013D1423C965CE000817E4 /* Mini Views */,
+				73013D0923C961BE000817E4 /* Storyboards */,
+				73013D1B23C970D0000817E4 /* Extensions */,
 				7391DC7C23C655130051A1B9 /* Assets.xcassets */,
-				7391DC7E23C655130051A1B9 /* LaunchScreen.storyboard */,
 				7391DC8123C655130051A1B9 /* Info.plist */,
-				7391DC7923C655110051A1B9 /* Pin_It.xcdatamodeld */,
 			);
 			path = "Pin It";
 			sourceTree = "<group>";
@@ -301,6 +340,7 @@
 			files = (
 				7391DC8023C655130051A1B9 /* LaunchScreen.storyboard in Resources */,
 				7391DC7D23C655130051A1B9 /* Assets.xcassets in Resources */,
+				73013D1123C96426000817E4 /* MiniEntryView.xib in Resources */,
 				7391DC7823C655110051A1B9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,10 +469,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73013D0323C93C7B000817E4 /* Entry.swift in Sources */,
 				7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */,
+				73013D0523C93CA8000817E4 /* EntriesManager.swift in Sources */,
 				739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */,
+				73013D1A23C968B4000817E4 /* MiniEntryView.swift in Sources */,
+				73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */,
 				7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */,
-				7391DC7B23C655110051A1B9 /* Pin_It.xcdatamodeld in Sources */,
+				73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */,
 				7391DC7323C655110051A1B9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -768,19 +812,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		7391DC7923C655110051A1B9 /* Pin_It.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				7391DC7A23C655110051A1B9 /* Pin_It.xcdatamodel */,
-			);
-			currentVersion = 7391DC7A23C655110051A1B9 /* Pin_It.xcdatamodel */;
-			path = Pin_It.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 7391DC6523C655110051A1B9 /* Project object */;
 }

@@ -9,7 +9,8 @@ target 'Pin It' do
   pod "LBTAComponents"
   pod "LBTATools"
   pod "Alamofire"
-
+  pod "MapViewPlus"
+  
   target 'Pin ItTests' do
     inherit! :search_paths
     # Pods for testing

@@ -8,16 +8,21 @@
 
 import UIKit
 import MapKit
+import CoreLocation
+import MapViewPlus
 
 class MapViewController: UIViewController {
     
-    @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var map: MapViewPlus!
     let manager = CLLocationManager()
     let postPage = MakePostViewController()
+    let calloutView = MiniEntryView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        map.delegate = self
         
         // setting up the manager
         manager.delegate = self
@@ -27,16 +32,31 @@ class MapViewController: UIViewController {
         
         // adding test annotation
         let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 3, longitudeDelta: 3)
-        let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 40.328562, longitude: 126.734141)
+        let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 40.328562, longitude: 155.734141)
         let region = MKCoordinateRegion(center: location, span: span)
         map.setRegion(region, animated: true)
-        createAnnotation(title: "North Korea", sub: "Worker's paradise", loc: location)
+//        createAnnotation(title: "Idk", sub: "whoa", loc: location)
         
-        
+        updateEntriesOnMap()
         
     }
     
-    // Create an annotation
+    // MARK: Update Entries On Map
+    func updateEntriesOnMap() {
+        let entries = EntriesManager.getEntriesFromServer()
+        var annotations: [AnnotationPlus] = []
+        for e in entries {
+            let viewModel = MiniEntryViewModel(title: e.title, body: e.description)
+            let annotation = AnnotationPlus(viewModel: viewModel,
+                                            coordinate: CLLocationCoordinate2DMake(e.location[0], e.location[1]))
+            annotations.append(annotation)
+        }
+        print("Annotations array")
+        print(annotations)
+        map.setup(withAnnotations: annotations)
+    }
+    
+    // MARK: Create an annotation
     func createAnnotation(title: String, sub: String, loc: CLLocationCoordinate2D) {
         let annotation = MKPointAnnotation()
         annotation.coordinate = loc
@@ -70,6 +90,15 @@ extension MapViewController: CLLocationManagerDelegate {
     }
 }
 
+extension MapViewController: MapViewPlusDelegate {
+    func mapView(_ mapView: MapViewPlus, imageFor annotation: AnnotationPlus) -> UIImage {
+        return UIImage(named: "loc-icon")!.resized(toWidth: 70)!
+    }
+    
+  func mapView(_ mapView: MapViewPlus, calloutViewFor annotationView: AnnotationViewPlus) -> CalloutViewPlus{
+    return calloutView
+  }
+}
 
 
 

@@ -1,7 +1,7 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire" "${PODS_CONFIGURATION_BUILD_DIR}/LBTAComponents" "${PODS_CONFIGURATION_BUILD_DIR}/LBTATools"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire" "${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher" "${PODS_CONFIGURATION_BUILD_DIR}/LBTAComponents" "${PODS_CONFIGURATION_BUILD_DIR}/LBTATools" "${PODS_CONFIGURATION_BUILD_DIR}/MapViewPlus"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/LBTAComponents/LBTAComponents.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/LBTATools/LBTATools.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "Alamofire" -framework "LBTAComponents" -framework "LBTATools"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/LBTAComponents/LBTAComponents.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/LBTATools/LBTATools.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/MapViewPlus/MapViewPlus.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "Accelerate" -framework "Alamofire" -framework "CFNetwork" -framework "Kingfisher" -framework "LBTAComponents" -framework "LBTATools" -framework "MapKit" -framework "MapViewPlus" -framework "UIKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

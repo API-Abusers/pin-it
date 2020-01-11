@@ -1,24 +1,32 @@
 PODS:
   - Alamofire (4.9.1)
+  - Kingfisher (5.6.0)
   - LBTAComponents (1.1)
   - LBTATools (1.0.12)
+  - MapViewPlus (0.1.3):
+    - Kingfisher (~> 5.6.0)
 
 DEPENDENCIES:
   - Alamofire
   - LBTAComponents
   - LBTATools
+  - MapViewPlus
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Kingfisher
     - LBTAComponents
     - LBTATools
+    - MapViewPlus
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
   LBTAComponents: 2e7719683ddcf1cdf7280700438c0c6a5f7da550
   LBTATools: 389a901a01b9a56bea5682c40cd6e23530f40015
+  MapViewPlus: 92608071766d967ebad6316d226ba99e3e1dfcb3
 
-PODFILE CHECKSUM: 2a63a528bea1440c60446d7e09e87366a91c717b
+PODFILE CHECKSUM: a37411112294e0a25a27128e3adb1e22dda8ae1d
 
 COCOAPODS: 1.8.4
