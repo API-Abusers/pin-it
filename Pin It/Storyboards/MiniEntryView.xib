@@ -28,6 +28,9 @@
                     <state key="normal" title="Detail">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="showDetail:" destination="iN0-l3-epB" eventType="touchUpInside" id="MfE-ML-Fyj"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1a-Xf-GaS">
                     <rect key="frame" x="10" y="88" width="190" height="18"/>

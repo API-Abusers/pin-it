@@ -15,10 +15,17 @@ class MiniEntryView: UIView, CalloutViewPlus {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var body: UILabel!
     @IBOutlet weak var button: UIButton!
+    var rootController: MapViewController?
+    var entry: Entry?
+    
+    @IBAction func showDetail(_ sender: Any) {
+        rootController!.showDetail(entry: entry!)
+    }
     
     func configureCallout(_ viewModel: CalloutViewModel) {
         let viewModel = viewModel as! MiniEntryViewModel
-
+        entry = viewModel.entry
+        
         title.text = viewModel.title
         body.text = viewModel.body
 

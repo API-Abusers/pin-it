@@ -14,10 +14,9 @@ import MapViewPlus
 class MapViewController: UIViewController {
     
     @IBOutlet weak var map: MapViewPlus!
-    weak var currentCalloutView: UIView?
+    var currentCalloutView = MiniEntryView()
     let manager = CLLocationManager()
     let postPage = MakePostViewController()
-    let calloutView = MiniEntryView()
     let annotationImage = UIImage(named: "loc-icon")!.resized(toHeight: 35)!
     
     override func viewDidLoad() {
@@ -49,7 +48,7 @@ class MapViewController: UIViewController {
         let entries = EntriesManager.getEntriesFromServer()
         var annotations: [AnnotationPlus] = []
         for e in entries {
-            let viewModel = MiniEntryViewModel(title: e.username, body: e.title)
+            let viewModel = MiniEntryViewModel(entry: e)
             let annotation = AnnotationPlus(viewModel: viewModel,
                                             coordinate: CLLocationCoordinate2DMake(e.location[0], e.location[1]))
             annotations.append(annotation)
@@ -65,6 +64,11 @@ class MapViewController: UIViewController {
         annotation.title = title
         annotation.subtitle = sub
         map.addAnnotation(annotation)
+        
+    }
+    
+    // MARK: Show Detail of an Entry
+    func showDetail(entry: Entry) {
         
     }
     
@@ -100,6 +104,7 @@ extension MapViewController: MapViewPlusDelegate {
     func mapView(_ mapView: MapViewPlus, calloutViewFor annotationView: AnnotationViewPlus) -> CalloutViewPlus{
         let calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView
         currentCalloutView = calloutView
+        currentCalloutView.rootController = self
         return calloutView
     }
 
@@ -110,8 +115,6 @@ extension MapViewController: MapViewPlusDelegate {
 
 extension MapViewController: AnchorViewCustomizerDelegate {
     func mapView(_ mapView: MapViewPlus, fillColorForAnchorOf calloutView: CalloutViewPlus) -> UIColor {
-        return currentCalloutView!.backgroundColor!
+        return currentCalloutView.backgroundColor!
     }
 }
-
-

@@ -14,9 +14,11 @@ class MiniEntryViewModel: CalloutViewModel {
     
     var title: String
     var body: String
+    var entry: Entry
     
-    init(title: String, body: String) {
-        self.title = title
-        self.body = body
+    init(entry: Entry) {
+        self.title = entry.username
+        self.body = entry.title
+        self.entry = entry
     }
 }
