@@ -14,6 +14,7 @@ import MapViewPlus
 class MapViewController: UIViewController {
     
     @IBOutlet weak var map: MapViewPlus!
+    weak var currentCalloutView: UIView?
     let manager = CLLocationManager()
     let postPage = MakePostViewController()
     let calloutView = MiniEntryView()
@@ -92,12 +93,19 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: MapViewPlusDelegate {
     func mapView(_ mapView: MapViewPlus, imageFor annotation: AnnotationPlus) -> UIImage {
-        return UIImage(named: "loc-icon")!.resized(toWidth: 70)!
+        return UIImage(named: "loc-icon")!.resized(toWidth: 50)!
     }
-    
-  func mapView(_ mapView: MapViewPlus, calloutViewFor annotationView: AnnotationViewPlus) -> CalloutViewPlus{
-    return calloutView
-  }
+
+    func mapView(_ mapView: MapViewPlus, calloutViewFor annotationView: AnnotationViewPlus) -> CalloutViewPlus{
+//    return calloutView
+        let calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView
+        currentCalloutView = calloutView
+        return calloutView
+    }
+
+    func mapView(_ mapView: MapViewPlus, didAddAnnotations annotations: [AnnotationPlus]) {
+        mapView.showAnnotations(annotations, animated: true)
+    }
 }
 
 

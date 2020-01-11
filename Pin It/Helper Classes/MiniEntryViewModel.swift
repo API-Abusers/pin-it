@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import UIKit
 import MapViewPlus
 
 class MiniEntryViewModel: CalloutViewModel {
+    
     var title: String
     var body: String
     
