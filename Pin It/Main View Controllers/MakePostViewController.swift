@@ -46,11 +46,6 @@ class MakePostViewController: LBTAFormController {
     
     @objc fileprivate func sendPost() {
         // make post request
-        guard let url = URL(string: "http://localhost:3000/") else {
-            print("Ah error")
-            return
-        }
-
         let data: [String: Any] = [
             "post": [
                 "title" : titleField.text!,
