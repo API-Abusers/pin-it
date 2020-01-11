@@ -18,12 +18,14 @@ class MapViewController: UIViewController {
     let manager = CLLocationManager()
     let postPage = MakePostViewController()
     let calloutView = MiniEntryView()
+    let annotationImage = UIImage(named: "loc-icon")!.resized(toHeight: 35)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         map.delegate = self
+        map.anchorViewCustomizerDelegate = self
         
         // setting up the manager
         manager.delegate = self
@@ -47,13 +49,12 @@ class MapViewController: UIViewController {
         let entries = EntriesManager.getEntriesFromServer()
         var annotations: [AnnotationPlus] = []
         for e in entries {
-            let viewModel = MiniEntryViewModel(title: e.title, body: e.description)
+            let viewModel = MiniEntryViewModel(title: e.username, body: e.title)
             let annotation = AnnotationPlus(viewModel: viewModel,
                                             coordinate: CLLocationCoordinate2DMake(e.location[0], e.location[1]))
             annotations.append(annotation)
         }
-        print("Annotations array")
-        print(annotations)
+        
         map.setup(withAnnotations: annotations)
     }
     
@@ -93,11 +94,10 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: MapViewPlusDelegate {
     func mapView(_ mapView: MapViewPlus, imageFor annotation: AnnotationPlus) -> UIImage {
-        return UIImage(named: "loc-icon")!.resized(toWidth: 50)!
+        return annotationImage
     }
 
     func mapView(_ mapView: MapViewPlus, calloutViewFor annotationView: AnnotationViewPlus) -> CalloutViewPlus{
-//    return calloutView
         let calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView
         currentCalloutView = calloutView
         return calloutView
@@ -108,5 +108,10 @@ extension MapViewController: MapViewPlusDelegate {
     }
 }
 
+extension MapViewController: AnchorViewCustomizerDelegate {
+    func mapView(_ mapView: MapViewPlus, fillColorForAnchorOf calloutView: CalloutViewPlus) -> UIColor {
+        return currentCalloutView!.backgroundColor!
+    }
+}
 
 

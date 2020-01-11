@@ -141,6 +141,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		73013D2923C986CB000817E4 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				7391DC7023C655110051A1B9 /* AppDelegate.swift */,
+				7391DC7223C655110051A1B9 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		730A785423C8DCD000EED69B /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,8 +185,7 @@
 		7391DC6F23C655110051A1B9 /* Pin It */ = {
 			isa = PBXGroup;
 			children = (
-				7391DC7023C655110051A1B9 /* AppDelegate.swift */,
-				7391DC7223C655110051A1B9 /* SceneDelegate.swift */,
+				73013D2923C986CB000817E4 /* Delegates */,
 				730A785423C8DCD000EED69B /* Helper Classes */,
 				739638BF23C83E4600DB4D8B /* Main View Controllers */,
 				73013D1423C965CE000817E4 /* Mini Views */,

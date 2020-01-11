@@ -10,17 +10,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MiniEntryView" customModule="Pin_It">
-            <rect key="frame" x="0.0" y="0.0" width="147" height="210"/>
+            <rect key="frame" x="0.0" y="0.0" width="210" height="130"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ne5-pO-Nm2">
-                    <rect key="frame" x="20" y="54" width="107" height="24"/>
+                    <rect key="frame" x="20" y="54" width="170" height="24"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDy-bk-NGK">
-                    <rect key="frame" x="30" y="173" width="87" height="25"/>
+                    <rect key="frame" x="30" y="93" width="150" height="25"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="j3I-RR-J09"/>
@@ -29,29 +29,30 @@
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1a-Xf-GaS">
-                    <rect key="frame" x="20" y="88" width="107" height="18"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1a-Xf-GaS">
+                    <rect key="frame" x="10" y="88" width="190" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="0.70750314597315433" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Ne5-pO-Nm2" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="0p4-aI-0tb"/>
                 <constraint firstItem="Ne5-pO-Nm2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="1Fy-4P-2th"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ne5-pO-Nm2" secondAttribute="trailing" constant="20" id="DbO-Gr-XuQ"/>
-                <constraint firstItem="x1a-Xf-GaS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Dqa-Oa-AWf"/>
+                <constraint firstItem="x1a-Xf-GaS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Dqa-Oa-AWf"/>
                 <constraint firstItem="x1a-Xf-GaS" firstAttribute="top" secondItem="Ne5-pO-Nm2" secondAttribute="bottom" constant="10" id="XNg-88-xNF"/>
                 <constraint firstItem="hDy-bk-NGK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="XQW-jJ-jJD"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hDy-bk-NGK" secondAttribute="trailing" constant="30" id="e8W-HU-CV2"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="x1a-Xf-GaS" secondAttribute="trailing" constant="20" id="oC4-5A-8jo"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="x1a-Xf-GaS" secondAttribute="trailing" constant="10" id="oC4-5A-8jo"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="hDy-bk-NGK" secondAttribute="bottom" constant="12" id="pcx-cY-UG7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="body" destination="x1a-Xf-GaS" id="BgU-Gg-zkN"/>
+                <outlet property="button" destination="hDy-bk-NGK" id="w0K-Je-RYd"/>
                 <outlet property="title" destination="Ne5-pO-Nm2" id="eut-Pi-HE5"/>
             </connections>
             <point key="canvasLocation" x="-199.27536231884059" y="-198.88392857142856"/>
