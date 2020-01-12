@@ -14,6 +14,7 @@
 		73013D1123C96426000817E4 /* MiniEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73013D1023C96426000817E4 /* MiniEntryView.xib */; };
 		73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */; };
 		73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1C23C970DD000817E4 /* UIImageExtension.swift */; };
+		731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */; };
 		732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024923CB832C00A512FC /* DetailedEntryViewController.swift */; };
 		732C024C23CB895C00A512FC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024B23CB895C00A512FC /* UILabelExtension.swift */; };
 		7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341C9C323C995120019CC6B /* MiniEntryView.swift */; };
@@ -57,6 +58,7 @@
 		73013D1023C96426000817E4 /* MiniEntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiniEntryView.xib; sourceTree = "<group>"; };
 		73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniEntryViewModel.swift; sourceTree = "<group>"; };
 		73013D1C23C970DD000817E4 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceholder.swift; sourceTree = "<group>"; };
 		732C024923CB832C00A512FC /* DetailedEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEntryViewController.swift; sourceTree = "<group>"; };
 		732C024B23CB895C00A512FC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		7341C9C323C995120019CC6B /* MiniEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniEntryView.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		73013D1B23C970D0000817E4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */,
 				732C024B23CB895C00A512FC /* UILabelExtension.swift */,
 				73013D1C23C970DD000817E4 /* UIImageExtension.swift */,
 			);
@@ -486,6 +489,7 @@
 				73013D0323C93C7B000817E4 /* Entry.swift in Sources */,
 				7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */,
 				73013D0523C93CA8000817E4 /* EntriesManager.swift in Sources */,
+				731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */,
 				739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */,
 				73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */,
 				732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */,

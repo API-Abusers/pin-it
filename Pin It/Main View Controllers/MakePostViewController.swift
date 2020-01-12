@@ -8,12 +8,13 @@
 
 import UIKit
 import LBTATools
+import LBTAComponents
 import Alamofire
 
-class MakePostViewController: LBTAFormController {
+class MakePostViewController: LBTAFormController, UITextViewDelegate {
 
     var titleField = IndentedTextField()
-    var descField = UITextField()
+    var descField = LBTATextView()
     let postButton = UIButton(title: "Post", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), target: self, action: #selector(sendPost))
     let exitButton = UIButton(title: "Exit", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1), target: self, action: #selector(exitView))
     
@@ -22,6 +23,10 @@ class MakePostViewController: LBTAFormController {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .dark
         view.backgroundColor = #colorLiteral(red: 0.1260543499, green: 0.1356953156, blue: 0.1489139211, alpha: 1)
+        self.isModalInPresentation = true
+        
+        
+        scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         
         // Setting up view layout
         formContainerStackView.axis = .vertical
@@ -31,11 +36,17 @@ class MakePostViewController: LBTAFormController {
         // Title field
         titleField = IndentedTextField(placeholder: "Title", padding: 12, cornerRadius: 5, backgroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), isSecureTextEntry: false)
         titleField.constrainHeight(50)
+        titleField.font = .systemFont(ofSize: 25)
         formContainerStackView.addArrangedSubview(titleField)
         
         // Description field
-        descField = UITextField(placeholder: "Description")
+        descField = LBTATextView()
         descField.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        descField.font = .systemFont(ofSize: 20)
+        descField.placeholder = "Add a description"
+        descField.layer.cornerRadius = 5
+        descField.textContainerInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+        descField.isEditable = true
         formContainerStackView.addArrangedSubview(descField)
         
         // Buttons
@@ -65,6 +76,10 @@ class MakePostViewController: LBTAFormController {
 
     @objc fileprivate func exitView() {
         self.dismiss(animated: true)
+    }
+    
+    @objc fileprivate func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     /*
