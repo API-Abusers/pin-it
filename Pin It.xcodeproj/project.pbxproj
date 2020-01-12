@@ -16,6 +16,8 @@
 		73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1C23C970DD000817E4 /* UIImageExtension.swift */; };
 		731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */; };
 		731C07B823CBBE2000A64054 /* QueryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B723CBBE2000A64054 /* QueryConfig.swift */; };
+		731C07BA23CBCDA500A64054 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B923CBCDA500A64054 /* AuthViewController.swift */; };
+		731C07C023CBD6B900A64054 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 731C07BF23CBD6B800A64054 /* GoogleService-Info.plist */; };
 		732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024923CB832C00A512FC /* DetailedEntryViewController.swift */; };
 		732C024C23CB895C00A512FC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024B23CB895C00A512FC /* UILabelExtension.swift */; };
 		7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341C9C323C995120019CC6B /* MiniEntryView.swift */; };
@@ -61,6 +63,8 @@
 		73013D1C23C970DD000817E4 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceholder.swift; sourceTree = "<group>"; };
 		731C07B723CBBE2000A64054 /* QueryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryConfig.swift; sourceTree = "<group>"; };
+		731C07B923CBCDA500A64054 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		731C07BF23CBD6B800A64054 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		732C024923CB832C00A512FC /* DetailedEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEntryViewController.swift; sourceTree = "<group>"; };
 		732C024B23CB895C00A512FC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		7341C9C323C995120019CC6B /* MiniEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniEntryView.swift; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 				73013D1B23C970D0000817E4 /* Extensions */,
 				7391DC7C23C655130051A1B9 /* Assets.xcassets */,
 				7391DC8123C655130051A1B9 /* Info.plist */,
+				731C07BF23CBD6B800A64054 /* GoogleService-Info.plist */,
 			);
 			path = "Pin It";
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 		739638BF23C83E4600DB4D8B /* Main View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				731C07B923CBCDA500A64054 /* AuthViewController.swift */,
 				7391DC7423C655110051A1B9 /* MapViewController.swift */,
 				739638BD23C83E3200DB4D8B /* MakePostViewController.swift */,
 				732C024923CB832C00A512FC /* DetailedEntryViewController.swift */,
@@ -269,6 +275,7 @@
 				7391DC6A23C655110051A1B9 /* Frameworks */,
 				7391DC6B23C655110051A1B9 /* Resources */,
 				D54BC8551AAE0E1A4CA7817D /* [CP] Embed Pods Frameworks */,
+				5AD8BF7B7AF86C190E0ADFD8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -307,6 +314,7 @@
 				7391DC8E23C655130051A1B9 /* Frameworks */,
 				7391DC8F23C655130051A1B9 /* Resources */,
 				707887FA4BEF32EE9B98B32A /* [CP] Embed Pods Frameworks */,
+				751662F88F7A912C3392F1ED /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -368,6 +376,7 @@
 			files = (
 				7391DC8023C655130051A1B9 /* LaunchScreen.storyboard in Resources */,
 				7391DC7D23C655130051A1B9 /* Assets.xcassets in Resources */,
+				731C07C023CBD6B900A64054 /* GoogleService-Info.plist in Resources */,
 				73013D1123C96426000817E4 /* MiniEntryView.xib in Resources */,
 				7391DC7823C655110051A1B9 /* Main.storyboard in Resources */,
 			);
@@ -412,6 +421,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5AD8BF7B7AF86C190E0ADFD8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pin It/Pods-Pin It-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pin It/Pods-Pin It-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pin It/Pods-Pin It-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		707887FA4BEF32EE9B98B32A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -427,6 +453,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pin It-Pin ItUITests/Pods-Pin It-Pin ItUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		751662F88F7A912C3392F1ED /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pin It-Pin ItUITests/Pods-Pin It-Pin ItUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pin It-Pin ItUITests/Pods-Pin It-Pin ItUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pin It-Pin ItUITests/Pods-Pin It-Pin ItUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		94FB58F5F9BC8DEBADE44051 /* [CP] Check Pods Manifest.lock */ = {
@@ -507,6 +550,7 @@
 				7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */,
 				73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */,
 				7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */,
+				731C07BA23CBCDA500A64054 /* AuthViewController.swift in Sources */,
 				731C07B823CBBE2000A64054 /* QueryConfig.swift in Sources */,
 				732C024C23CB895C00A512FC /* UILabelExtension.swift in Sources */,
 				7391DC7323C655110051A1B9 /* SceneDelegate.swift in Sources */,
@@ -686,6 +730,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR8L2XE3A;
 				INFOPLIST_FILE = "Pin It/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -705,6 +750,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR8L2XE3A;
 				INFOPLIST_FILE = "Pin It/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

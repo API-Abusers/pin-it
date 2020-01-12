@@ -24,3 +24,6 @@ DerivedData/
 
 ## Gcc Patch
 /*.gcno
+
+## Firebase Configs
+Pin\ It/GoogleService-Info.plist

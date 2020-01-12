@@ -10,6 +10,8 @@ target 'Pin It' do
   pod "LBTATools"
   pod "Alamofire"
   pod "MapViewPlus"
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
   
   target 'Pin ItTests' do
     inherit! :search_paths
