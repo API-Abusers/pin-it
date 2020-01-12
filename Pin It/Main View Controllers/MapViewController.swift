@@ -14,9 +14,13 @@ import MapViewPlus
 class MapViewController: UIViewController {
     
     @IBOutlet weak var map: MapViewPlus!
-    var currentCalloutView = MiniEntryView()
+    
     let manager = CLLocationManager()
+    
     let postPage = MakePostViewController()
+    var currentCalloutView = MiniEntryView()
+    let detailPage = DetailedEntryViewController()
+    
     let annotationImage = UIImage(named: "loc-icon")!.resized(toHeight: 35)!
     var located = false
     var location : [CLLocation]?
@@ -78,11 +82,13 @@ class MapViewController: UIViewController {
         map.addAnnotation(annotation)
     }
     
-    // MARK: Show Detail of an Entry
+    // MARK: Show Detail of an Entry View
     func showDetail(entry: Entry) {
-        
+        detailPage.entry = entry
+        self.present(detailPage, animated: true)
     }
     
+    // MARK: Show Post View
     @IBAction func showPostView(_ sender: Any) {
         self.present(postPage, animated: true)
     }
