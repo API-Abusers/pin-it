@@ -69,7 +69,7 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
         
         print("attempting to send \(data)")
         
-        Alamofire.request(URL(string: "http://localhost:3000")!,
+        Alamofire.request(URL(string: QueryConfig.url.rawValue)!,
                           method: .post,
                           parameters: data,
                           encoding: JSONEncoding.default)

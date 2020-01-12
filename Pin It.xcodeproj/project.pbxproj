@@ -15,6 +15,7 @@
 		73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */; };
 		73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1C23C970DD000817E4 /* UIImageExtension.swift */; };
 		731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */; };
+		731C07B823CBBE2000A64054 /* QueryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B723CBBE2000A64054 /* QueryConfig.swift */; };
 		732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024923CB832C00A512FC /* DetailedEntryViewController.swift */; };
 		732C024C23CB895C00A512FC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024B23CB895C00A512FC /* UILabelExtension.swift */; };
 		7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341C9C323C995120019CC6B /* MiniEntryView.swift */; };
@@ -59,6 +60,7 @@
 		73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniEntryViewModel.swift; sourceTree = "<group>"; };
 		73013D1C23C970DD000817E4 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceholder.swift; sourceTree = "<group>"; };
+		731C07B723CBBE2000A64054 /* QueryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryConfig.swift; sourceTree = "<group>"; };
 		732C024923CB832C00A512FC /* DetailedEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEntryViewController.swift; sourceTree = "<group>"; };
 		732C024B23CB895C00A512FC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		7341C9C323C995120019CC6B /* MiniEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniEntryView.swift; sourceTree = "<group>"; };
@@ -168,6 +170,14 @@
 			path = "Helper Classes";
 			sourceTree = "<group>";
 		};
+		731C07B623CBBDF400A64054 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				731C07B723CBBE2000A64054 /* QueryConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		7391DC6423C655110051A1B9 = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +203,7 @@
 		7391DC6F23C655110051A1B9 /* Pin It */ = {
 			isa = PBXGroup;
 			children = (
+				731C07B623CBBDF400A64054 /* Config */,
 				73013D2923C986CB000817E4 /* Delegates */,
 				730A785423C8DCD000EED69B /* Helper Classes */,
 				739638BF23C83E4600DB4D8B /* Main View Controllers */,
@@ -496,6 +507,7 @@
 				7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */,
 				73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */,
 				7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */,
+				731C07B823CBBE2000A64054 /* QueryConfig.swift in Sources */,
 				732C024C23CB895C00A512FC /* UILabelExtension.swift in Sources */,
 				7391DC7323C655110051A1B9 /* SceneDelegate.swift in Sources */,
 			);
