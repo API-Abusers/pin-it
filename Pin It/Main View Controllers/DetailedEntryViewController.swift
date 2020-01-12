@@ -15,6 +15,7 @@ class DetailedEntryViewController: LBTAFormController {
     var titleLabel = UILabel()
     var authorLabel = UILabel()
     var descLabel = UILabel()
+    var lineView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 1))
     var entry: Entry?
     
     override func viewDidLoad() {
@@ -28,15 +29,18 @@ class DetailedEntryViewController: LBTAFormController {
         formContainerStackView.layoutMargins = .init(top: 25, left: 25, bottom: 0, right: 25)
         
         // Title label
-        titleLabel = UILabel(text: entry?.title, font: UIFont.boldSystemFont(ofSize: 30), textColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), textAlignment: .natural, numberOfLines: 1)
+        titleLabel = UILabel(text: entry?.title, font: UIFont.boldSystemFont(ofSize: 40), textColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), textAlignment: .natural, numberOfLines: 0)
+        titleLabel.resizeAndDisplayText(text: entry!.title)
         formContainerStackView.addArrangedSubview(titleLabel)
         
         // Author label
-        authorLabel = UILabel(text: entry?.username, font: UIFont.italicSystemFont(ofSize: 15), textColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), textAlignment: .natural, numberOfLines: 1)
+        authorLabel = UILabel(text: entry?.username, font: UIFont.italicSystemFont(ofSize: 15), textColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), textAlignment: .natural, numberOfLines: 0)
+        authorLabel.resizeAndDisplayText(text: entry!.username)
         formContainerStackView.addArrangedSubview(authorLabel)
         
         // Description label
-        descLabel = UILabel(text: entry?.description, font: UIFont.systemFont(ofSize: 20), textColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), textAlignment: .natural, numberOfLines: 10)
+        descLabel = UILabel(text: entry?.description, font: UIFont.systemFont(ofSize: 20), textColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), textAlignment: .natural, numberOfLines: 0)
+        descLabel.resizeAndDisplayText(text: entry!.description)
         formContainerStackView.addArrangedSubview(descLabel)
         
     }
