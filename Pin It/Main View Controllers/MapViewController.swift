@@ -25,6 +25,8 @@ class MapViewController: UIViewController {
     var located = false
     var location : [CLLocation]?
     
+    @IBOutlet weak var findSelfButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +34,9 @@ class MapViewController: UIViewController {
         
         map.delegate = self
         map.anchorViewCustomizerDelegate = self
+        map.showsCompass = false
+        
+        findSelfButton.isEnabled = false
         
         // setting up the manager
         manager.delegate = self
@@ -93,6 +98,10 @@ class MapViewController: UIViewController {
         self.present(postPage, animated: true)
     }
     
+    // MARK: Zoom in on the User
+    @IBAction func findSelf(_ sender: Any) {
+        moveTo(location: location![0])
+    }
 }
 
 
@@ -102,6 +111,7 @@ extension MapViewController: CLLocationManagerDelegate {
         self.location = locations
         
         if(self.located) { return }
+        findSelfButton.isEnabled = true
         moveTo(location: self.location![0])
         self.located = true
     }

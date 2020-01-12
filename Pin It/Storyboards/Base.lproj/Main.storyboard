@@ -27,7 +27,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <state key="normal" image="pencil" catalog="system">
+                                <state key="normal" image="message.fill" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -39,20 +39,44 @@
                                     <action selector="showPostView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ugI-8h-Eup"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6z-EO-giM">
+                                <rect key="frame" x="334" y="144" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.7942795721" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="0WN-3g-dtw"/>
+                                    <constraint firstAttribute="width" constant="60" id="zkZ-XD-DOm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" image="location.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="findSelf:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iEe-yu-kNW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zFA-Eb-kHp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="0rP-g4-JvX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m6z-EO-giM" secondAttribute="trailing" constant="20" id="ECC-pg-60a"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zFA-Eb-kHp" secondAttribute="trailing" constant="20" id="GSW-hR-lW4"/>
                             <constraint firstAttribute="bottom" secondItem="ROf-rs-b2q" secondAttribute="bottom" id="Zh1-TN-Lel"/>
                             <constraint firstItem="ROf-rs-b2q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fo8-dE-Qdh"/>
                             <constraint firstItem="ROf-rs-b2q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ky8-jo-nNV"/>
+                            <constraint firstItem="m6z-EO-giM" firstAttribute="top" secondItem="zFA-Eb-kHp" secondAttribute="bottom" constant="20" id="lAj-Qj-VWB"/>
                             <constraint firstItem="ROf-rs-b2q" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="mPP-XE-gLV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="FgA-GJ-ISb"/>
                     <connections>
+                        <outlet property="findSelfButton" destination="m6z-EO-giM" id="MLx-4v-f2i"/>
                         <outlet property="map" destination="ROf-rs-b2q" id="w5u-Xg-0Fl"/>
                     </connections>
                 </viewController>
@@ -62,6 +86,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pencil" catalog="system" width="64" height="56"/>
+        <image name="location.fill" catalog="system" width="64" height="56"/>
+        <image name="message.fill" catalog="system" width="64" height="56"/>
     </resources>
 </document>
