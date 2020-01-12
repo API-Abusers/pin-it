@@ -24,6 +24,7 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
         overrideUserInterfaceStyle = .dark
         view.backgroundColor = #colorLiteral(red: 0.1260543499, green: 0.1356953156, blue: 0.1489139211, alpha: 1)
         self.isModalInPresentation = true
+        var padding: CGFloat = 12
         
         
         scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
@@ -34,7 +35,7 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
         formContainerStackView.layoutMargins = .init(top: 25, left: 25, bottom: 0, right: 25)
         
         // Title field
-        titleField = IndentedTextField(placeholder: "Title", padding: 12, cornerRadius: 5, backgroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), isSecureTextEntry: false)
+        titleField = IndentedTextField(placeholder: "Title", padding: padding, cornerRadius: 5, backgroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), isSecureTextEntry: false)
         titleField.constrainHeight(50)
         titleField.font = .systemFont(ofSize: 25)
         formContainerStackView.addArrangedSubview(titleField)
@@ -45,7 +46,8 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
         descField.font = .systemFont(ofSize: 20)
         descField.placeholder = "Add a description"
         descField.layer.cornerRadius = 5
-        descField.textContainerInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+        var p = CGFloat(padding)-descField.layer.cornerRadius
+        descField.textContainerInset = UIEdgeInsets(top: p, left: p, bottom: p, right: p)
         descField.isEditable = true
         formContainerStackView.addArrangedSubview(descField)
         
