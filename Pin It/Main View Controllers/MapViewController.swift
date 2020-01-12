@@ -95,7 +95,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.location = locations
         
-        if(located) { return }
+        if(self.located) { return }
         moveTo(location: self.location![0])
         self.located = true
     }
