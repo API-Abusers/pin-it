@@ -34,7 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         authVC = storyboard.instantiateViewController(withIdentifier: "AuthView")
         mapVC = storyboard.instantiateViewController(withIdentifier: "MapView")
         
-        presentViewController(vc: authVC)
+        if(Auth.auth().currentUser! == nil) {
+            presentViewController(vc: authVC)
+        } else {
+            presentViewController(vc: mapVC)
+        }
         
         return true
     }
