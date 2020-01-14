@@ -102,6 +102,10 @@ class MapViewController: UIViewController {
     @IBAction func findSelf(_ sender: Any) {
         moveTo(location: location![0])
     }
+    
+    deinit {
+        print("Deinitializing MapViewController")
+    }
 }
 
 

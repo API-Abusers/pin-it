@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A6M-mO-8qc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -10,7 +10,7 @@
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Pin_It" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MapViewController" customModule="Pin_It" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,7 +87,7 @@
         <!--Auth View Controller-->
         <scene sceneID="ucZ-Bm-pWc">
             <objects>
-                <viewController id="A6M-mO-8qc" customClass="AuthViewController" customModule="Pin_It" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A6M-mO-8qc" customClass="AuthViewController" customModule="Pin_It" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2OA-zX-ewC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,18 +95,24 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IAu-Qv-Z4M">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="caL-ca-8Zs" customClass="GIDSignInButton">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caL-ca-8Zs" customClass="GIDSignInButton">
+                                <rect key="frame" x="90" y="423" width="234" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="EV2-Yb-OQ8"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="IAu-Qv-Z4M" firstAttribute="top" secondItem="2OA-zX-ewC" secondAttribute="top" id="3xn-ci-d5F"/>
+                            <constraint firstItem="caL-ca-8Zs" firstAttribute="centerX" secondItem="2OA-zX-ewC" secondAttribute="centerX" id="79v-O1-Axj"/>
                             <constraint firstItem="IAu-Qv-Z4M" firstAttribute="trailing" secondItem="9n9-05-Zfr" secondAttribute="trailing" id="KZS-bf-lcb"/>
                             <constraint firstAttribute="bottom" secondItem="IAu-Qv-Z4M" secondAttribute="bottom" id="XMt-LD-3Wt"/>
+                            <constraint firstItem="9n9-05-Zfr" firstAttribute="trailing" secondItem="caL-ca-8Zs" secondAttribute="trailing" constant="90" id="gqD-hK-EHI"/>
+                            <constraint firstItem="caL-ca-8Zs" firstAttribute="leading" secondItem="9n9-05-Zfr" secondAttribute="leading" constant="90" id="iTI-ZN-qXX"/>
                             <constraint firstItem="IAu-Qv-Z4M" firstAttribute="leading" secondItem="9n9-05-Zfr" secondAttribute="leading" id="maP-Td-0EP"/>
+                            <constraint firstItem="caL-ca-8Zs" firstAttribute="centerY" secondItem="2OA-zX-ewC" secondAttribute="centerY" id="nNX-JE-Dbo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9n9-05-Zfr"/>
                     </view>

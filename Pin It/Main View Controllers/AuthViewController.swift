@@ -16,7 +16,10 @@ class AuthViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance().signIn()
+//        GIDSignIn.sharedInstance().signIn()
     }
-
+    
+    deinit {
+        print("Deinitializing AuthViewController")
+    }
 }

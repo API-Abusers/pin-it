@@ -14,20 +14,43 @@ import GoogleSignIn
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    var authVC: UIViewController!
+    var mapVC: UIViewController!
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
-
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
+        
+//        // selecting inital view controller
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//        let authVC = storyboard.instantiateViewController(withIdentifier: "AuthView")
+//        let mapVC = storyboard.instantiateViewController(withIdentifier: "MapView")
+//        
+////        presentViewController(vc: authVC)
+//        self.window?.rootViewController = authVC
+//        self.window?.makeKeyAndVisible()
         
         return true
     }
     
+    // MARK: Set Main View Controller
+    func presentViewController(vc : UIViewController) {
+        print("What tf")
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
+//        print(self.window?.rootViewController!)
+    }
+    
+    // MARK: URL Stuff
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
       -> Bool {
@@ -39,7 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: UISceneSession Lifecycle
-
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
@@ -53,7 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - Core Data stack
-
     lazy var persistentContainer: NSPersistentCloudKitContainer = {
         /*
          The persistent container for the application. This implementation
@@ -82,7 +103,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     // MARK: - Core Data Saving support
-
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -119,7 +139,10 @@ extension AppDelegate: GIDSignInDelegate {
                 return
             }
             // User is signed in
-
+            let user = authResult?.user
+            print("signed in \(user!.uid)")
+            print("\(String(describing: user?.email))")
+            self.presentViewController(vc: self.mapVC!)
         }
 
     }
