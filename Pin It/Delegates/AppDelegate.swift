@@ -34,12 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         authVC = storyboard.instantiateViewController(withIdentifier: "AuthView")
         mapVC = storyboard.instantiateViewController(withIdentifier: "MapView")
         
-        if(Auth.auth().currentUser! == nil) {
+        guard let _ = Auth.auth().currentUser else {
             presentViewController(vc: authVC)
-        } else {
-            presentViewController(vc: mapVC)
+            return true
         }
         
+        presentViewController(vc: mapVC)
         return true
     }
     
@@ -134,8 +134,9 @@ extension AppDelegate: GIDSignInDelegate {
     }
 
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        print("signing out")
         // Perform any operations when the user disconnects from app here.
-
+        self.presentViewController(vc: self.authVC)
     }
 }
 

@@ -60,10 +60,33 @@
                                     <action selector="findSelf:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iEe-yu-kNW"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3G-WO-ydp">
+                                <rect key="frame" x="334" y="224" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.7942795721" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="J7H-od-gLl"/>
+                                    <constraint firstAttribute="height" constant="60" id="njg-ym-BMf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" image="person.crop.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="showProfile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JbH-Py-Zni"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zFA-Eb-kHp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="0rP-g4-JvX"/>
+                            <constraint firstItem="r3G-WO-ydp" firstAttribute="top" secondItem="m6z-EO-giM" secondAttribute="bottom" constant="20" id="D5h-fA-esb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="r3G-WO-ydp" secondAttribute="trailing" constant="20" id="D9f-iI-q0x"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m6z-EO-giM" secondAttribute="trailing" constant="20" id="ECC-pg-60a"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zFA-Eb-kHp" secondAttribute="trailing" constant="20" id="GSW-hR-lW4"/>
                             <constraint firstAttribute="bottom" secondItem="ROf-rs-b2q" secondAttribute="bottom" id="Zh1-TN-Lel"/>
@@ -125,5 +148,6 @@
     <resources>
         <image name="location.fill" catalog="system" width="64" height="56"/>
         <image name="message.fill" catalog="system" width="64" height="56"/>
+        <image name="person.crop.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>

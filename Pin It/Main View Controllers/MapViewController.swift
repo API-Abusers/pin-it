@@ -20,6 +20,7 @@ class MapViewController: UIViewController {
     let postPage = MakePostViewController()
     var currentCalloutView = MiniEntryView()
     let detailPage = DetailedEntryViewController()
+    let profilePage = ProfileViewController()
     
     let annotationImage = UIImage(named: "loc-icon")!.resized(toHeight: 35)!
     var located = false
@@ -101,6 +102,11 @@ class MapViewController: UIViewController {
     // MARK: Zoom in on the User
     @IBAction func findSelf(_ sender: Any) {
         moveTo(location: location![0])
+    }
+    
+    // MARK: Show Profile
+    @IBAction func showProfile(_ sender: Any) {
+        self.present(profilePage, animated: true)
     }
     
     deinit {

@@ -28,6 +28,7 @@
 		7391DC8B23C655130051A1B9 /* Pin_ItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC8A23C655130051A1B9 /* Pin_ItTests.swift */; };
 		7391DC9623C655130051A1B9 /* Pin_ItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC9523C655130051A1B9 /* Pin_ItUITests.swift */; };
 		739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739638BD23C83E3200DB4D8B /* MakePostViewController.swift */; };
+		7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7399026323CE190400A10A18 /* ProfileViewController.swift */; };
 		73E4B5CD23CC15D300A2F636 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7391DC7623C655110051A1B9 /* Main.storyboard */; };
 		B693FA7632D072302F36AFCD /* Pods_Pin_It.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D2728D40CEED548B3A95224 /* Pods_Pin_It.framework */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,7 @@
 		7391DC9523C655130051A1B9 /* Pin_ItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin_ItUITests.swift; sourceTree = "<group>"; };
 		7391DC9723C655130051A1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		739638BD23C83E3200DB4D8B /* MakePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostViewController.swift; sourceTree = "<group>"; };
+		7399026323CE190400A10A18 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A469CD5D4B904F65B55F1303 /* Pods_Pin_ItTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pin_ItTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1ECC99E4C6AC49DF6334AF0 /* Pods-Pin It.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pin It.release.xcconfig"; path = "Target Support Files/Pods-Pin It/Pods-Pin It.release.xcconfig"; sourceTree = "<group>"; };
 		F61C2F0E7D0CEA337BC6DB5D /* Pods-Pin ItTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pin ItTests.release.xcconfig"; path = "Target Support Files/Pods-Pin ItTests/Pods-Pin ItTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				7391DC7423C655110051A1B9 /* MapViewController.swift */,
 				739638BD23C83E3200DB4D8B /* MakePostViewController.swift */,
 				732C024923CB832C00A512FC /* DetailedEntryViewController.swift */,
+				7399026323CE190400A10A18 /* ProfileViewController.swift */,
 			);
 			path = "Main View Controllers";
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */,
 				73013D0523C93CA8000817E4 /* EntriesManager.swift in Sources */,
 				731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */,
+				7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */,
 				739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */,
 				73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */,
 				732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */,
