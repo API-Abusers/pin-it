@@ -8,7 +8,7 @@
 
 import Foundation
 enum QueryConfig: String {
-    case url = "http://localhost:3000"
+    case url = "http://styrene.xyz:9734"
     case postEndPoint = "/newpin"
     case getEndPoint = "/getpin"
 }
