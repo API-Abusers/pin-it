@@ -49,6 +49,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
     }
     
+    // MARK: Sign Out Current User
+    func signOutCurrentUser() {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        presentViewController(vc: authVC)
+    }
+    
     // MARK: URL Stuff
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
@@ -134,9 +145,10 @@ extension AppDelegate: GIDSignInDelegate {
     }
 
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        print("signing out")
+        
         // Perform any operations when the user disconnects from app here.
         self.presentViewController(vc: self.authVC)
     }
+    
 }
 

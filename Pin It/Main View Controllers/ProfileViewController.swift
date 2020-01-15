@@ -56,12 +56,9 @@ class ProfileViewController: LBTAFormController {
     
     // MARK: Log Out
     @objc fileprivate func logOut() {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            self.dismiss(animated: true)
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+        self.dismiss(animated: true) {
+            let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
+            appDelegate!.signOutCurrentUser()
         }
     }
     
