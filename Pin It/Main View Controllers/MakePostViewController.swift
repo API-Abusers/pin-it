@@ -10,6 +10,8 @@ import UIKit
 import LBTATools
 import LBTAComponents
 import Alamofire
+import Firebase
+import GoogleSignIn
 
 class MakePostViewController: LBTAFormController, UITextViewDelegate {
 
@@ -24,31 +26,17 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
         overrideUserInterfaceStyle = .dark
         view.backgroundColor = #colorLiteral(red: 0.1260543499, green: 0.1356953156, blue: 0.1489139211, alpha: 1)
         self.isModalInPresentation = true
-        var padding: CGFloat = 12
-        
         
         scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         
-        // Setting up view layout
+        // Setting up view layout// Setting up view layout
         formContainerStackView.axis = .vertical
         formContainerStackView.spacing = 25
         formContainerStackView.layoutMargins = .init(top: 25, left: 25, bottom: 0, right: 25)
         
-        // Title field
-        titleField = IndentedTextField(placeholder: "Title", padding: padding, cornerRadius: 5, backgroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), isSecureTextEntry: false)
-        titleField.constrainHeight(50)
-        titleField.font = .systemFont(ofSize: 25)
+        // Setting up text fields
+        initInputFields()
         formContainerStackView.addArrangedSubview(titleField)
-        
-        // Description field
-        descField = LBTATextView()
-        descField.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        descField.font = .systemFont(ofSize: 20)
-        descField.placeholder = "Add a description"
-        descField.layer.cornerRadius = 5
-        var p = CGFloat(padding)-descField.layer.cornerRadius
-        descField.textContainerInset = UIEdgeInsets(top: p, left: p, bottom: p, right: p)
-        descField.isEditable = true
         formContainerStackView.addArrangedSubview(descField)
         
         // Buttons
@@ -56,23 +44,57 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
         formContainerStackView.addArrangedSubview(exitButton)
     }
     
+    // MARK: Init Input Fields
+    func initInputFields() {
+        let padding: CGFloat = 8
+        // Title field
+        titleField = IndentedTextField(placeholder: "Title", padding: padding, cornerRadius: 5, backgroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), isSecureTextEntry: false)
+        titleField.constrainHeight(50)
+        titleField.font = .systemFont(ofSize: 25)
+        
+        // Description field
+        descField = LBTATextView()
+        descField.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        descField.font = .systemFont(ofSize: 25)
+        descField.placeholder = "Add a description"
+        descField.layer.cornerRadius = 5
+        descField.textContainerInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        descField.isEditable = true
+        
+    }
     
+    // MARK: Sending Post
     @objc fileprivate func sendPost() {
+        let user = Auth.auth().currentUser
+        
         // make post request
-        let data: [String: Any] = [
-            "post": [
-                "title" : titleField.text!,
-                "description" : descField.text!
-            ],
-            "userLoc": [20, 20]
+        var data: [String: Any] = [
+            "pinId": "0",
+            "title" : titleField.text!,
+            "description" : descField.text!,
+            "userName": user?.displayName ?? "foo",
+            "userLat": 21,
+            "userLong": 21
         ]
         
-        print("attempting to send \(data)")
+        var hasher = Hasher()
+        hasher.combine(titleField.text!)
+        hasher.combine(descField.text!)
+        hasher.combine(user?.displayName)
+        hasher.combine(Date())
+        let hash = hasher.finalize()
+        data["pinId"] = String(describing: hash)
         
-        Alamofire.request(URL(string: QueryConfig.url.rawValue)!,
+        print("[MakePostViewController] attempting to send: \n\(data)")
+        Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.postEndPoint.rawValue)!,
                           method: .post,
                           parameters: data,
                           encoding: JSONEncoding.default)
+        .response { (res) in
+            print("[MakePostViewController] got server response \(res)")
+            self.initInputFields()
+            self.dismiss(animated: true)
+        }
         
     }
 
@@ -83,15 +105,5 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
     @objc fileprivate func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
