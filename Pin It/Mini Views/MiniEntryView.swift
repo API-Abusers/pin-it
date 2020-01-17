@@ -26,8 +26,8 @@ class MiniEntryView: UIView, CalloutViewPlus {
         let viewModel = viewModel as! MiniEntryViewModel
         entry = viewModel.entry
         
-        title.text = viewModel.title
-        body.text = viewModel.body
+        title.text = entry!.username
+        body.text = entry!.title
 
         self.layer.cornerRadius = 5
         self.layer.masksToBounds = true

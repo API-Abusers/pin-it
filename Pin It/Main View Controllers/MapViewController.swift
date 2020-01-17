@@ -47,13 +47,6 @@ class MapViewController: UIViewController {
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
         
-        // adding test annotation
-//        let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 3, longitudeDelta: 3)
-//        let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 40.328562, longitude: 155.734141)
-//        let region = MKCoordinateRegion(center: location, span: span)
-//        map.setRegion(region, animated: true)
-//        createAnnotation(title: "Idk", sub: "whoa", loc: location)
-        
         updateEntriesOnMap()
     }
     
@@ -95,7 +88,7 @@ class MapViewController: UIViewController {
     
     // MARK: Show Detail of an Entry View
     func showDetail(entry: Entry) {
-        detailPage.entry = entry
+        detailPage.useEntry(entry: entry)
         self.present(detailPage, animated: true)
     }
     

@@ -44,5 +44,12 @@ class DetailedEntryViewController: LBTAFormController {
         formContainerStackView.addArrangedSubview(descLabel)
         
     }
+    
+    func useEntry(entry: Entry) {
+        self.entry = entry
+        titleLabel.resizeAndDisplayText(text: entry.title)
+        authorLabel.resizeAndDisplayText(text: entry.username)
+        descLabel.resizeAndDisplayText(text: entry.description)
+    }
 
 }

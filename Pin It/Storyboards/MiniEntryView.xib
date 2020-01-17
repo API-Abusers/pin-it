@@ -20,10 +20,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDy-bk-NGK">
-                    <rect key="frame" x="30" y="93" width="150" height="25"/>
+                    <rect key="frame" x="30" y="83" width="150" height="35"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="25" id="j3I-RR-J09"/>
+                        <constraint firstAttribute="height" constant="35" id="j3I-RR-J09"/>
                     </constraints>
                     <state key="normal" title="Detail">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -11,14 +11,9 @@ import UIKit
 import MapViewPlus
 
 class MiniEntryViewModel: CalloutViewModel {
-    
-    var title: String
-    var body: String
     var entry: Entry
     
     init(entry: Entry) {
-        self.title = entry.username
-        self.body = entry.title
         self.entry = entry
     }
 }
