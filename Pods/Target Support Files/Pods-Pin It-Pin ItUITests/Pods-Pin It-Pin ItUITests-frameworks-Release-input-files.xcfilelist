@@ -8,4 +8,6 @@ ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
 ${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework
 ${BUILT_PRODUCTS_DIR}/LBTATools/LBTATools.framework
 ${BUILT_PRODUCTS_DIR}/MapViewPlus/MapViewPlus.framework
+${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
 ${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework

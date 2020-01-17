@@ -69,38 +69,9 @@ class MapViewController: UIViewController {
     
     // MARK: Update Entries On Map
     func updateEntriesOnMap() {
-        
-        let data = ["pinId": "-1162172850807958123"]
-
-        // MARK: queries the server and update the entriesList
-        Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.getEndPoint.rawValue)!,
-                          method: .get,
-                          encoding: JSONEncoding.default,
-                          headers: data)
-            
-        .responseJSON { response in
-            guard let json = response.result.value else {
-                print("JSON parsing failed, bye bye")
-                return
-            }
-            print("JSON: \(json)") // serialized json response
-            guard let dat = json as? [String: Any] else {
-                print("JSON parsing failed, bye bye")
-                return
-            }
-            
-            self.entriesList.append(Entry(username: dat["userName"] as! String,
-                                             location: [dat["userLat"] as! Double, dat["userLong"] as! Double],
-                                             title: dat["title"] as! String,
-                                             description: dat["description"] as! String))
-            
-            // add test entry
-            self.entriesList.append(Entry(username: "joe mama", location: [40.328562, 126.734141], title: "Engaging in Forced Labor", description: "SOS, I need to get out of this North Korean camp."))
-            print("entries list")
-            print(self.entriesList)
-            
+        EntriesManager.getEntriesFromServer().done { (entriesList) in
             var annotations: [AnnotationPlus] = []
-            for e in self.entriesList {
+            for e in entriesList {
                 let viewModel = MiniEntryViewModel(entry: e)
                 let annotation = AnnotationPlus(viewModel: viewModel,
                                                 coordinate: CLLocationCoordinate2DMake(e.location[0], e.location[1]))
@@ -108,6 +79,8 @@ class MapViewController: UIViewController {
             }
             
             self.map.setup(withAnnotations: annotations)
+        }.catch { (err) in
+            print("[MapViewController] Error while getting entries from server: \(err)")
         }
     }
     

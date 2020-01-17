@@ -12,6 +12,10 @@ target 'Pin It' do
   pod "MapViewPlus"
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'PromiseKit'
+  pod 'PromiseKit/CoreLocation'
+  pod 'PromiseKit/Alamofire'
+  pod 'SwiftyJSON'
   
   target 'Pin ItTests' do
     inherit! :search_paths
