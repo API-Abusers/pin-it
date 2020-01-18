@@ -71,6 +71,14 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
     @objc fileprivate func sendPost() {
         let user = Auth.auth().currentUser
         
+        // stop empty posts from being sent
+        if(titleField.text!.isEmpty || descField.text.isEmpty) {
+            let alert = UIAlertController(title: "Incomplete Post", message: "Please finish your post", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         // make post request
         var data: [String: Any] = [
             "pinId": "0",
