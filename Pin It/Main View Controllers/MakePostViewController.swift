@@ -29,10 +29,14 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
         
         scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         
-        // Setting up view layout// Setting up view layout
+        // Setting up view layout
         formContainerStackView.axis = .vertical
         formContainerStackView.spacing = 25
         formContainerStackView.layoutMargins = .init(top: 25, left: 25, bottom: 0, right: 25)
+        
+        // Title label
+        let titleLabel = UILabel(text: "Write a Post", font: UIFont.boldSystemFont(ofSize: 40), textColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), textAlignment: .natural, numberOfLines: 0)
+        formContainerStackView.addArrangedSubview(titleLabel)
         
         // Setting up text fields
         initInputFields()

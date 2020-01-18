@@ -40,7 +40,7 @@ class EntriesManager {
                             title: String(describing: dat["title"]),
                             description: String(describing: dat["description"])))
                         
-                        self.entriesList.append(Entry(username: "joe mama", location: [40.328562, 126.734141], title: "Engaging in Forced Labor", description: "SOS, I need to get out of this North Korean camp."))
+                        self.entriesList.append(Entry(username: "joe mama, this is mhu real name", location: [40.328562, 126.734141], title: "Engaging in Forced Labor, Stuck in North Korea", description: "SOS, I need to get out of this North Korean camp."))
                         
                         seal.fulfill(self.entriesList)
                         
