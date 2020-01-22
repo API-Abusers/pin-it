@@ -104,7 +104,8 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
                           encoding: JSONEncoding.default)
         .response { (res) in
             print("[MakePostViewController] got server response \(res)")
-            self.initInputFields()
+            self.titleField.text = ""
+            self.descField.text = ""
             self.dismiss(animated: true)
         }
         
