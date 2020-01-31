@@ -35,17 +35,20 @@ class EntriesManager {
                         print("INITIAL SERVER RESPONSE")
                         print(dat)
                         
-//                        self.entriesList.append(Entry(
-//                            username: String(describing: dat["userName"]),
-//                            location: [Double(String(describing: dat["userLat"]))!,
-//                                       Double(String(describing: dat["userLong"]))!],
-//                            title: String(describing: dat["title"]),
-//                            description: String(describing: dat["description"])))
-                        
                         self.entriesList.append(Entry(username: "joe mama, this is mhu real name",
                                                       location: [40.328562, 126.734141],
                                                       title: "Engaging in Forced Labor, Stuck in North Korea",
                                                       description: "SOS, I need to get out of this North Korean camp."))
+                        
+                        for ent in dat.array! {
+                            self.entriesList.append(Entry(
+                                username: String(describing: ent["userName"]),
+                                location: [Double(String(describing: ent["userLat"]))!,
+                                           Double(String(describing: ent["userLong"]))!],
+                                title: String(describing: ent["title"]),
+                                description: String(describing: ent["description"])
+                            ))
+                        }
                         
                         seal.fulfill(self.entriesList)
                         
