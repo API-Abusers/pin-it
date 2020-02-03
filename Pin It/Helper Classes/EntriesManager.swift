@@ -10,21 +10,31 @@ import Foundation
 import Alamofire
 import PromiseKit
 import SwiftyJSON
+import Firebase
 
 class EntriesManager {
     
     static var entriesList = [Entry]()
     
+    // MARK: Get Id Token
+    static func getIdToken() -> Promise<String> {
+        return Promise { seal in
+            Auth.auth().currentUser!.getIDTokenForcingRefresh(true, completion: { (idToken, error) in
+                if error != nil { seal.reject(error!) }
+                seal.fulfill(idToken!)
+            })
+        }
+    }
+    
     // MARK: Get Entries From Server
     static func getEntriesFromServer() -> Promise<[Entry]> {
-
-        let data = ["pinId": "-1162172850807958123"]
-        
         return Promise { seal in
-            Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.getEndPoint.rawValue)!,
-                              method: .get,
-                              encoding: JSONEncoding.default,
-                              headers: data)
+            getIdToken().done { (token) in
+                let header = ["Authorization": token]
+                Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.getEndPoint.rawValue)!,
+                                  method: .get,
+                                  encoding: JSONEncoding.default,
+                                  headers: header)
                 .validate()
                 .responseJSON { response in
 
@@ -56,8 +66,9 @@ class EntriesManager {
                         seal.reject(response.error!)
                     }
                     
+                }
             }
         }
-    
+
     }
 }
