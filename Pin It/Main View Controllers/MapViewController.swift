@@ -23,7 +23,7 @@ class MapViewController: UIViewController {
     let detailPage = DetailedEntryViewController()
     let profilePage = ProfileViewController()
     
-    let annotationImage = UIImage(named: "loc-icon")!.resized(toWidth: 35)!
+    let annotationImage = UIImage(named: "loc-icon")!.resized(toWidth: 60)!
     var located = false
     var location : [CLLocation]?
     var entriesList = [Entry]()
