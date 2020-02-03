@@ -97,16 +97,19 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
         let hash = hasher.finalize()
         data["pinId"] = String(describing: hash)
         
-        print("[MakePostViewController] attempting to send: \n\(data)")
-        Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.postEndPoint.rawValue)!,
-                          method: .post,
-                          parameters: data,
-                          encoding: JSONEncoding.default)
-        .response { (res) in
-            print("[MakePostViewController] got server response \(res)")
+        EntriesManager.postEntry(data: data)
+        .done { (res) in
+            print("Response after post")
+            print(res)
             self.titleField.text = ""
             self.descField.text = ""
             self.dismiss(animated: true)
+        }
+        .catch { (err) in
+            let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
         }
         
     }

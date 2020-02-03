@@ -71,4 +71,28 @@ class EntriesManager {
         }
 
     }
+    
+    // MARK: Post Data
+    static func postEntry(data: [String: Any]) -> Promise<String> {
+        return Promise { seal in
+            print("[EntriesManager] attempting to send: \n\(data)")
+            getIdToken().done { (token) in
+                let header = ["Authorization": token]
+                Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.postEndPoint.rawValue)!,
+                                  method: .post,
+                                  parameters: data,
+                                  encoding: JSONEncoding.default,
+                                  headers: header)
+                .responseJSON { (res) in
+                    switch res.result {
+                    case .success:
+                        seal.fulfill(res.description)
+                    case .failure:
+                        seal.reject(res.error!)
+                    }
+                }
+            }
+        }
+    }
+    
 }
