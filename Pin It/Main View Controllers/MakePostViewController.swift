@@ -12,6 +12,8 @@ import LBTAComponents
 import Alamofire
 import Firebase
 import GoogleSignIn
+import PromiseKit
+import AwaitKit
 
 class MakePostViewController: LBTAFormController, UITextViewDelegate {
 
@@ -96,22 +98,32 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
         hasher.combine(Date())
         let hash = hasher.finalize()
         data["pinId"] = String(describing: hash)
-        
-        EntriesManager.postEntry(data: data)
-        .done { (res) in
-            print("Response after post")
-            print(res)
-            self.titleField.text = ""
-            self.descField.text = ""
-            self.dismiss(animated: true)
+
+        CLLocationManager.requestLocation().done { (arr) in
+            let loc = arr[0]
+            data["userLat"] = loc.coordinate.latitude
+            data["userLong"] = loc.coordinate.longitude
+            
+            EntriesManager.postEntry(data: data)
+            .done { (res) in
+                print("Response after post")
+                print(res)
+                self.titleField.text = ""
+                self.descField.text = ""
+                self.dismiss(animated: true) {
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    (appDelegate.mapVC as! MapViewController).updateEntriesOnMap()
+                }
+            }
+            .catch { (err) in
+                let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
         }
-        .catch { (err) in
-            let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-        
+
     }
 
     @objc fileprivate func exitView() {

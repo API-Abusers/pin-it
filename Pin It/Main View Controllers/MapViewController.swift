@@ -53,7 +53,7 @@ class MapViewController: UIViewController {
         // zooom in on the current user location
         CLLocationManager.requestLocation().done { (loc) in
             self.moveTo(location: loc[0])
-            findSelfButton.isEnabled = true
+            self.findSelfButton.isEnabled = true
         }
     }
     
