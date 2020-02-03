@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import MapViewPlus
 import Alamofire
+import PromiseKit
 
 class MapViewController: UIViewController {
     
@@ -24,8 +25,6 @@ class MapViewController: UIViewController {
     let profilePage = ProfileViewController()
     
     let annotationImage = UIImage(named: "loc-icon")!.resized(toWidth: 60)!
-    var located = false
-    var location : [CLLocation]?
     var entriesList = [Entry]()
     
     @IBOutlet weak var findSelfButton: UIButton!
@@ -50,6 +49,11 @@ class MapViewController: UIViewController {
         manager.startUpdatingLocation()
         
         updateEntriesOnMap()
+        
+        // zooom in on the current user location
+        CLLocationManager.requestLocation().done { (loc) in
+            self.moveTo(location: loc[0])
+        }
     }
     
     // MARK: Move To Location on Map
@@ -118,12 +122,6 @@ class MapViewController: UIViewController {
 extension MapViewController: CLLocationManagerDelegate {
     // Extracting Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.location = locations
-        
-        if(self.located) { return }
-        findSelfButton.isEnabled = true
-        moveTo(location: self.location![0])
-        self.located = true
     }
 }
 
