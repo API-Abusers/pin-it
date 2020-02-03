@@ -53,6 +53,7 @@ class MapViewController: UIViewController {
         // zooom in on the current user location
         CLLocationManager.requestLocation().done { (loc) in
             self.moveTo(location: loc[0])
+            findSelfButton.isEnabled = true
         }
     }
     
@@ -105,7 +106,9 @@ class MapViewController: UIViewController {
     
     // MARK: Zoom in on the User
     @IBAction func findSelf(_ sender: Any) {
-        moveTo(location: location![0])
+        CLLocationManager.requestLocation().done { (loc) in
+            self.moveTo(location: loc[0])
+        }
     }
     
     // MARK: Show Profile
