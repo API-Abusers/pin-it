@@ -30,7 +30,7 @@ class EntriesManager {
     static func getEntriesFromServer() -> Promise<[Entry]> {
         return Promise { seal in
             getIdToken().done { (token) in
-                let header = ["Authorization": token]
+                let header = ["authorization": token]
                 Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.getEndPoint.rawValue)!,
                                   method: .get,
                                   encoding: JSONEncoding.default,
@@ -77,7 +77,7 @@ class EntriesManager {
         return Promise { seal in
             print("[EntriesManager] attempting to send: \n\(data)")
             getIdToken().done { (token) in
-                let header = ["Authorization": token]
+                let header = ["authorization": token]
                 Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.postEndPoint.rawValue)!,
                                   method: .post,
                                   parameters: data,

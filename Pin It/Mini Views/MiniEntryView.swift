@@ -26,6 +26,8 @@ class MiniEntryView: UIView, CalloutViewPlus {
         let viewModel = viewModel as! MiniEntryViewModel
         entry = viewModel.entry
         
+        print(entry?.title)
+        
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDetail)))
         
         title.resizeAndDisplayText(text: entry!.username)
@@ -35,7 +37,10 @@ class MiniEntryView: UIView, CalloutViewPlus {
         self.layer.masksToBounds = true
         
         var newFrame = self.frame
-        newFrame.size.height = title.frame.height + body.frame.height + button.bounds.size.height + 42
+        newFrame.size.height = title.requiredHeight + body.requiredHeight + button.bounds.size.height + 42
+        print(body.bounds.size.height)
+        print(body.frame.height)
+        print(body.requiredHeight)
         self.frame = newFrame
     }
     
