@@ -33,8 +33,11 @@ class MakePostViewController: FormViewController {
             <<< TextAreaRow() { row in
                 row.placeholder = "Description"
                 row.tag = "desc"
+            }.cellSetup { cell, row in
+                cell.height = { 150 }
             }
             
+            +++ Section()
             <<< ButtonRow { button in
                 button.title = "Post"
             }.cellSetup { cell, row in
@@ -44,7 +47,6 @@ class MakePostViewController: FormViewController {
             .onCellSelection { cell, row in
                 self.sendPost()
             }
-            
             <<< ButtonRow { (row: ButtonRow) -> Void in
                 row.title = "Exit"
             }.cellSetup{ cell, row in
