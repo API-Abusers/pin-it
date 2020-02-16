@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import LBTATools
-import LBTAComponents
 import Alamofire
 import Firebase
 import GoogleSignIn
@@ -17,12 +15,6 @@ import AwaitKit
 import Eureka
 
 class MakePostViewController: FormViewController {
-
-    var titleField = IndentedTextField()
-    var descField = LBTATextView()
-    let postButton = UIButton(title: "Post", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), target: self, action: #selector(sendPost))
-    let exitButton = UIButton(title: "Exit", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1), target: self, action: #selector(exitView))
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,8 +66,6 @@ class MakePostViewController: FormViewController {
             return
         }
         
-        print(titleField)
-        
         guard let descField = self.form.rowBy(tag: "desc")!.baseValue as! String? else {
             self.issueWarning()
             return
@@ -83,7 +73,10 @@ class MakePostViewController: FormViewController {
         
         
         // stop empty posts from being sent
-        if(titleField.isEmpty || descField.isEmpty) { issueWarning() }
+        if(titleField.isEmpty || descField.isEmpty) {
+            issueWarning()
+            return
+        }
 
         // make post request
         var data: [String: Any] = [
@@ -112,8 +105,10 @@ class MakePostViewController: FormViewController {
             .done { (res) in
                 print("Response after post")
                 print(res)
-                self.titleField.text = ""
-                self.descField.text = ""
+                let titleRow = self.form.rowBy(tag: "title") as! TextRow
+                titleRow.value = ""
+                let descRow = self.form.rowBy(tag: "desc") as! TextAreaRow
+                descRow.value = ""
                 self.dismiss(animated: true) {
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     (appDelegate.mapVC as! MapViewController).updateEntriesOnMap()
