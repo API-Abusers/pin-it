@@ -14,8 +14,9 @@ import Firebase
 import GoogleSignIn
 import PromiseKit
 import AwaitKit
+import Eureka
 
-class MakePostViewController: LBTAFormController, UITextViewDelegate {
+class MakePostViewController: FormViewController {
 
     var titleField = IndentedTextField()
     var descField = LBTATextView()
@@ -29,71 +30,74 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
         view.backgroundColor = #colorLiteral(red: 0.1260543499, green: 0.1356953156, blue: 0.1489139211, alpha: 1)
         self.isModalInPresentation = true
         
-        scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
-        
-        // Setting up view layout
-        formContainerStackView.axis = .vertical
-        formContainerStackView.spacing = 25
-        formContainerStackView.layoutMargins = .init(top: 25, left: 25, bottom: 0, right: 25)
-        
-        // Title label
-        let titleLabel = UILabel(text: "Write a Post", font: UIFont.boldSystemFont(ofSize: 40), textColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), textAlignment: .natural, numberOfLines: 0)
-        formContainerStackView.addArrangedSubview(titleLabel)
-        
-        // Setting up text fields
-        initInputFields()
-        formContainerStackView.addArrangedSubview(titleField)
-        formContainerStackView.addArrangedSubview(descField)
-        
-        // Buttons
-        formContainerStackView.addArrangedSubview(postButton)
-        formContainerStackView.addArrangedSubview(exitButton)
-    }
-    
-    // MARK: Init Input Fields
-    func initInputFields() {
-        let padding: CGFloat = 8
-        // Title field
-        titleField = IndentedTextField(placeholder: "Title", padding: padding, cornerRadius: 5, backgroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), isSecureTextEntry: false)
-        titleField.constrainHeight(50)
-        titleField.font = .systemFont(ofSize: 25)
-        
-        // Description field
-        descField = LBTATextView()
-        descField.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        descField.font = .systemFont(ofSize: 25)
-        descField.placeholder = "Add a description"
-        descField.layer.cornerRadius = 5
-        descField.textContainerInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        descField.isEditable = true
+        form +++ Section("Write A Post")
+            <<< TextRow() { row in
+                row.placeholder = "Title"
+                row.tag = "title"
+            }.cellSetup{ cell, row in
+                cell.tintColor = .white
+            }
+            
+            <<< TextAreaRow() { row in
+                row.placeholder = "Description"
+                row.tag = "desc"
+            }
+            
+            <<< ButtonRow { button in
+                button.title = "Post"
+            }.cellSetup { cell, row in
+                cell.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+                cell.tintColor = .white
+            }
+            .onCellSelection { cell, row in
+                self.sendPost()
+            }
+            
+            <<< ButtonRow { (row: ButtonRow) -> Void in
+                row.title = "Exit"
+            }.cellSetup{ cell, row in
+                cell.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+                cell.tintColor = .white
+            }
+            .onCellSelection { cell, row in
+                self.exitView()
+            }
         
     }
     
     // MARK: Sending Post
     @objc fileprivate func sendPost() {
         let user = Auth.auth().currentUser
-        
-        // stop empty posts from being sent
-        if(titleField.text!.isEmpty || descField.text.isEmpty) {
-            let alert = UIAlertController(title: "Incomplete Post", message: "Please finish your post", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+
+        guard let titleField = self.form.rowBy(tag: "title")!.baseValue as! String? else {
+            self.issueWarning()
             return
         }
         
+        print(titleField)
+        
+        guard let descField = self.form.rowBy(tag: "desc")!.baseValue as! String? else {
+            self.issueWarning()
+            return
+        }
+        
+        
+        // stop empty posts from being sent
+        if(titleField.isEmpty || descField.isEmpty) { issueWarning() }
+
         // make post request
         var data: [String: Any] = [
             "pinId": "0",
-            "title" : titleField.text!,
-            "description" : descField.text!,
+            "title" : titleField,
+            "description" : descField,
             "userName": user?.displayName ?? "foo",
             "userLat": 21,
             "userLong": 21
         ]
-        
+
         var hasher = Hasher()
-        hasher.combine(titleField.text!)
-        hasher.combine(descField.text!)
+        hasher.combine(titleField)
+        hasher.combine(descField)
         hasher.combine(user?.displayName)
         hasher.combine(Date())
         let hash = hasher.finalize()
@@ -103,7 +107,7 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
             let loc = arr[0]
             data["userLat"] = loc.coordinate.latitude
             data["userLong"] = loc.coordinate.longitude
-            
+
             EntriesManager.postEntry(data: data)
             .done { (res) in
                 print("Response after post")
@@ -121,15 +125,22 @@ class MakePostViewController: LBTAFormController, UITextViewDelegate {
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-            
+
         }
 
+    }
+    
+    // MARK: Issue Warning
+    func issueWarning() {
+        let alert = UIAlertController(title: "Incomplete Post", message: "Please finish your post", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
     @objc fileprivate func exitView() {
         self.dismiss(animated: true)
     }
-    
+
     @objc fileprivate func dismissKeyboard() {
         view.endEditing(true)
     }

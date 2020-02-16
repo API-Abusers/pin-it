@@ -38,9 +38,6 @@ class MiniEntryView: UIView, CalloutViewPlus {
         
         var newFrame = self.frame
         newFrame.size.height = title.requiredHeight + body.requiredHeight + button.bounds.size.height + 42
-        print(body.bounds.size.height)
-        print(body.frame.height)
-        print(body.requiredHeight)
         self.frame = newFrame
     }
     

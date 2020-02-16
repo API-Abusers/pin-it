@@ -17,6 +17,7 @@ target 'Pin It' do
   pod 'PromiseKit/Alamofire'
   pod 'SwiftyJSON'
   pod 'AwaitKit'
+  pod 'Eureka'
   
   target 'Pin ItTests' do
     inherit! :search_paths
