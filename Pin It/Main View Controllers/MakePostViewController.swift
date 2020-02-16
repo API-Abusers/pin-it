@@ -22,7 +22,21 @@ class MakePostViewController: FormViewController {
         view.backgroundColor = #colorLiteral(red: 0.1260543499, green: 0.1356953156, blue: 0.1489139211, alpha: 1)
         self.isModalInPresentation = true
         
-        form +++ Section("Write A Post")
+        form +++ Section() { section in
+            section.header = {
+            var header = HeaderFooterView<UIView>(.callback({
+                let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+                let title = UILabel(frame: CGRect(x: 16, y: 0, width: 500, height: 100))
+                title.font = .boldSystemFont(ofSize: 40)
+                title.text = "Make a Post"
+                title.textColor = .white
+                view.addSubview(title)
+                return view
+            }))
+            header.height = { 100 }
+            return header
+            }()
+        }
             <<< TextRow() { row in
                 row.placeholder = "Title"
                 row.tag = "title"
