@@ -29,6 +29,7 @@
 		7391DC9623C655130051A1B9 /* Pin_ItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC9523C655130051A1B9 /* Pin_ItUITests.swift */; };
 		739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739638BD23C83E3200DB4D8B /* MakePostViewController.swift */; };
 		7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7399026323CE190400A10A18 /* ProfileViewController.swift */; };
+		73E2A7972412E52300DA397B /* LocationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2A7962412E52300DA397B /* LocationRow.swift */; };
 		73E4B5CD23CC15D300A2F636 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7391DC7623C655110051A1B9 /* Main.storyboard */; };
 		B693FA7632D072302F36AFCD /* Pods_Pin_It.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D2728D40CEED548B3A95224 /* Pods_Pin_It.framework */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,7 @@
 		7391DC9723C655130051A1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		739638BD23C83E3200DB4D8B /* MakePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostViewController.swift; sourceTree = "<group>"; };
 		7399026323CE190400A10A18 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		73E2A7962412E52300DA397B /* LocationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationRow.swift; sourceTree = "<group>"; };
 		A469CD5D4B904F65B55F1303 /* Pods_Pin_ItTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pin_ItTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1ECC99E4C6AC49DF6334AF0 /* Pods-Pin It.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pin It.release.xcconfig"; path = "Target Support Files/Pods-Pin It/Pods-Pin It.release.xcconfig"; sourceTree = "<group>"; };
 		F61C2F0E7D0CEA337BC6DB5D /* Pods-Pin ItTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pin ItTests.release.xcconfig"; path = "Target Support Files/Pods-Pin ItTests/Pods-Pin ItTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		7391DC6F23C655110051A1B9 /* Pin It */ = {
 			isa = PBXGroup;
 			children = (
+				73E2A7952412E50600DA397B /* Eureka Custom Rows */,
 				731C07B623CBBDF400A64054 /* Config */,
 				73013D2923C986CB000817E4 /* Delegates */,
 				730A785423C8DCD000EED69B /* Helper Classes */,
@@ -248,6 +251,14 @@
 				7399026323CE190400A10A18 /* ProfileViewController.swift */,
 			);
 			path = "Main View Controllers";
+			sourceTree = "<group>";
+		};
+		73E2A7952412E50600DA397B /* Eureka Custom Rows */ = {
+			isa = PBXGroup;
+			children = (
+				73E2A7962412E52300DA397B /* LocationRow.swift */,
+			);
+			path = "Eureka Custom Rows";
 			sourceTree = "<group>";
 		};
 		C8D916F76AAD23D60F80D487 /* Pods */ = {
@@ -547,6 +558,7 @@
 				7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */,
 				739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */,
 				73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */,
+				73E2A7972412E52300DA397B /* LocationRow.swift in Sources */,
 				732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */,
 				7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */,
 				73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */,

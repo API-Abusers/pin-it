@@ -22,7 +22,9 @@ class MakePostViewController: FormViewController {
         view.backgroundColor = #colorLiteral(red: 0.1260543499, green: 0.1356953156, blue: 0.1489139211, alpha: 1)
         self.isModalInPresentation = true
         
-        form +++ Section() { section in
+        form
+            // Title and description fields
+            +++ Section() { section in
             section.header = {
             var header = HeaderFooterView<UIView>(.callback({
                 let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
@@ -40,30 +42,80 @@ class MakePostViewController: FormViewController {
             <<< TextRow() { row in
                 row.placeholder = "Title"
                 row.tag = "title"
-            }.cellSetup{ cell, row in
+            }
+            .cellSetup{ cell, row in
                 cell.tintColor = .white
             }
             
             <<< TextAreaRow() { row in
                 row.placeholder = "Description"
                 row.tag = "desc"
-            }.cellSetup { cell, row in
+            }
+            .cellSetup { cell, row in
                 cell.height = { 150 }
             }
             
+            // Location selector
+            +++ Section()
+            <<< LocationRow(){
+                $0.title = "Location"
+                $0.value = CLLocation(latitude: 1, longitude: 1)
+                $0.tag = "location"
+                $0.validationOptions = .validatesOnChange //2
+                $0.cellUpdate { (cell, row) in //3
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    } else {
+                        let lastLocation = row.value
+                        let geocoder = CLGeocoder()
+                        geocoder.reverseGeocodeLocation(lastLocation!,
+                            completionHandler: { (placemarks, error) in
+                                if error == nil {
+                                    let place = placemarks![0]
+                                    var adressString : String = ""
+                                    if place.thoroughfare != nil {
+                                        adressString = adressString + place.thoroughfare! + ", "
+                                    }
+                                    if place.subThoroughfare != nil {
+                                        adressString = adressString + place.subThoroughfare! + " "
+                                    }
+                                    if place.locality != nil {
+                                        adressString = adressString + place.locality! + " - "
+                                    }
+                                    if place.postalCode != nil {
+                                        adressString = adressString + place.postalCode! + " "
+                                    }
+                                    if place.subAdministrativeArea != nil {
+                                        adressString = adressString + place.subAdministrativeArea! + " - "
+                                    }
+                                    if place.country != nil {
+                                        adressString = adressString + place.country!
+                                    }
+                                    
+                                    adressString.trimmingCharacters(in: .whitespacesAndNewlines)
+                                }
+                        })
+                    }
+                }
+            }
+            
+            // Button rows
             +++ Section()
             <<< ButtonRow { button in
                 button.title = "Post"
-            }.cellSetup { cell, row in
+            }
+            .cellSetup { cell, row in
                 cell.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
                 cell.tintColor = .white
             }
             .onCellSelection { cell, row in
                 self.sendPost()
             }
+            
             <<< ButtonRow { (row: ButtonRow) -> Void in
                 row.title = "Exit"
-            }.cellSetup{ cell, row in
+            }
+            .cellSetup{ cell, row in
                 cell.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
                 cell.tintColor = .white
             }
