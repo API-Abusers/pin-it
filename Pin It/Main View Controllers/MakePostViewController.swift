@@ -99,6 +99,15 @@ class MakePostViewController: FormViewController {
                 }
             }
             
+            // Image selector
+            +++ Section()
+            <<< ImageRow  { row in
+                row.title = "Select Image"
+                row.sourceTypes = [.PhotoLibrary, .SavedPhotosAlbum, .Camera]
+                row.clearAction = .yes(style: UIAlertAction.Style.destructive)
+            }
+            
+            
             // Button rows
             +++ Section()
             <<< ButtonRow { button in
