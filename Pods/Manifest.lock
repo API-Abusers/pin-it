@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.9.1)
+  - AlamofireImage (3.5.2):
+    - Alamofire (~> 4.8)
   - AppAuth (1.3.0):
     - AppAuth/Core (= 1.3.0)
     - AppAuth/ExternalUserAgent (= 1.3.0)
@@ -7,6 +9,7 @@ PODS:
   - AppAuth/ExternalUserAgent (1.3.0)
   - AwaitKit (5.2.0):
     - PromiseKit (~> 6)
+  - CropViewController (2.5.2)
   - Eureka (5.2.0)
   - Firebase/Auth (6.14.0):
     - Firebase/CoreOnly
@@ -62,11 +65,19 @@ PODS:
   - GTMSessionFetcher/Core (1.3.1)
   - GTMSessionFetcher/Full (1.3.1):
     - GTMSessionFetcher/Core (= 1.3.1)
+  - ImagePicker (3.1.0)
+  - ImagePickerCoordinator (1.0.1):
+    - CropViewController
+    - ImagePicker
   - Kingfisher (5.6.0)
   - LBTAComponents (1.1)
   - LBTATools (1.0.12)
   - MapViewPlus (0.1.3):
     - Kingfisher (~> 5.6.0)
+  - MultiImageRow (1.0.2):
+    - AlamofireImage (~> 3.5.2)
+    - Eureka (~> 5.0)
+    - ImagePickerCoordinator
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -97,6 +108,7 @@ DEPENDENCIES:
   - LBTAComponents
   - LBTATools
   - MapViewPlus
+  - MultiImageRow (from `https://github.com/weiran/MultiImageRow`, branch `master`)
   - PromiseKit
   - PromiseKit/Alamofire
   - PromiseKit/CoreLocation
@@ -105,8 +117,10 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AlamofireImage
     - AppAuth
     - AwaitKit
+    - CropViewController
     - Eureka
     - Firebase
     - FirebaseAuth
@@ -120,6 +134,8 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - ImagePicker
+    - ImagePickerCoordinator
     - Kingfisher
     - LBTAComponents
     - LBTATools
@@ -128,10 +144,22 @@ SPEC REPOS:
     - PromiseKit
     - SwiftyJSON
 
+EXTERNAL SOURCES:
+  MultiImageRow:
+    :branch: master
+    :git: https://github.com/weiran/MultiImageRow
+
+CHECKOUT OPTIONS:
+  MultiImageRow:
+    :commit: b0b8ac5cf710aa1c1be3351297a0fbdd6b5af14d
+    :git: https://github.com/weiran/MultiImageRow
+
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
   AwaitKit: 512626cd12c82b1fbffddc8f414d0364cb456004
+  CropViewController: 1aac40093c5739e60d992b04724a55d12a689a4c
   Eureka: 820a761c700f6eaab3b60758f138e0d9b99072b3
   Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
   FirebaseAuth: 831577b184ecaba38bc886768c1c22a450cc44e3
@@ -145,14 +173,17 @@ SPEC CHECKSUMS:
   GoogleUtilities: 29bd0d8f850efbd28cff6d99e8b7da1f8d236bcf
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  ImagePicker: db1fd7626337b2577c523bef5f499bbbe5a37079
+  ImagePickerCoordinator: 51f9e1ec72186f89851e024a6625517c6348eb73
   Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
   LBTAComponents: 2e7719683ddcf1cdf7280700438c0c6a5f7da550
   LBTATools: 389a901a01b9a56bea5682c40cd6e23530f40015
   MapViewPlus: 92608071766d967ebad6316d226ba99e3e1dfcb3
+  MultiImageRow: b0e79bd23e46ee45f908296774197e6c997eaf5f
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromiseKit: c06835ba442ce5454ce3cdde470232804a6e4ff8
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: e87844d75938596ce78839f3d5233e0d0036d96c
+PODFILE CHECKSUM: c256e9b16670d6292d50ecc134b2565d2b4968fd
 
 COCOAPODS: 1.8.4

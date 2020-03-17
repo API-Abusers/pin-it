@@ -18,7 +18,8 @@ target 'Pin It' do
   pod 'SwiftyJSON'
   pod 'AwaitKit'
   pod 'Eureka'
-  
+  pod 'MultiImageRow', :git => 'https://github.com/weiran/MultiImageRow', :branch => 'master'
+
   target 'Pin ItTests' do
     inherit! :search_paths
     # Pods for testing

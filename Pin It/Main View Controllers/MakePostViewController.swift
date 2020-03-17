@@ -13,6 +13,7 @@ import GoogleSignIn
 import PromiseKit
 import AwaitKit
 import Eureka
+import MultiImageRow
 
 class MakePostViewController: FormViewController {
     
@@ -101,10 +102,11 @@ class MakePostViewController: FormViewController {
             
             // Image selector
             +++ Section()
-            <<< ImageRow  { row in
-                row.title = "Select Image"
-                row.sourceTypes = [.PhotoLibrary, .SavedPhotosAlbum, .Camera]
-                row.clearAction = .yes(style: UIAlertAction.Style.destructive)
+            <<< MultiImagePickerRow(fromController: .specific(self)) { row in
+                row.placeholderImage = UIImage(named: "loc-icon")!.alpha(0)
+                row.descriptionTitle = "Select images"
+                row.cell.collectionView.backgroundColor = row.cell.backgroundColor
+                row.value = [.empty,.empty,.empty]
             }
             
             
