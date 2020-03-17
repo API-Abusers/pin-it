@@ -103,7 +103,7 @@ class MakePostViewController: FormViewController {
             // Image selector
             +++ Section()
             <<< MultiImagePickerRow(fromController: .specific(self)) { row in
-                row.placeholderImage = UIImage(named: "loc-icon")!.alpha(0)
+                row.placeholderImage = UIImage(color: .secondarySystemBackground)
                 row.descriptionTitle = "Select images"
                 row.cell.collectionView.backgroundColor = row.cell.backgroundColor
                 row.value = [.empty,.empty,.empty]
