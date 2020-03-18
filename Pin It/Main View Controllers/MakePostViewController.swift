@@ -60,7 +60,7 @@ class MakePostViewController: FormViewController {
             +++ Section()
             <<< LocationRow(){
                 $0.title = "Location"
-                $0.value = CLLocation(latitude: 1, longitude: 1)
+                $0.value = MapViewController.userLoc
                 $0.tag = "location"
                 $0.validationOptions = .validatesOnChange //2
                 $0.cellUpdate { (cell, row) in //3

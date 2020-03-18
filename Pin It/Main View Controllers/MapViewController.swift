@@ -29,6 +29,8 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var findSelfButton: UIButton!
     
+    static var userLoc: CLLocation?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,6 +67,8 @@ class MapViewController: UIViewController {
         map.setRegion(region, animated: true) // Update map
         
         self.map.showsUserLocation = true // Show blue dot
+        
+        MapViewController.userLoc = loc // update user location
     }
     
     // MARK: Update Entries On Map

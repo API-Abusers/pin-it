@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import MapKit
 import Eureka
+import PromiseKit
 
 //MARK: LocationRow
 public final class LocationRow: OptionsRow<PushSelectorCell<CLLocation>>, PresenterRowType, RowType {
@@ -142,7 +143,8 @@ public class EmbeddedMapViewController : UIViewController, TypedRowControllerTyp
 
         
         if let value = row.value {
-            let region = MKCoordinateRegion(center: value.coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
+            let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 15, longitudeDelta: 15) // Zoom
+            let region: MKCoordinateRegion = MKCoordinateRegion(center: value.coordinate, span: span) // Set region
             mapView.setRegion(region, animated: true)
         }
         else{
