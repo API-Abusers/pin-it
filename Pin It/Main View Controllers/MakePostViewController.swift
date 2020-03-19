@@ -22,7 +22,11 @@ class MakePostViewController: FormViewController {
         overrideUserInterfaceStyle = .dark
         view.backgroundColor = #colorLiteral(red: 0.1260543499, green: 0.1356953156, blue: 0.1489139211, alpha: 1)
         self.isModalInPresentation = true
-        
+        createForm()
+    }
+    
+    // MARK: Create Form
+    func createForm() {
         form
             // Title and description fields
             +++ Section() { section in
@@ -63,41 +67,6 @@ class MakePostViewController: FormViewController {
                 $0.value = MapViewController.userLoc
                 $0.tag = "location"
                 $0.validationOptions = .validatesOnChange //2
-                $0.cellUpdate { (cell, row) in //3
-                    if !row.isValid {
-                        cell.textLabel?.textColor = .red
-                    } else {
-                        let lastLocation = row.value
-                        let geocoder = CLGeocoder()
-                        geocoder.reverseGeocodeLocation(lastLocation!,
-                            completionHandler: { (placemarks, error) in
-                                if error == nil {
-                                    let place = placemarks![0]
-                                    var adressString : String = ""
-                                    if place.thoroughfare != nil {
-                                        adressString = adressString + place.thoroughfare! + ", "
-                                    }
-                                    if place.subThoroughfare != nil {
-                                        adressString = adressString + place.subThoroughfare! + " "
-                                    }
-                                    if place.locality != nil {
-                                        adressString = adressString + place.locality! + " - "
-                                    }
-                                    if place.postalCode != nil {
-                                        adressString = adressString + place.postalCode! + " "
-                                    }
-                                    if place.subAdministrativeArea != nil {
-                                        adressString = adressString + place.subAdministrativeArea! + " - "
-                                    }
-                                    if place.country != nil {
-                                        adressString = adressString + place.country!
-                                    }
-                                    
-                                    adressString.trimmingCharacters(in: .whitespacesAndNewlines)
-                                }
-                        })
-                    }
-                }
             }
             
             // Image selector
@@ -105,6 +74,7 @@ class MakePostViewController: FormViewController {
             <<< MultiImagePickerRow(fromController: .specific(self)) { row in
                 row.placeholderImage = UIImage(color: .secondarySystemBackground)
                 row.descriptionTitle = "Select images"
+                row.tag = "images"
                 row.cell.collectionView.backgroundColor = row.cell.backgroundColor
                 row.value = [.empty,.empty,.empty]
             }
@@ -133,13 +103,13 @@ class MakePostViewController: FormViewController {
             .onCellSelection { cell, row in
                 self.exitView()
             }
-        
     }
     
     // MARK: Sending Post
     @objc fileprivate func sendPost() {
         let user = Auth.auth().currentUser
 
+        // unwrap user selections and check for completion
         guard let titleField = self.form.rowBy(tag: "title")!.baseValue as! String? else {
             self.issueWarning()
             return
@@ -150,8 +120,27 @@ class MakePostViewController: FormViewController {
             return
         }
         
+        guard let locField = self.form.rowBy(tag: "location")!.baseValue as! CLLocation? else {
+            self.issueWarning()
+            return
+        }
         
-        // stop empty posts from being sent
+        var imageSelection: [UIImage] = [UIImage]()
+        
+        guard let imageSlots = self.form.rowBy(tag: "images")!.baseValue as! [MultiImageTableCellSlot]? else {
+            self.issueWarning()
+            return
+        }
+        
+        for i in imageSlots {
+            switch i {
+            case .image(let img):
+                imageSelection.append(img)
+            default:
+                continue
+            }
+        }
+        
         if(titleField.isEmpty || descField.isEmpty) {
             issueWarning()
             return
@@ -159,12 +148,11 @@ class MakePostViewController: FormViewController {
 
         // make post request
         var data: [String: Any] = [
-            "pinId": "0",
             "title" : titleField,
             "description" : descField,
             "userName": user?.displayName ?? "foo",
-            "userLat": 21,
-            "userLong": 21
+            "userLat": locField.coordinate.latitude,
+            "userLong": locField.coordinate.longitude
         ]
 
         var hasher = Hasher()
@@ -173,33 +161,25 @@ class MakePostViewController: FormViewController {
         hasher.combine(user?.displayName)
         hasher.combine(Date())
         let hash = hasher.finalize()
+        
         data["pinId"] = String(describing: hash)
 
-        CLLocationManager.requestLocation().done { (arr) in
-            let loc = arr[0]
-            data["userLat"] = loc.coordinate.latitude
-            data["userLong"] = loc.coordinate.longitude
-
-            EntriesManager.postEntry(data: data)
-            .done { (res) in
-                print("Response after post")
-                print(res)
-                let titleRow = self.form.rowBy(tag: "title") as! TextRow
-                titleRow.value = ""
-                let descRow = self.form.rowBy(tag: "desc") as! TextAreaRow
-                descRow.value = ""
-                self.dismiss(animated: true) {
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    (appDelegate.mapVC as! MapViewController).updateEntriesOnMap()
-                }
+        EntriesManager.postEntry(data: data)
+        .done { (res) in
+            print("Response after post")
+            print(res)
+            self.dismiss(animated: true) {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                (appDelegate.mapVC as! MapViewController).updateEntriesOnMap()
+                self.form.removeAll()
+                MapViewController.postPage = MakePostViewController()
             }
-            .catch { (err) in
-                let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                return
-            }
-
+        }
+        .catch { (err) in
+            let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
         }
 
     }
