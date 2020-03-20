@@ -95,4 +95,40 @@ class EntriesManager {
         }
     }
     
+    // MARK: Attach Images to Post
+    static func attachFiles(files: [Data], addTo id: String) {
+        getIdToken().done { token in
+            let header = ["authorization": token]
+            Alamofire.upload(
+                multipartFormData: { multipartFormData in
+                    for i in 0 ... files.count - 1 {
+                        multipartFormData.append(files[i], withName: "img\(i)", fileName: "img\(i).jpg", mimeType: "image/jpg")
+                    }
+                    multipartFormData.append(Data(id.utf8), withName: "id")
+                },
+
+                to: URL(string: QueryConfig.url.rawValue + QueryConfig.uploadEndPoint.rawValue)!,
+                method: .post
+            )
+            { (result) in
+                switch result {
+                case .success(let upload, _, _):
+
+                    upload.uploadProgress(closure: { (progress) in
+                        print("Upload Progress: \(progress.fractionCompleted)")
+                    })
+
+                    upload.responseJSON { response in
+                        print(response.result.value as Any)
+                    }
+
+                case .failure(let encodingError):
+                    print(encodingError)
+                }
+            }
+
+        }
+    }
+    
+    
 }

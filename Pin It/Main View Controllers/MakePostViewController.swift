@@ -125,7 +125,7 @@ class MakePostViewController: FormViewController {
             return
         }
         
-        var imageSelection: [UIImage] = [UIImage]()
+        var imageSelection: [Data] = [Data]()
         
         guard let imageSlots = self.form.rowBy(tag: "images")!.baseValue as! [MultiImageTableCellSlot]? else {
             self.issueWarning()
@@ -135,7 +135,7 @@ class MakePostViewController: FormViewController {
         for i in imageSlots {
             switch i {
             case .image(let img):
-                imageSelection.append(img)
+                imageSelection.append(img.pngData()!)
             default:
                 continue
             }
@@ -164,24 +164,24 @@ class MakePostViewController: FormViewController {
         
         data["pinId"] = String(describing: hash)
 
-        EntriesManager.postEntry(data: data)
-        .done { (res) in
-            print("Response after post")
-            print(res)
+        firstly {
+            EntriesManager.postEntry(data: data)
+        }.done {_ in
+            if(!imageSelection.isEmpty) {
+                EntriesManager.attachFiles(files: imageSelection, addTo: data["pinId"] as! String)
+            }
             self.dismiss(animated: true) {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 (appDelegate.mapVC as! MapViewController).updateEntriesOnMap()
                 self.form.removeAll()
                 MapViewController.postPage = MakePostViewController()
             }
-        }
-        .catch { (err) in
+        }.catch { err in
             let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return
         }
-
     }
     
     // MARK: Issue Warning
