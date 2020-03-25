@@ -69,7 +69,11 @@ class EntriesManager {
                 }
             }
         }
-
+    }
+    
+    // MARK: Get Entries From Server
+    static func genEntriesFromServer(fromMonthsAgo months: Int) /*-> Promise<[Entry]>*/ {
+        // TODO: Get entries from the server spanning from n - 1 to n months ago
     }
     
     // MARK: Post Data
@@ -130,5 +134,11 @@ class EntriesManager {
         }
     }
     
+    // MARK: Get Post Images
+    static func getPostImages (ofId id: String) -> [UIImage] {
+        // TODO: Query post images based on post id
+        return [UIImage]()
+    }
+
     
 }

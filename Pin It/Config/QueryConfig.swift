@@ -12,6 +12,7 @@ enum QueryConfig: String {
     case postEndPoint = "/newpin"
     case getEndPoint = "/getpin"
     case uploadEndPoint = "/upload"
+    case getPostEndPoint = "/getpost"
 //    case url = "http://localhost:3000"
 //    case postEndPoint = ""
 //    case getEndPoint = "/"
