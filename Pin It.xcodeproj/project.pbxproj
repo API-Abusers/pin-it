@@ -18,6 +18,7 @@
 		731C07B823CBBE2000A64054 /* QueryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B723CBBE2000A64054 /* QueryConfig.swift */; };
 		731C07BA23CBCDA500A64054 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B923CBCDA500A64054 /* AuthViewController.swift */; };
 		731C07C023CBD6B900A64054 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 731C07BF23CBD6B800A64054 /* GoogleService-Info.plist */; };
+		7325BC262433BBBA006837F7 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325BC252433BBBA006837F7 /* Connectivity.swift */; };
 		732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024923CB832C00A512FC /* DetailedEntryViewController.swift */; };
 		732C024C23CB895C00A512FC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024B23CB895C00A512FC /* UILabelExtension.swift */; };
 		7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341C9C323C995120019CC6B /* MiniEntryView.swift */; };
@@ -68,6 +69,7 @@
 		731C07B723CBBE2000A64054 /* QueryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryConfig.swift; sourceTree = "<group>"; };
 		731C07B923CBCDA500A64054 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		731C07BF23CBD6B800A64054 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7325BC252433BBBA006837F7 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		732C024923CB832C00A512FC /* DetailedEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEntryViewController.swift; sourceTree = "<group>"; };
 		732C024B23CB895C00A512FC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		7341C9C323C995120019CC6B /* MiniEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniEntryView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				73013D0223C93C7B000817E4 /* Entry.swift */,
 				73013D0423C93CA8000817E4 /* EntriesManager.swift */,
 				73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */,
+				7325BC252433BBBA006837F7 /* Connectivity.swift */,
 			);
 			path = "Helper Classes";
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 			files = (
 				73013D0323C93C7B000817E4 /* Entry.swift in Sources */,
 				7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */,
+				7325BC262433BBBA006837F7 /* Connectivity.swift in Sources */,
 				73013D0523C93CA8000817E4 /* EntriesManager.swift in Sources */,
 				731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */,
 				73E2A8582412F99D00DA397B /* ImageRow.swift in Sources */,
