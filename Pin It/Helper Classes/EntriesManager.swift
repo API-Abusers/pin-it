@@ -28,10 +28,15 @@ class EntriesManager {
     
     // MARK: Get Entries From Server
     static func getEntriesFromServer() -> Promise<[Entry]> {
+        return genEntriesFromServer(fromMonthsAgo: 1)
+    }
+    
+    // MARK: Get Entries From Server
+    static func genEntriesFromServer(fromMonthsAgo months: Int) -> Promise<[Entry]> {
         return Promise { seal in
             getIdToken().done { (token) in
                 let header = ["authorization": token]
-                Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.getEndPoint.rawValue)!,
+                Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.getEndPoint.rawValue + "?range=\(months)")!,
                                   method: .get,
                                   encoding: JSONEncoding.default,
                                   headers: header)
@@ -71,11 +76,6 @@ class EntriesManager {
         }
     }
     
-    // MARK: Get Entries From Server
-    static func genEntriesFromServer(fromMonthsAgo months: Int) /*-> Promise<[Entry]>*/ {
-        // TODO: Get entries from the server spanning from n - 1 to n months ago
-    }
-    
     // MARK: Post Data
     static func postEntry(data: [String: Any]) -> Promise<String> {
         return Promise { seal in
@@ -111,8 +111,9 @@ class EntriesManager {
                     multipartFormData.append(Data(id.utf8), withName: "id")
                 },
 
-                to: URL(string: QueryConfig.url.rawValue + QueryConfig.uploadEndPoint.rawValue)!,
-                method: .post
+                to: URL(string: QueryConfig.url.rawValue + QueryConfig.postEndPoint.rawValue)!,
+                method: .post,
+                headers: header
             )
             { (result) in
                 switch result {
