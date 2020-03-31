@@ -72,6 +72,8 @@ class EntriesManager {
                     }
                     
                 }
+            }.catch { (err) in
+                seal.reject(err)
             }
         }
     }
@@ -95,43 +97,39 @@ class EntriesManager {
                         seal.reject(res.error!)
                     }
                 }
+            }.catch { (err) in
+                seal.reject(err)
             }
         }
     }
     
     // MARK: Attach Images to Post
-    static func attachFiles(files: [Data], addTo id: String) {
-        getIdToken().done { token in
-            let header = ["authorization": token]
-            Alamofire.upload(
-                multipartFormData: { multipartFormData in
-                    for i in 0 ... files.count - 1 {
-                        multipartFormData.append(files[i], withName: "img\(i)", fileName: "img\(i).jpg", mimeType: "image/jpg")
+    static func attachImageFiles(files: [UIImage], addTo id: String) -> Promise<Void> {
+        return Promise { seal in
+            if(files.isEmpty) {
+                seal.fulfill(Void())
+                return
+            }
+            for i in 0 ... files.count - 1 {
+                let uploadRef = Storage.storage().reference(withPath: "/\(id)/img-\(i).jpg")
+                guard let imageData = files[i].jpegData(compressionQuality: 0.75) else { continue }
+                let upload = StorageMetadata.init()
+                upload.contentType = "image/jpeg"
+                let ref = uploadRef.putData(imageData, metadata: upload) { (dat, err) in
+                    if let err = err {
+                        print("[EntriesManager] Error while uploading image:\n\(err)")
+                        seal.reject(err)
                     }
-                    multipartFormData.append(Data(id.utf8), withName: "id")
-                },
-
-                to: URL(string: QueryConfig.url.rawValue + QueryConfig.postEndPoint.rawValue)!,
-                method: .post,
-                headers: header
-            )
-            { (result) in
-                switch result {
-                case .success(let upload, _, _):
-
-                    upload.uploadProgress(closure: { (progress) in
-                        print("Upload Progress: \(progress.fractionCompleted)")
-                    })
-
-                    upload.responseJSON { response in
-                        print(response.result.value as Any)
+                    print(dat as Any?)
+                }
+                
+                if (i == files.count - 1) {
+                    ref.observe(.success) { _ in
+                        print("[EntriesManager] Image upload successful for post \(id)")
+                        seal.fulfill(Void())
                     }
-
-                case .failure(let encodingError):
-                    print(encodingError)
                 }
             }
-
         }
     }
     

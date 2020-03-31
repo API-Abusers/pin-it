@@ -10,7 +10,9 @@ target 'Pin It' do
   pod "LBTATools"
   pod "Alamofire"
   pod "MapViewPlus"
+  pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
   pod 'GoogleSignIn'
   pod 'PromiseKit'
   pod 'PromiseKit/CoreLocation'
@@ -19,7 +21,8 @@ target 'Pin It' do
   pod 'AwaitKit'
   pod 'Eureka'
   pod 'MultiImageRow', :git => 'https://github.com/weiran/MultiImageRow', :branch => 'master'
-
+  pod 'NVActivityIndicatorView'
+  
   target 'Pin ItTests' do
     inherit! :search_paths
     # Pods for testing

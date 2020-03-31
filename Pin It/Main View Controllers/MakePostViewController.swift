@@ -14,8 +14,9 @@ import PromiseKit
 import AwaitKit
 import Eureka
 import MultiImageRow
+import NVActivityIndicatorView
 
-class MakePostViewController: FormViewController {
+class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,40 +110,44 @@ class MakePostViewController: FormViewController {
     @objc fileprivate func sendPost() {
         let user = Auth.auth().currentUser
 
+        if !Connectivity.isConnectedToInternet {
+            self.issueWarningOnInternetConnection()
+        }
+        
         // unwrap user selections and check for completion
         guard let titleField = self.form.rowBy(tag: "title")!.baseValue as! String? else {
-            self.issueWarning()
+            self.issueWarningOnIncompletePost()
             return
         }
         
         guard let descField = self.form.rowBy(tag: "desc")!.baseValue as! String? else {
-            self.issueWarning()
+            self.issueWarningOnIncompletePost()
             return
         }
         
         guard let locField = self.form.rowBy(tag: "location")!.baseValue as! CLLocation? else {
-            self.issueWarning()
+            self.issueWarningOnIncompletePost()
             return
         }
         
-        var imageSelection: [Data] = [Data]()
+        var imageSelection = [UIImage]()
         
         guard let imageSlots = self.form.rowBy(tag: "images")!.baseValue as! [MultiImageTableCellSlot]? else {
-            self.issueWarning()
+            self.issueWarningOnIncompletePost()
             return
         }
         
         for i in imageSlots {
             switch i {
             case .image(let img):
-                imageSelection.append(img.pngData()!)
+                imageSelection.append(img)
             default:
                 continue
             }
         }
         
         if(titleField.isEmpty || descField.isEmpty) {
-            issueWarning()
+            issueWarningOnIncompletePost()
             return
         }
 
@@ -163,20 +168,22 @@ class MakePostViewController: FormViewController {
         let hash = hasher.finalize()
         
         data["pinId"] = String(describing: hash)
-
+        startAnimating(nil, message: "uploading post", messageFont: nil, type: NVActivityIndicatorType.cubeTransition, color: nil, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil, fadeInAnimation: nil)
+        
         firstly {
             EntriesManager.postEntry(data: data)
-        }.done {_ in
-            if(!imageSelection.isEmpty) {
-                EntriesManager.attachFiles(files: imageSelection, addTo: data["pinId"] as! String)
-            }
+        } .then {_ in
+            EntriesManager.attachImageFiles(files: imageSelection, addTo: data["pinId"] as! String)
+        } .done { _ in
+            self.stopAnimating()
             self.dismiss(animated: true) {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 (appDelegate.mapVC as! MapViewController).updateEntriesOnMap()
                 self.form.removeAll()
                 MapViewController.postPage = MakePostViewController()
             }
-        }.catch { err in
+        } .catch { err in
+            self.stopAnimating()
             let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -185,8 +192,16 @@ class MakePostViewController: FormViewController {
     }
     
     // MARK: Issue Warning
-    func issueWarning() {
-        let alert = UIAlertController(title: "Incomplete Post", message: "Please finish your post", preferredStyle: UIAlertController.Style.alert)
+    func issueWarningOnIncompletePost() {
+        issueWarning(title: "Incomplete Post", description: "Please finish your post")
+    }
+    
+    func issueWarningOnInternetConnection() {
+        issueWarning(title: "No Internet Connection", description: "Please enable your internet connection")
+    }
+    
+    func issueWarning(title: String, description: String) {
+        let alert = UIAlertController(title: title, message: description, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

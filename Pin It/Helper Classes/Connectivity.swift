@@ -2,8 +2,13 @@
 //  Connectivity.swift
 //  Pin It
 //
-//  Created by Joseph Jin on 3/31/20.
-//  Copyright © 2020 AnimatorJoe. All rights reserved.
-//
+// Suggested at https://stackoverflow.com/questions/41327325/how-to-check-internet-connection-in-alamofire
 
 import Foundation
+import Alamofire
+
+class Connectivity {
+    class var isConnectedToInternet:Bool {
+        return NetworkReachabilityManager()?.isReachable ?? false
+    }
+}
