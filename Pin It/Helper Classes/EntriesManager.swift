@@ -21,7 +21,11 @@ class EntriesManager {
         return Promise { seal in
             Auth.auth().currentUser!.getIDTokenForcingRefresh(true, completion: { (idToken, error) in
                 if error != nil { seal.reject(error!) }
-                seal.fulfill(idToken!)
+                if let idToken = idToken {
+                    seal.fulfill(idToken)
+                } else {
+                    seal.reject(error!)
+                }
             })
         }
     }

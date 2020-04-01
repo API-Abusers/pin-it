@@ -111,29 +111,30 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
         let user = Auth.auth().currentUser
 
         if !Connectivity.isConnectedToInternet {
-            self.issueWarningOnInternetConnection()
+            WarningPopup.issueWarningOnInternetConnection(vc: self)
+            return
         }
         
         // unwrap user selections and check for completion
         guard let titleField = self.form.rowBy(tag: "title")!.baseValue as! String? else {
-            self.issueWarningOnIncompletePost()
+            WarningPopup.issueWarningOnIncompletePost(vc: self)
             return
         }
         
         guard let descField = self.form.rowBy(tag: "desc")!.baseValue as! String? else {
-            self.issueWarningOnIncompletePost()
+            WarningPopup.issueWarningOnIncompletePost(vc: self)
             return
         }
         
         guard let locField = self.form.rowBy(tag: "location")!.baseValue as! CLLocation? else {
-            self.issueWarningOnIncompletePost()
+            WarningPopup.issueWarningOnIncompletePost(vc: self)
             return
         }
         
         var imageSelection = [UIImage]()
         
         guard let imageSlots = self.form.rowBy(tag: "images")!.baseValue as! [MultiImageTableCellSlot]? else {
-            self.issueWarningOnIncompletePost()
+            WarningPopup.issueWarningOnIncompletePost(vc: self)
             return
         }
         
@@ -147,7 +148,7 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
         }
         
         if(titleField.isEmpty || descField.isEmpty) {
-            issueWarningOnIncompletePost()
+            WarningPopup.issueWarningOnIncompletePost(vc: self)
             return
         }
 
@@ -172,9 +173,9 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
         
         firstly {
             EntriesManager.postEntry(data: data)
-        } .then {_ in
+        }.then {_ in
             EntriesManager.attachImageFiles(files: imageSelection, addTo: data["pinId"] as! String)
-        } .done { _ in
+        }.done { _ in
             self.stopAnimating()
             self.dismiss(animated: true) {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -182,28 +183,13 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
                 self.form.removeAll()
                 MapViewController.postPage = MakePostViewController()
             }
-        } .catch { err in
+        }.catch { err in
             self.stopAnimating()
             let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return
         }
-    }
-    
-    // MARK: Issue Warning
-    func issueWarningOnIncompletePost() {
-        issueWarning(title: "Incomplete Post", description: "Please finish your post")
-    }
-    
-    func issueWarningOnInternetConnection() {
-        issueWarning(title: "No Internet Connection", description: "Please enable your internet connection")
-    }
-    
-    func issueWarning(title: String, description: String) {
-        let alert = UIAlertController(title: title, message: description, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
 
     @objc fileprivate func exitView() {

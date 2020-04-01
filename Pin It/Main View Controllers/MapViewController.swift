@@ -73,7 +73,10 @@ class MapViewController: UIViewController {
     
     // MARK: Update Entries On Map
     func updateEntriesOnMap() {
+        
         EntriesManager.getEntriesFromServer().done { (entriesList) in
+            print("Entries List")
+            print(entriesList)
             var annotations: [AnnotationPlus] = []
             for e in entriesList {
                 let viewModel = MiniEntryViewModel(entry: e)
@@ -85,6 +88,11 @@ class MapViewController: UIViewController {
             self.map.setup(withAnnotations: annotations)
         }.catch { (err) in
             print("[MapViewController] Error while getting entries from server: \(err)")
+            
+            if !Connectivity.isConnectedToInternet {
+                WarningPopup.issueWarningOnInternetConnection(vc: self)
+                return
+            }
         }
     }
     
