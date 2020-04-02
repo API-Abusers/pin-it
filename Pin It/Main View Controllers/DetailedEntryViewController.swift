@@ -50,6 +50,7 @@ class DetailedEntryViewController: LBTAFormController {
         titleLabel.resizeAndDisplayText(text: entry.title)
         authorLabel.resizeAndDisplayText(text: entry.username)
         descLabel.resizeAndDisplayText(text: entry.description)
+        EntriesManager.getPostImages(ofId: entry.id)
     }
 
 }

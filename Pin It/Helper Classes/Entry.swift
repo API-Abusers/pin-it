@@ -14,13 +14,15 @@ class Entry {
     var location: [Double] // [longitude, latitude]
     var title: String
     var description: String
+    var id: String
     
     // Initializer
-    public init(username: String, location: [Double], title: String, description: String) {
+    public init(username: String, location: [Double], title: String, description: String, id: String) {
         self.username = username
         self.location = location
         self.title = title
         self.description = description
+        self.id = id
     }
     
 }

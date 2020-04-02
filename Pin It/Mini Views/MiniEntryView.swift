@@ -26,8 +26,6 @@ class MiniEntryView: UIView, CalloutViewPlus {
         let viewModel = viewModel as! MiniEntryViewModel
         entry = viewModel.entry
         
-        print(entry?.title)
-        
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDetail)))
         
         title.resizeAndDisplayText(text: entry!.username)
