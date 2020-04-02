@@ -50,7 +50,12 @@ class DetailedEntryViewController: LBTAFormController {
         titleLabel.resizeAndDisplayText(text: entry.title)
         authorLabel.resizeAndDisplayText(text: entry.username)
         descLabel.resizeAndDisplayText(text: entry.description)
-        EntriesManager.getPostImages(ofId: entry.id)
+        EntriesManager.getPostImages(ofId: entry.id).done { (images) in
+            for image in images {
+                let imageView = UIImageView(image: image)
+                self.formContainerStackView.addArrangedSubview(imageView)
+            }
+        }
     }
 
 }

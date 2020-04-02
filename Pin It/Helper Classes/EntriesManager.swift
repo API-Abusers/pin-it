@@ -142,41 +142,21 @@ class EntriesManager {
     // MARK: Get Post Images
     static func getPostImages (ofId id: String) -> Promise<[UIImage]> {
         return Promise { seal in
-            
             var assets = [UIImage]()
-        
             let ref = Storage.storage().reference(withPath: id)
-    //        let task = ref.getData(maxSize: <#T##Int64#>, completion: <#T##(Data?, Error?) -> Void#>)
             ref.listAll(completion: {(list, err) in
                 if let err = err { seal.reject(err) }
                 print("Attempting to download images")
-                print(list)
                 for imgRef in list.items {
                     print(imgRef)
+                    imgRef.getData(maxSize: 700 * 1024 * 1024) { (dat, err) in
+                        if let err = err { seal.reject(err) }
+                        assets.append(UIImage(data: dat!)!)
+                        if (assets.count == list.items.count) { seal.fulfill(assets) }
+                    }
                 }
             })
-            
-            
-//            let ref = Storage.storage().reference(withPath: id)
-//
-//            ref.observe(, keyPath: { (snapshot) in
-//                // Get download URL from snapshot
-//                let downloadURL = snapshot.value() as! String
-//                // Create a storage reference from the URL
-//                let storageRef = storage.referenceFromURL(downloadURL)
-//                // Download the data, assuming a max size of 1MB (you can change this as necessary)
-//                var strRef = storageRef.getData(maxSize: 900 * 1024 * 1024) { (data, error) -> Void in
-//                    if let err = err { seal.reject(err) }
-//                    // Create a UIImage, add it to the array
-//                    let pic = UIImage(data: data)
-//                    assets.append(pic)
-//                }
-//                strRef.
-//            })
-            
-            seal.fulfill(assets)
         }
     }
 
-    
 }
