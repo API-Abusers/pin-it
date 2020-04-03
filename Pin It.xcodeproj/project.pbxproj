@@ -31,6 +31,7 @@
 		7391DC9623C655130051A1B9 /* Pin_ItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC9523C655130051A1B9 /* Pin_ItUITests.swift */; };
 		739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739638BD23C83E3200DB4D8B /* MakePostViewController.swift */; };
 		7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7399026323CE190400A10A18 /* ProfileViewController.swift */; };
+		73E0553B2436DFFF0094253C /* DetailedPostLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */; };
 		73E2A7972412E52300DA397B /* LocationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2A7962412E52300DA397B /* LocationRow.swift */; };
 		73E2A8582412F99D00DA397B /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2A8562412F99D00DA397B /* ImageRow.swift */; };
 		73E2A8592412F99D00DA397B /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2A8572412F99D00DA397B /* ImagePickerController.swift */; };
@@ -90,6 +91,7 @@
 		7391DC9723C655130051A1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		739638BD23C83E3200DB4D8B /* MakePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostViewController.swift; sourceTree = "<group>"; };
 		7399026323CE190400A10A18 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostLayout.swift; sourceTree = "<group>"; };
 		73E2A7962412E52300DA397B /* LocationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationRow.swift; sourceTree = "<group>"; };
 		73E2A8562412F99D00DA397B /* ImageRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
 		73E2A8572412F99D00DA397B /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				739638BD23C83E3200DB4D8B /* MakePostViewController.swift */,
 				732C024923CB832C00A512FC /* DetailedEntryViewController.swift */,
 				7399026323CE190400A10A18 /* ProfileViewController.swift */,
+				73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */,
 			);
 			path = "Main View Controllers";
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */,
 				739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */,
 				73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */,
+				73E0553B2436DFFF0094253C /* DetailedPostLayout.swift in Sources */,
 				73E2A7972412E52300DA397B /* LocationRow.swift in Sources */,
 				732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */,
 				7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */,

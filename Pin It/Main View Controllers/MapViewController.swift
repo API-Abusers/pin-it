@@ -21,7 +21,7 @@ class MapViewController: UIViewController {
     
     static var postPage = MakePostViewController()
     var calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView
-    let detailPage = DetailedEntryViewController()
+    var detailPage = DetailedEntryViewController()
     let profilePage = ProfileViewController()
     
     let annotationImage = UIImage(named: "loc-icon")!.resized(toWidth: 60)!
@@ -107,6 +107,7 @@ class MapViewController: UIViewController {
     
     // MARK: Show Detail of an Entry View
     func showDetail(entry: Entry) {
+        detailPage = DetailedEntryViewController()
         detailPage.useEntry(entry: entry)
         self.present(detailPage, animated: true)
     }

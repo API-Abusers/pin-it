@@ -21,6 +21,8 @@ target 'Pin It' do
   pod 'Eureka'
   pod 'MultiImageRow', :git => 'https://github.com/weiran/MultiImageRow', :branch => 'master'
   pod 'NVActivityIndicatorView'
+  pod "ImageSlideshow"
+  pod 'LayoutKit', :git => 'https://github.com/linkedin/LayoutKit.git', :branch => 'master'
   
   target 'Pin ItTests' do
     inherit! :search_paths

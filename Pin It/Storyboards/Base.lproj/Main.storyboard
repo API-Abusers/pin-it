@@ -82,7 +82,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="zFA-Eb-kHp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="0rP-g4-JvX"/>
                             <constraint firstItem="r3G-WO-ydp" firstAttribute="top" secondItem="m6z-EO-giM" secondAttribute="bottom" constant="20" id="D5h-fA-esb"/>
@@ -126,7 +126,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="IAu-Qv-Z4M" firstAttribute="top" secondItem="2OA-zX-ewC" secondAttribute="top" id="3xn-ci-d5F"/>
                             <constraint firstItem="caL-ca-8Zs" firstAttribute="centerX" secondItem="2OA-zX-ewC" secondAttribute="centerX" id="79v-O1-Axj"/>
