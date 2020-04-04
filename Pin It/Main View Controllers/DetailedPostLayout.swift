@@ -15,14 +15,14 @@ public class DetailedPostLayout: InsetLayout<UIView> {
     
 //    let slideshow = ImageSlideshow()
 
-    public init(title: String, author: String, desc: String, id: String) {
+    public init(title: String, author: String, desc: String, id: String, rootvc: UIViewController) {
         
-        let titleLayout = LabelLayout(text: title, font: UIFont.systemFont(ofSize: 40))
-        let authorLayout = LabelLayout(text: author, font: UIFont.systemFont(ofSize: 40))
-        let descLayout = LabelLayout(text: desc, font: UIFont.systemFont(ofSize: 40))
+        let titleLayout = LabelLayout(text: title, font: UIFont.boldSystemFont(ofSize: 40))
+        let authorLayout = LabelLayout(text: author, font: UIFont.italicSystemFont(ofSize: 15))
+        let descLayout = LabelLayout(text: desc, font: UIFont.systemFont(ofSize: 20))
         let imageSlideshow = SizeLayout<ImageSlideshow>(
-            width: 100,
-            height: 100,
+            width: rootvc.view.frame.size.width - 50,
+            height: rootvc.view.frame.size.width - 50,
             config: { slideshow in
                 // Add ImageSlideShow
                 slideshow.slideshowInterval = 5.0
@@ -53,10 +53,10 @@ public class DetailedPostLayout: InsetLayout<UIView> {
         )
             
         super.init(
-            insets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8),
+            insets: UIEdgeInsets(top: 25, left: 25, bottom: 0, right: 25),
             sublayout: StackLayout(
                 axis: .vertical,
-                spacing: 8,
+                spacing: 25,
                 sublayouts: [titleLayout, authorLayout, descLayout, imageSlideshow]
             )
         )
