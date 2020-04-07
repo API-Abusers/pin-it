@@ -41,6 +41,11 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                 spinner.centerXAnchor.constraint(equalTo: slideshow.centerXAnchor).isActive = true
                 spinner.centerYAnchor.constraint(equalTo: slideshow.centerYAnchor).isActive = true
                 
+                // adding gesture recognizer
+                slideshow.addTapGestureRecognizer {
+                    slideshow.presentFullScreenController(from: rootvc)
+                }
+                
                 EntriesManager.getPostImages(ofId: id).done { (images) in
                     var imgSource = [ImageSource]()
                     images.forEach { (img) in imgSource.append(ImageSource(image: img))}

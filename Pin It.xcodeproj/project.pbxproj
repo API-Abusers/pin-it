@@ -31,6 +31,7 @@
 		7391DC9623C655130051A1B9 /* Pin_ItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC9523C655130051A1B9 /* Pin_ItUITests.swift */; };
 		739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739638BD23C83E3200DB4D8B /* MakePostViewController.swift */; };
 		7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7399026323CE190400A10A18 /* ProfileViewController.swift */; };
+		73C35F87243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C35F86243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift */; };
 		73E0553B2436DFFF0094253C /* DetailedPostLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */; };
 		73E2A7972412E52300DA397B /* LocationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2A7962412E52300DA397B /* LocationRow.swift */; };
 		73E2A8582412F99D00DA397B /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2A8562412F99D00DA397B /* ImageRow.swift */; };
@@ -91,6 +92,7 @@
 		7391DC9723C655130051A1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		739638BD23C83E3200DB4D8B /* MakePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostViewController.swift; sourceTree = "<group>"; };
 		7399026323CE190400A10A18 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		73C35F86243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerWithoutSelector.swift; sourceTree = "<group>"; };
 		73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostLayout.swift; sourceTree = "<group>"; };
 		73E2A7962412E52300DA397B /* LocationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationRow.swift; sourceTree = "<group>"; };
 		73E2A8562412F99D00DA397B /* ImageRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		73013D1B23C970D0000817E4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				73C35F86243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift */,
 				731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */,
 				732C024B23CB895C00A512FC /* UILabelExtension.swift */,
 				73013D1C23C970DD000817E4 /* UIImageExtension.swift */,
@@ -580,6 +583,7 @@
 				73E2A7972412E52300DA397B /* LocationRow.swift in Sources */,
 				732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */,
 				7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */,
+				73C35F87243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift in Sources */,
 				73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */,
 				7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */,
 				73E2A8592412F99D00DA397B /* ImagePickerController.swift in Sources */,

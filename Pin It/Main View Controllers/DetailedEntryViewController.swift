@@ -13,17 +13,12 @@ import LayoutKit
 
 class DetailedEntryViewController: UIViewController {
 
-//    var titleLabel = UILabel()
-//    var authorLabel = UILabel()
-//    var descLabel = UILabel()
     var entry: Entry?
-//    var slideshow = ImageSlideshow()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .dark
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        
     }
     
     func useEntry(entry: Entry) {
