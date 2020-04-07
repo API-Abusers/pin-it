@@ -43,7 +43,8 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                 
                 // adding gesture recognizer
                 slideshow.addTapGestureRecognizer {
-                    slideshow.presentFullScreenController(from: rootvc)
+                    
+                    slideshow.presentFullScreenControllerForIos13(from: rootvc)
                 }
                 
                 EntriesManager.getPostImages(ofId: id).done { (images) in

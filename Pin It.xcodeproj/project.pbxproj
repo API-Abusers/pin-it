@@ -14,6 +14,7 @@
 		73013D1123C96426000817E4 /* MiniEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73013D1023C96426000817E4 /* MiniEntryView.xib */; };
 		73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */; };
 		73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1C23C970DD000817E4 /* UIImageExtension.swift */; };
+		730351D7243D364E00CBC085 /* ImageSlideshowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730351D6243D364E00CBC085 /* ImageSlideshowExtension.swift */; };
 		731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */; };
 		731C07B823CBBE2000A64054 /* QueryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B723CBBE2000A64054 /* QueryConfig.swift */; };
 		731C07BA23CBCDA500A64054 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B923CBCDA500A64054 /* AuthViewController.swift */; };
@@ -68,6 +69,7 @@
 		73013D1023C96426000817E4 /* MiniEntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiniEntryView.xib; sourceTree = "<group>"; };
 		73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniEntryViewModel.swift; sourceTree = "<group>"; };
 		73013D1C23C970DD000817E4 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		730351D6243D364E00CBC085 /* ImageSlideshowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSlideshowExtension.swift; sourceTree = "<group>"; };
 		731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceholder.swift; sourceTree = "<group>"; };
 		731C07B723CBBE2000A64054 /* QueryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryConfig.swift; sourceTree = "<group>"; };
 		731C07B923CBCDA500A64054 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */,
 				732C024B23CB895C00A512FC /* UILabelExtension.swift */,
 				73013D1C23C970DD000817E4 /* UIImageExtension.swift */,
+				730351D6243D364E00CBC085 /* ImageSlideshowExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */,
 				73E2A8582412F99D00DA397B /* ImageRow.swift in Sources */,
 				7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */,
+				730351D7243D364E00CBC085 /* ImageSlideshowExtension.swift in Sources */,
 				739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */,
 				73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */,
 				73E0553B2436DFFF0094253C /* DetailedPostLayout.swift in Sources */,
