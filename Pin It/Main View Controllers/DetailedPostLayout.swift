@@ -12,8 +12,6 @@ import ImageSlideshow
 import PromiseKit
 
 public class DetailedPostLayout: InsetLayout<UIView> {
-    
-//    let slideshow = ImageSlideshow()
 
     public init(title: String, author: String, desc: String, id: String, rootvc: UIViewController) {
         
@@ -34,13 +32,14 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                 pageControl.pageIndicatorTintColor = UIColor.black
                 slideshow.pageIndicator = pageControl
 
-                // optional way to show activity indicator during image load (skipping the line will show no activity indicator)
-                slideshow.activityIndicator = DefaultActivityIndicator()
-//                slideshow.delegate = self
-                
-//                var imgSource = [InputSource]()
-//                imgSource.append(BundleImageSource(imageString: "map_pin"))
-//                slideshow.setImageInputs(imgSource)
+                // Adding Spinner
+                //slideshow.activityIndicator = DefaultActivityIndicator(style: .white, color: nil) // this doesn't appear to be working
+                var spinner = UIActivityIndicatorView(style: .whiteLarge)
+                spinner.translatesAutoresizingMaskIntoConstraints = false
+                spinner.startAnimating()
+                slideshow.addSubview(spinner)
+                spinner.centerXAnchor.constraint(equalTo: slideshow.centerXAnchor).isActive = true
+                spinner.centerYAnchor.constraint(equalTo: slideshow.centerYAnchor).isActive = true
                 
                 EntriesManager.getPostImages(ofId: id).done { (images) in
                     var imgSource = [ImageSource]()
@@ -48,6 +47,8 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                     slideshow.setImageInputs(imgSource)
                 }.catch { (err) in
                     print("[DetailedPostLayout] Error while loading images: \(err)")
+                }.finally {
+                    spinner.stopAnimating()
                 }
             }
         )
