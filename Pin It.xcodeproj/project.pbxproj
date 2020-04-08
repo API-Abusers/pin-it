@@ -15,6 +15,7 @@
 		73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */; };
 		73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1C23C970DD000817E4 /* UIImageExtension.swift */; };
 		730351D7243D364E00CBC085 /* ImageSlideshowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730351D6243D364E00CBC085 /* ImageSlideshowExtension.swift */; };
+		730351D9243D3FEF00CBC085 /* BSImagePickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730351D8243D3FEF00CBC085 /* BSImagePickerRow.swift */; };
 		731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */; };
 		731C07B823CBBE2000A64054 /* QueryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B723CBBE2000A64054 /* QueryConfig.swift */; };
 		731C07BA23CBCDA500A64054 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B923CBCDA500A64054 /* AuthViewController.swift */; };
@@ -70,6 +71,7 @@
 		73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniEntryViewModel.swift; sourceTree = "<group>"; };
 		73013D1C23C970DD000817E4 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		730351D6243D364E00CBC085 /* ImageSlideshowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSlideshowExtension.swift; sourceTree = "<group>"; };
+		730351D8243D3FEF00CBC085 /* BSImagePickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSImagePickerRow.swift; sourceTree = "<group>"; };
 		731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceholder.swift; sourceTree = "<group>"; };
 		731C07B723CBBE2000A64054 /* QueryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryConfig.swift; sourceTree = "<group>"; };
 		731C07B923CBCDA500A64054 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
@@ -266,8 +268,8 @@
 				7391DC7423C655110051A1B9 /* MapViewController.swift */,
 				739638BD23C83E3200DB4D8B /* MakePostViewController.swift */,
 				732C024923CB832C00A512FC /* DetailedEntryViewController.swift */,
-				7399026323CE190400A10A18 /* ProfileViewController.swift */,
 				73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */,
+				7399026323CE190400A10A18 /* ProfileViewController.swift */,
 			);
 			path = "Main View Controllers";
 			sourceTree = "<group>";
@@ -278,6 +280,7 @@
 				73E2A8572412F99D00DA397B /* ImagePickerController.swift */,
 				73E2A8562412F99D00DA397B /* ImageRow.swift */,
 				73E2A7962412E52300DA397B /* LocationRow.swift */,
+				730351D8243D3FEF00CBC085 /* BSImagePickerRow.swift */,
 			);
 			path = "Eureka Custom Rows";
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */,
 				73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */,
 				73E0553B2436DFFF0094253C /* DetailedPostLayout.swift in Sources */,
+				730351D9243D3FEF00CBC085 /* BSImagePickerRow.swift in Sources */,
 				73E2A7972412E52300DA397B /* LocationRow.swift in Sources */,
 				732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */,
 				7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */,

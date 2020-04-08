@@ -41,16 +41,15 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                 spinner.centerXAnchor.constraint(equalTo: slideshow.centerXAnchor).isActive = true
                 spinner.centerYAnchor.constraint(equalTo: slideshow.centerYAnchor).isActive = true
                 
-                // adding gesture recognizer
-                slideshow.addTapGestureRecognizer {
-                    
-                    slideshow.presentFullScreenControllerForIos13(from: rootvc)
-                }
-                
                 EntriesManager.getPostImages(ofId: id).done { (images) in
                     var imgSource = [ImageSource]()
                     images.forEach { (img) in imgSource.append(ImageSource(image: img))}
                     slideshow.setImageInputs(imgSource)
+                    
+                    // adding gesture recognizer
+                    slideshow.addTapGestureRecognizer {
+                        slideshow.presentFullScreenControllerForIos13(from: rootvc)
+                    }
                 }.catch { (err) in
                     print("[DetailedPostLayout] Error while loading images: \(err)")
                 }.finally {
@@ -64,7 +63,7 @@ public class DetailedPostLayout: InsetLayout<UIView> {
             sublayout: StackLayout(
                 axis: .vertical,
                 spacing: 25,
-                sublayouts: [titleLayout, authorLayout, descLayout, imageSlideshow]
+                sublayouts: [titleLayout, authorLayout, imageSlideshow, descLayout]
             )
         )
     

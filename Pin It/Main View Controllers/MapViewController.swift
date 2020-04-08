@@ -108,7 +108,6 @@ class MapViewController: UIViewController {
     // MARK: Show Detail of an Entry View
     func showDetail(entry: Entry) {
         detailPage = DetailedEntryViewController()
-//        detailPage.modalPresentationStyle = .overFullScreen
         detailPage.useEntry(entry: entry)
         self.present(detailPage, animated: true)
     }

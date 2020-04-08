@@ -31,22 +31,31 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
         form
             // Title and description fields
             +++ Section() { section in
-            section.header = {
-            var header = HeaderFooterView<UIView>(.callback({
-                let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-                let title = UILabel(frame: CGRect(x: 16, y: 0, width: 500, height: 100))
-                title.font = .boldSystemFont(ofSize: 40)
-                title.text = "Make a Post"
-                title.textColor = .white
-                view.addSubview(title)
-                return view
-            }))
-            header.height = { 100 }
-            return header
-            }()
-        }
+                section.header = {
+                    var header = HeaderFooterView<UIView>(.callback({
+                        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+                        let title = UILabel(frame: CGRect(x: 16, y: 0, width: 500, height: 100))
+                        title.font = .boldSystemFont(ofSize: 40)
+                        title.text = "Make a Post"
+                        title.textColor = .white
+                        view.addSubview(title)
+                        return view
+                    }))
+                    header.height = { 100 }
+                    return header
+                    }()
+            }
+            // Image selector
+            <<< MultiImagePickerRow(fromController: .specific(self)) { row in
+                row.placeholderImage = UIImage(color: .secondarySystemBackground)
+                row.descriptionTitle = "Select images"
+                row.tag = "images"
+                row.cell.collectionView.backgroundColor = row.cell.backgroundColor
+                row.value = [.empty,.empty,.empty]
+            }
+            
             <<< TextRow() { row in
-                row.placeholder = "Title"
+                row.placeholder = "Write a title..."
                 row.tag = "title"
             }
             .cellSetup{ cell, row in
@@ -54,7 +63,7 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
             }
             
             <<< TextAreaRow() { row in
-                row.placeholder = "Description"
+                row.placeholder = "Write a description..."
                 row.tag = "desc"
             }
             .cellSetup { cell, row in
@@ -64,22 +73,11 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
             // Location selector
             +++ Section()
             <<< LocationRow(){
-                $0.title = "Location"
+                $0.title = "Customize Location"
                 $0.value = MapViewController.userLoc
                 $0.tag = "location"
                 $0.validationOptions = .validatesOnChange //2
             }
-            
-            // Image selector
-            +++ Section()
-            <<< MultiImagePickerRow(fromController: .specific(self)) { row in
-                row.placeholderImage = UIImage(color: .secondarySystemBackground)
-                row.descriptionTitle = "Select images"
-                row.tag = "images"
-                row.cell.collectionView.backgroundColor = row.cell.backgroundColor
-                row.value = [.empty,.empty,.empty]
-            }
-            
             
             // Button rows
             +++ Section()

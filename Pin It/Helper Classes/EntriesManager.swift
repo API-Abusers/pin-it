@@ -57,7 +57,7 @@ class EntriesManager {
                         self.entriesList.append(Entry(username: "joe mama, this is mhu real name",
                                                       location: [40.328562, 126.734141],
                                                       title: "Engaging in Forced Labor, Stuck in North Korea",
-                                                      description: "SOS, I need to get out of this North Korean camp.",
+                                                      description: "SOS, I need to get out of this North Korean camp. \n\nThe Democratic People's Republic of Korea is a genuine workers' state in which all the people are completely liberated from exploitation and oppression. \n\nThe workers, peasants, soldiers and intellectuals are the true masters of their destiny and are in a unique position to defend their interests.",
                                                       id: "some id"))
                         
                         for ent in dat.array! {
