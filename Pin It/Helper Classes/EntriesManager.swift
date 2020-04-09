@@ -11,6 +11,7 @@ import Alamofire
 import PromiseKit
 import SwiftyJSON
 import Firebase
+import FirebaseFirestore
 
 class EntriesManager {
     
@@ -85,26 +86,15 @@ class EntriesManager {
     }
     
     // MARK: Post Data
-    static func postEntry(data: [String: Any]) -> Promise<String> {
+    static func postEntry(data: [String: Any]) -> Promise<Void> {
         return Promise { seal in
-            print("[EntriesManager] attempting to send: \n\(data)")
-            getIdToken().done { (token) in
-                let header = ["authorization": token]
-                Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.postEndPoint.rawValue)!,
-                                  method: .post,
-                                  parameters: data,
-                                  encoding: JSONEncoding.default,
-                                  headers: header)
-                .responseJSON { (res) in
-                    switch res.result {
-                    case .success:
-                        seal.fulfill(res.description)
-                    case .failure:
-                        seal.reject(res.error!)
-                    }
+            let ref = Firestore.firestore().document("posts/\(data["id"] as! String)")
+            ref.setData(data) { (err) in
+                if let err = err { seal.reject(err) }
+                else {
+                    print("[EntriesManager]: post uploaded\n\(data)")
+                    seal.fulfill(Void())
                 }
-            }.catch { (err) in
-                seal.reject(err)
             }
         }
     }

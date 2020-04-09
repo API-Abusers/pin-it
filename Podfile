@@ -12,6 +12,7 @@ target 'Pin It' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'Firebase/Firestore'
   pod 'GoogleSignIn'
   pod 'PromiseKit'
   pod 'PromiseKit/CoreLocation'

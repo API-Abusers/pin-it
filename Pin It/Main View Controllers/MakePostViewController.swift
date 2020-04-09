@@ -166,13 +166,13 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
         hasher.combine(Date())
         let hash = hasher.finalize()
         
-        data["pinId"] = String(describing: hash)
+        data["id"] = String(describing: hash)
         startAnimating(nil, message: "uploading post", messageFont: nil, type: NVActivityIndicatorType.cubeTransition, color: nil, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil, fadeInAnimation: nil)
         
         firstly {
             EntriesManager.postEntry(data: data)
         }.then {_ in
-            EntriesManager.attachImageFiles(files: imageSelection, addTo: data["pinId"] as! String)
+            EntriesManager.attachImageFiles(files: imageSelection, addTo: data["id"] as! String)
         }.done { _ in
             self.stopAnimating()
             self.dismiss(animated: true) {
