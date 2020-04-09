@@ -16,6 +16,7 @@ import FirebaseFirestore
 class EntriesManager {
     
     static var entriesList = [Entry]()
+    static var db = Firestore.firestore()
     
     // MARK: Get Id Token
     static func getIdToken() -> Promise<String> {
@@ -39,48 +40,27 @@ class EntriesManager {
     // MARK: Get Entries From Server
     static func genEntriesFromServer(fromMonthsAgo months: Int) -> Promise<[Entry]> {
         return Promise { seal in
-            getIdToken().done { (token) in
-                let header = ["authorization": token]
-                Alamofire.request(URL(string: QueryConfig.url.rawValue + QueryConfig.getEndPoint.rawValue + "?range=\(months)")!,
-                                  method: .get,
-                                  encoding: JSONEncoding.default,
-                                  headers: header)
-                .validate()
-                .responseJSON { response in
-
-                    switch response.result {
-                    case .success(let value):
-                        // parsing JSON
-                        let dat = JSON(value)
-                        print("INITIAL SERVER RESPONSE")
-                        print(dat)
-                        
-                        self.entriesList.append(Entry(username: "joe mama, this is mhu real name",
-                                                      location: [40.328562, 126.734141],
-                                                      title: "Engaging in Forced Labor, Stuck in North Korea",
-                                                      description: "SOS, I need to get out of this North Korean camp. \n\nThe Democratic People's Republic of Korea is a genuine workers' state in which all the people are completely liberated from exploitation and oppression. \n\nThe workers, peasants, soldiers and intellectuals are the true masters of their destiny and are in a unique position to defend their interests.",
-                                                      id: "some id"))
-                        
-                        for ent in dat.array! {
-                            self.entriesList.append(Entry(
-                                username: String(describing: ent["userName"]),
-                                location: [Double(String(describing: ent["userLat"]))!,
-                                           Double(String(describing: ent["userLong"]))!],
-                                title: String(describing: ent["title"]),
-                                description: String(describing: ent["description"]),
-                                id: String(describing: ent["pinId"])
-                            ))
-                        }
-                        
-                        seal.fulfill(self.entriesList)
-                        
-                    case .failure:
-                        seal.reject(response.error!)
-                    }
-                    
+            
+            self.entriesList.append(Entry(username: "joe mama, this is mhu real name",
+                                          location: [40.328562, 126.734141],
+                                          title: "Engaging in Forced Labor, Stuck in North Korea",
+                                          description: "SOS, I need to get out of this North Korean camp. \n\nThe Democratic People's Republic of Korea is a genuine workers' state in which all the people are completely liberated from exploitation and oppression. \n\nThe workers, peasants, soldiers and intellectuals are the true masters of their destiny and are in a unique position to defend their interests.",
+                                          id: "some id"))
+            print("[EntriesManager]: Retrieving Posts\n\(self.entriesList)")
+            db.collection("posts").getDocuments() { (querySnapshot, err) in
+                if let err = err { seal.reject(err) }
+                for document in querySnapshot!.documents {
+                    let ent = document.data() as [String : Any]
+                    print(ent)
+                    self.entriesList.append(Entry(
+                        username: ent["userName"] as! String,
+                        location: [ent["userLat"] as! Double,
+                                   ent["userLong"] as! Double],
+                        title: ent["title"] as! String,
+                        description: ent["description"] as! String,
+                        id: ent["id"] as! String))
                 }
-            }.catch { (err) in
-                seal.reject(err)
+                seal.fulfill(self.entriesList)
             }
         }
     }
@@ -88,7 +68,7 @@ class EntriesManager {
     // MARK: Post Data
     static func postEntry(data: [String: Any]) -> Promise<Void> {
         return Promise { seal in
-            let ref = Firestore.firestore().document("posts/\(data["id"] as! String)")
+            let ref = db.document("posts/\(data["id"] as! String)")
             ref.setData(data) { (err) in
                 if let err = err { seal.reject(err) }
                 else {

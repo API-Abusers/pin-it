@@ -75,8 +75,6 @@ class MapViewController: UIViewController {
     func updateEntriesOnMap() {
         
         EntriesManager.getEntriesFromServer().done { (entriesList) in
-            print("Entries List")
-            print(entriesList)
             var annotations: [AnnotationPlus] = []
             for e in entriesList {
                 let viewModel = MiniEntryViewModel(entry: e)
