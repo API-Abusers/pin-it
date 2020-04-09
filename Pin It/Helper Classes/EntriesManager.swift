@@ -17,6 +17,7 @@ class EntriesManager {
     
     static var entriesList = [Entry]()
     static var db = Firestore.firestore()
+    static var imageCache = NSCache<NSString, UIImage>()
     
     // MARK: Get Id Token
     static func getIdToken() -> Promise<String> {
@@ -116,13 +117,29 @@ class EntriesManager {
             let ref = Storage.storage().reference(withPath: id)
             ref.listAll(completion: {(list, err) in
                 if let err = err { seal.reject(err) }
-                print("Attempting to download images")
-                for imgRef in list.items {
-                    print(imgRef)
+                print("[EntriesManager]: Attempting to download images")
+                for (ind, imgRef) in list.items.enumerated() {
+                    let key = String(describing: imgRef) as NSString
+                    
+                    if let img = imageCache.object(forKey: key) {
+                        print("reading from cache for \(imgRef)")
+                        assets.append(img)
+                        if (ind == list.items.count - 1) { seal.fulfill(assets) }
+                        continue
+                    }
+                    
+
+                    print("downloading \(imgRef)")
                     imgRef.getData(maxSize: 700 * 1024 * 1024) { (dat, err) in
                         if let err = err { seal.reject(err) }
-                        assets.append(UIImage(data: dat!)!)
-                        if (assets.count == list.items.count) { seal.fulfill(assets) }
+                        
+                        print("caching \(imgRef)")
+                        let img = UIImage(data: dat!)!
+                        
+                        imageCache.setObject(img, forKey: key)
+                        assets.append(img)
+                        
+                        if (ind == list.items.count - 1) { seal.fulfill(assets) }
                     }
                 }
             })
