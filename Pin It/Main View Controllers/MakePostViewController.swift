@@ -156,7 +156,8 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
             "description" : descField,
             "userName": user?.displayName ?? "foo",
             "userLat": locField.coordinate.latitude,
-            "userLong": locField.coordinate.longitude
+            "userLong": locField.coordinate.longitude,
+            "timestamp": Date()
         ]
 
         var hasher = Hasher()

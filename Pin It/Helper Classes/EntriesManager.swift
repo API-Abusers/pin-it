@@ -47,6 +47,7 @@ class EntriesManager {
                                           title: "Engaging in Forced Labor, Stuck in North Korea",
                                           description: "SOS, I need to get out of this North Korean camp. \n\nThe Democratic People's Republic of Korea is a genuine workers' state in which all the people are completely liberated from exploitation and oppression. \n\nThe workers, peasants, soldiers and intellectuals are the true masters of their destiny and are in a unique position to defend their interests.",
                                           id: "some id"))
+            
             print("[EntriesManager]: Retrieving Posts\n\(self.entriesList)")
             db.collection("posts").getDocuments() { (querySnapshot, err) in
                 if let err = err { seal.reject(err) }
@@ -118,13 +119,13 @@ class EntriesManager {
             ref.listAll(completion: {(list, err) in
                 if let err = err { seal.reject(err) }
                 print("[EntriesManager]: Attempting to download images")
-                for (ind, imgRef) in list.items.enumerated() {
+                for imgRef in list.items {
                     let key = String(describing: imgRef) as NSString
                     
                     if let img = imageCache.object(forKey: key) {
                         print("reading from cache for \(imgRef)")
                         assets.append(img)
-                        if (ind == list.items.count - 1) { seal.fulfill(assets) }
+                        if (assets.count == list.items.count) { seal.fulfill(assets) }
                         continue
                     }
                     
@@ -139,7 +140,7 @@ class EntriesManager {
                         imageCache.setObject(img, forKey: key)
                         assets.append(img)
                         
-                        if (ind == list.items.count - 1) { seal.fulfill(assets) }
+                        if (assets.count == list.items.count) { seal.fulfill(assets) }
                     }
                 }
             })

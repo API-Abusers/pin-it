@@ -143,7 +143,7 @@ public class EmbeddedMapViewController : UIViewController, TypedRowControllerTyp
 
         
         if let value = row.value {
-            let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 15, longitudeDelta: 15) // Zoom
+            let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1) // Zoom
             let region: MKCoordinateRegion = MKCoordinateRegion(center: value.coordinate, span: span) // Set region
             mapView.setRegion(region, animated: true)
         }
