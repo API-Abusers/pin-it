@@ -19,7 +19,7 @@ class EntriesManager {
     static var imageCache = NSCache<NSString, UIImage>()
     static var query: Query!
     static var lastDoc: QueryDocumentSnapshot!
-    static var batchSize = 1
+    static var batchSize = 15
     
     // MARK: Get Id Token
     static func getIdToken() -> Promise<String> {
@@ -54,14 +54,19 @@ class EntriesManager {
         return Promise { seal in
             var entriesList = [Entry]()
             if lastDoc == nil {
-                entriesList.append(Entry(username: "this is a really long user name to see if the ui breaks",
-                                         location: [40.328562, 126.734141],
-                                         title: "Engaging in Forced Labor, Stuck in North Korea",
-                                         desc: "SOS, I need to get out of this North Korean camp. \n\nThe Democratic People's Republic of Korea is a genuine workers' state in which all the people are completely liberated from exploitation and oppression. \n\nThe workers, peasants, soldiers and intellectuals are the true masters of their destiny and are in a unique position to defend their interests.",
-                                         id: "some id"))
-                query = db.collection("posts")
-                            .order(by: "timestamp", descending: true)
-                            .limit(to: batchSize)
+                if query == nil { // the cursor is at the start
+                    entriesList.append(Entry(username: "this is a really long user name to see if the ui breaks",
+                                             location: [40.328562, 126.734141],
+                                             title: "Engaging in Forced Labor, Stuck in North Korea",
+                                             desc: "SOS, I need to get out of this North Korean camp. \n\nThe Democratic People's Republic of Korea is a genuine workers' state in which all the people are completely liberated from exploitation and oppression. \n\nThe workers, peasants, soldiers and intellectuals are the true masters of their destiny and are in a unique position to defend their interests.",
+                                             id: "some id"))
+                    query = db.collection("posts")
+                                .order(by: "timestamp", descending: true)
+                                .limit(to: batchSize)
+                } else { // the cursor has reached the end
+                    seal.fulfill([Entry]())
+                    return
+                }
             } else {
                 query = query.start(afterDocument: lastDoc)
             }
