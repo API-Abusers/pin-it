@@ -8,20 +8,24 @@
 
 import Foundation
 
-class Entry {
+class Entry: CustomStringConvertible {
     
     var username: String
     var location: [Double] // [longitude, latitude]
     var title: String
-    var description: String
+    var desc: String
     var id: String
     
+    public var description: String {
+        return "Entry {\nusername: \(username),\nlocation: \(location),\ntitle: \(title),\ndescription: \(desc),\nid: \(id)\n}\n";
+    }
+    
     // Initializer
-    public init(username: String, location: [Double], title: String, description: String, id: String) {
+    public init(username: String, location: [Double], title: String, desc: String, id: String) {
         self.username = username
         self.location = location
         self.title = title
-        self.description = description
+        self.desc = desc
         self.id = id
     }
     

@@ -178,7 +178,7 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
             self.stopAnimating()
             self.dismiss(animated: true) {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                (appDelegate.mapVC as! MapViewController).updateEntriesOnMap()
+//                (appDelegate.mapVC as! MapViewController).appendEntriesToMap()
                 self.form.removeAll()
                 MapViewController.postPage = MakePostViewController()
             }

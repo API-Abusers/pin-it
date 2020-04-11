@@ -15,9 +15,11 @@ import FirebaseFirestore
 
 class EntriesManager {
     
-    static var entriesList = [Entry]()
     static var db = Firestore.firestore()
     static var imageCache = NSCache<NSString, UIImage>()
+    static var query: Query!
+    static var lastDoc: QueryDocumentSnapshot!
+    static var batchSize = 1
     
     // MARK: Get Id Token
     static func getIdToken() -> Promise<String> {
@@ -33,37 +35,50 @@ class EntriesManager {
         }
     }
     
-    // MARK: Get Entries From Server
-    static func getEntriesFromServer() -> Promise<[Entry]> {
-        return genEntriesFromServer(fromMonthsAgo: 1)
+    // MARK: Return An Entry For A Given Document
+    static func getEntry(from doc: QueryDocumentSnapshot) -> Entry? {
+        let doc = doc.data() as [String : Any]
+        if let userName = doc["userName"] as? String,
+            let lat = doc["userLat"] as? Double,
+            let long = doc["userLong"] as? Double,
+            let title = doc["title"] as? String,
+            let desc = doc["description"] as? String,
+            let id = doc["id"] as? String {
+            return Entry(username: userName, location: [lat, long], title: title, desc: desc, id: id)
+        }
+        return nil
     }
     
     // MARK: Get Entries From Server
-    static func genEntriesFromServer(fromMonthsAgo months: Int) -> Promise<[Entry]> {
+    static func getEntriesFromServer() -> Promise<[Entry]> {
         return Promise { seal in
+            var entriesList = [Entry]()
+            if lastDoc == nil {
+                entriesList.append(Entry(username: "this is a really long user name to see if the ui breaks",
+                                         location: [40.328562, 126.734141],
+                                         title: "Engaging in Forced Labor, Stuck in North Korea",
+                                         desc: "SOS, I need to get out of this North Korean camp. \n\nThe Democratic People's Republic of Korea is a genuine workers' state in which all the people are completely liberated from exploitation and oppression. \n\nThe workers, peasants, soldiers and intellectuals are the true masters of their destiny and are in a unique position to defend their interests.",
+                                         id: "some id"))
+                query = db.collection("posts")
+                            .order(by: "timestamp", descending: true)
+                            .limit(to: batchSize)
+            } else {
+                query = query.start(afterDocument: lastDoc)
+            }
             
-            self.entriesList.append(Entry(username: "joe mama, this is mhu real name",
-                                          location: [40.328562, 126.734141],
-                                          title: "Engaging in Forced Labor, Stuck in North Korea",
-                                          description: "SOS, I need to get out of this North Korean camp. \n\nThe Democratic People's Republic of Korea is a genuine workers' state in which all the people are completely liberated from exploitation and oppression. \n\nThe workers, peasants, soldiers and intellectuals are the true masters of their destiny and are in a unique position to defend their interests.",
-                                          id: "some id"))
-            
-            print("[EntriesManager]: Retrieving Posts\n\(self.entriesList)")
-            db.collection("posts").getDocuments() { (querySnapshot, err) in
+            query.getDocuments() { (querySnapshot, err) in
                 if let err = err { seal.reject(err) }
                 for document in querySnapshot!.documents {
-                    let ent = document.data() as [String : Any]
-                    print(ent)
-                    self.entriesList.append(Entry(
-                        username: ent["userName"] as! String,
-                        location: [ent["userLat"] as! Double,
-                                   ent["userLong"] as! Double],
-                        title: ent["title"] as! String,
-                        description: ent["description"] as! String,
-                        id: ent["id"] as! String))
+                    if let ent = getEntry(from: document) {
+                        entriesList.append(ent)
+                    }
                 }
-                seal.fulfill(self.entriesList)
+                lastDoc = querySnapshot?.documents.last
+                print("[EntriesManager]: Retrieved Posts")
+                entriesList.forEach { (e) in print(e) }
+                seal.fulfill(entriesList)
             }
+            
         }
     }
     

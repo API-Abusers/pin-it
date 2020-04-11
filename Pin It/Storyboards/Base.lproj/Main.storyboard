@@ -61,11 +61,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3G-WO-ydp">
-                                <rect key="frame" x="334" y="224" width="60" height="60"/>
+                                <rect key="frame" x="20" y="64" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.7942795721" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="J7H-od-gLl"/>
-                                    <constraint firstAttribute="height" constant="60" id="njg-ym-BMf"/>
+                                    <constraint firstAttribute="height" constant="60" id="5lA-6h-zHq"/>
+                                    <constraint firstAttribute="width" constant="60" id="nH3-El-vqz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -81,25 +81,49 @@
                                     <action selector="showProfile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JbH-Py-Zni"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvf-7n-bcH">
+                                <rect key="frame" x="334" y="224" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.7942795721" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="mB9-lB-5dI"/>
+                                    <constraint firstAttribute="height" constant="60" id="rXR-rN-u6d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" image="magnifyingglass.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loadMorePosts:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0fe-3M-Tgf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="zFA-Eb-kHp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="0rP-g4-JvX"/>
-                            <constraint firstItem="r3G-WO-ydp" firstAttribute="top" secondItem="m6z-EO-giM" secondAttribute="bottom" constant="20" id="D5h-fA-esb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="r3G-WO-ydp" secondAttribute="trailing" constant="20" id="D9f-iI-q0x"/>
+                            <constraint firstItem="cvf-7n-bcH" firstAttribute="top" secondItem="m6z-EO-giM" secondAttribute="bottom" constant="20" id="C0Q-hA-JxU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m6z-EO-giM" secondAttribute="trailing" constant="20" id="ECC-pg-60a"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zFA-Eb-kHp" secondAttribute="trailing" constant="20" id="GSW-hR-lW4"/>
+                            <constraint firstItem="r3G-WO-ydp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="MiI-nA-gvz"/>
                             <constraint firstAttribute="bottom" secondItem="ROf-rs-b2q" secondAttribute="bottom" id="Zh1-TN-Lel"/>
                             <constraint firstItem="ROf-rs-b2q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fo8-dE-Qdh"/>
+                            <constraint firstItem="r3G-WO-ydp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="in4-rM-YLg"/>
                             <constraint firstItem="ROf-rs-b2q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ky8-jo-nNV"/>
                             <constraint firstItem="m6z-EO-giM" firstAttribute="top" secondItem="zFA-Eb-kHp" secondAttribute="bottom" constant="20" id="lAj-Qj-VWB"/>
                             <constraint firstItem="ROf-rs-b2q" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="mPP-XE-gLV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cvf-7n-bcH" secondAttribute="trailing" constant="20" id="u92-8X-RkD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="FgA-GJ-ISb"/>
                     <connections>
                         <outlet property="findSelfButton" destination="m6z-EO-giM" id="MLx-4v-f2i"/>
+                        <outlet property="loadMoreButton" destination="cvf-7n-bcH" id="C81-wX-SQO"/>
                         <outlet property="map" destination="ROf-rs-b2q" id="w5u-Xg-0Fl"/>
                     </connections>
                 </viewController>
@@ -147,6 +171,7 @@
     </scenes>
     <resources>
         <image name="location.fill" catalog="system" width="64" height="56"/>
+        <image name="magnifyingglass.circle.fill" catalog="system" width="64" height="60"/>
         <image name="message.fill" catalog="system" width="64" height="56"/>
         <image name="person.crop.circle.fill" catalog="system" width="64" height="60"/>
     </resources>

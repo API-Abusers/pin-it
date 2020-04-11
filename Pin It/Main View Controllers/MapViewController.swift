@@ -25,9 +25,10 @@ class MapViewController: UIViewController {
     let profilePage = ProfileViewController()
     
     let annotationImage = UIImage(named: "loc-icon")!.resized(toWidth: 60)!
-    var entriesList = [Entry]()
+    var annotations = [AnnotationPlus]()
     
     @IBOutlet weak var findSelfButton: UIButton!
+    @IBOutlet weak var loadMoreButton: UIButton!
     
     static var userLoc: CLLocation?
     
@@ -41,6 +42,7 @@ class MapViewController: UIViewController {
         map.showsCompass = false
         
         findSelfButton.isEnabled = false
+        loadMoreButton.isEnabled = false
         
         calloutView.rootController = self
         
@@ -50,13 +52,14 @@ class MapViewController: UIViewController {
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
         
-        updateEntriesOnMap()
+        appendEntriesToMap()
         
         // zooom in on the current user location
         CLLocationManager.requestLocation().done { (loc) in
             self.moveTo(location: loc[0])
             self.findSelfButton.isEnabled = true
         }
+        
     }
     
     // MARK: Move To Location on Map
@@ -72,21 +75,19 @@ class MapViewController: UIViewController {
     }
     
     // MARK: Update Entries On Map
-    func updateEntriesOnMap() {
-        
-        EntriesManager.getEntriesFromServer().done { (entriesList) in
-            var annotations: [AnnotationPlus] = []
-            for e in entriesList {
+    func appendEntriesToMap() {
+        loadMoreButton.isEnabled = false
+        EntriesManager.getEntriesFromServer().done { (entries) in
+            for e in entries {
                 let viewModel = MiniEntryViewModel(entry: e)
                 let annotation = AnnotationPlus(viewModel: viewModel,
                                                 coordinate: CLLocationCoordinate2DMake(e.location[0], e.location[1]))
-                annotations.append(annotation)
+                self.annotations.append(annotation)
             }
-            
-            self.map.setup(withAnnotations: annotations)
+            self.map.setup(withAnnotations: self.annotations)
+            self.loadMoreButton.isEnabled = true
         }.catch { (err) in
             print("[MapViewController] Error while getting entries from server: \(err)")
-            
             if !Connectivity.isConnectedToInternet {
                 WarningPopup.issueWarningOnInternetConnection(vc: self)
                 return
@@ -125,6 +126,11 @@ class MapViewController: UIViewController {
     // MARK: Show Profile
     @IBAction func showProfile(_ sender: Any) {
         self.present(profilePage, animated: true)
+    }
+    
+    // MARK: Load More Posts
+    @IBAction func loadMorePosts(_ sender: Any) {
+        appendEntriesToMap()
     }
     
     deinit {
