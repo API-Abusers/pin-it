@@ -139,7 +139,8 @@ class EntriesManager {
                 return
             }
             for i in 0 ... files.count - 1 {
-                let uploadRef = Storage.storage().reference(withPath: "/\(id)/img-\(i).jpg")
+                guard let uid = Auth.auth().currentUser?.uid else { continue }
+                let uploadRef = Storage.storage().reference(withPath: "/users/\(uid)/\(id)/img-\(i).jpg")
                 guard let imageData = files[i].jpegData(compressionQuality: 0.75) else { continue }
                 let upload = StorageMetadata.init()
                 upload.contentType = "image/jpeg"
@@ -162,10 +163,10 @@ class EntriesManager {
     }
     
     // MARK: Get Post Images
-    static func getPostImages(ofId id: String) -> Promise<[UIImage]> {
+    static func getPostImages(ofEntry e: Entry) -> Promise<[UIImage]> {
         return Promise { seal in
             var assets = [UIImage]()
-            let ref = Storage.storage().reference(withPath: id)
+            let ref = Storage.storage().reference(withPath: "/users/\(e.owner)/\(e.id)")
             ref.listAll(completion: {(list, err) in
                 if let err = err { seal.reject(err) }
                 print("[EntriesManager.getPostImages]: Attempting to download images")

@@ -13,11 +13,11 @@ import PromiseKit
 
 public class DetailedPostLayout: InsetLayout<UIView> {
 
-    public init(title: String, author: String, desc: String, id: String, rootvc: UIViewController) {
+    init(_ entry: Entry, rootvc: UIViewController) {
         
-        let titleLayout = LabelLayout(text: title, font: UIFont.boldSystemFont(ofSize: 40))
-        let authorLayout = LabelLayout(text: author, font: UIFont.italicSystemFont(ofSize: 15))
-        let descLayout = LabelLayout(text: desc, font: UIFont.systemFont(ofSize: 20))
+        let titleLayout = LabelLayout(text: entry.title, font: UIFont.boldSystemFont(ofSize: 40))
+        let authorLayout = LabelLayout(text: entry.username, font: UIFont.italicSystemFont(ofSize: 15))
+        let descLayout = LabelLayout(text: entry.desc, font: UIFont.systemFont(ofSize: 20))
         let imageSlideshow = SizeLayout<ImageSlideshow>(
             width: rootvc.view.frame.size.width - 50,
             height: rootvc.view.frame.size.width - 50,
@@ -41,7 +41,7 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                 spinner.centerXAnchor.constraint(equalTo: slideshow.centerXAnchor).isActive = true
                 spinner.centerYAnchor.constraint(equalTo: slideshow.centerYAnchor).isActive = true
                 
-                EntriesManager.getPostImages(ofId: id).done { (images) in
+                EntriesManager.getPostImages(ofEntry: entry).done { (images) in
                     var imgSource = [ImageSource]()
                     images.forEach { (img) in imgSource.append(ImageSource(image: img))}
                     slideshow.setImageInputs(imgSource)
@@ -67,26 +67,5 @@ public class DetailedPostLayout: InsetLayout<UIView> {
             )
         )
     
-//        EntriesManager.getPostImages(ofId: id).done { (images) in
-//            var imgSource = [ImageSource]()
-//            images.forEach { (img) in imgSource.append(ImageSource(image: img))}
-//            self.slideshow.setImageInputs(imgSource)
-//        }.catch { (err) in
-//            print("[DetailedPostLayout] Error while loading images: \(err)")
-//        }
-    
-    }
-
-//    @objc func didTap() {
-//        let fullScreenController = slideshow.presentFullScreenController(from: self)
-//        // set the activity indicator for full screen controller (skipping the line will show no activity indicator)
-//        fullScreenController.slideshow.activityIndicator = DefaultActivityIndicator(style: .white, color: nil)
-//    }
-    
+    }   
 }
-
-//extension DetailedPostLayout: ImageSlideshowDelegate {
-//    func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
-//        print("current page:", page)
-//    }
-//}

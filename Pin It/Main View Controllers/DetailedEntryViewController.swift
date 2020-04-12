@@ -28,7 +28,7 @@ class DetailedEntryViewController: UIViewController {
     
     func useEntry(entry: Entry) {
         self.entry = entry
-        let detailedPostLayout = DetailedPostLayout(title: entry.title, author: entry.username, desc: entry.desc, id: entry.id, rootvc: self)
+        let detailedPostLayout = DetailedPostLayout(entry, rootvc: self)
         
         let arrangment = detailedPostLayout.arrangement(width: self.view.frame.width)
         scrollView.contentSize = CGSize(width: view.frame.width, height: arrangment.frame.size.height + 50)

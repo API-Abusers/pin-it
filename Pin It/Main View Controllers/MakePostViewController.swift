@@ -145,7 +145,8 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
             "userLat": locField.coordinate.latitude,
             "userLong": locField.coordinate.longitude,
             "timestamp": Date(),
-            "owner": Auth.auth().currentUser?.uid ?? "none"
+            "owner": Auth.auth().currentUser?.uid ?? "none",
+            "approved": true
         ]
 
         var hasher = Hasher()
@@ -166,13 +167,11 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
         }.done { _ in
             self.stopAnimating()
             self.dismiss(animated: true) {
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                (appDelegate.mapVC as! MapViewController).appendEntriesToMap()
-                self.form.removeAll()
                 MapViewController.postPage = MakePostViewController()
             }
         }.catch { err in
             self.stopAnimating()
+            let _ = EntriesManager.deletePost(ofId: data["id"] as! String)
             let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
