@@ -78,6 +78,10 @@ class MapViewController: UIViewController {
     func appendEntriesToMap() {
         loadMoreButton.isEnabled = false
         EntriesManager.getEntriesFromServer().done { (entries) in
+            guard let entries = entries else {
+                self.loadMoreButton.isEnabled = true
+                return
+            }
             for e in entries {
                 let viewModel = MiniEntryViewModel(entry: e)
                 let annotation = AnnotationPlus(viewModel: viewModel,
@@ -90,6 +94,7 @@ class MapViewController: UIViewController {
             print("[MapViewController] Error while getting entries from server: \(err)")
             if !Connectivity.isConnectedToInternet {
                 WarningPopup.issueWarningOnInternetConnection(vc: self)
+                self.loadMoreButton.isEnabled = true
                 return
             }
         }
