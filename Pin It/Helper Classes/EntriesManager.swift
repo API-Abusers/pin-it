@@ -67,7 +67,8 @@ class EntriesManager {
             let title = doc["title"] as? String,
             let desc = doc["description"] as? String,
             let id = doc["id"] as? String {
-            return Entry(username: userName, location: [lat, long], title: title, desc: desc, id: id)
+            let owner = doc["owner"] as? String ?? "none"
+            return Entry(username: userName, location: [lat, long], title: title, desc: desc, id: id, owner: owner)
         }
         return nil
     }
@@ -88,7 +89,8 @@ class EntriesManager {
                                          location: [40.328562, 126.734141],
                                          title: "Engaging in Forced Labor, Stuck in North Korea",
                                          desc: "SOS, I need to get out of this North Korean camp. \n\nThe Democratic People's Republic of Korea is a genuine workers' state in which all the people are completely liberated from exploitation and oppression. \n\nThe workers, peasants, soldiers and intellectuals are the true masters of their destiny and are in a unique position to defend their interests.",
-                                         id: "some id"))
+                                         id: "some id",
+                                         owner: "none"))
                 query = db.collection("posts")
                             .order(by: "timestamp", descending: true)
                             .limit(to: batchSize)

@@ -15,18 +15,20 @@ class Entry: CustomStringConvertible {
     var title: String
     var desc: String
     var id: String
+    var owner: String
     
     public var description: String {
-        return "Entry {\nusername: \(username),\nlocation: \(location),\ntitle: \(title),\ndescription: \(desc),\nid: \(id)\n}\n";
+        return "[username: \(username), location: \(location), title: \(title), description: \(desc), id: \(id), owner: \(owner)]";
     }
     
     // Initializer
-    public init(username: String, location: [Double], title: String, desc: String, id: String) {
+    public init(username: String, location: [Double], title: String, desc: String, id: String, owner: String) {
         self.username = username
         self.location = location
         self.title = title
         self.desc = desc
         self.id = id
+        self.owner = owner
     }
     
 }

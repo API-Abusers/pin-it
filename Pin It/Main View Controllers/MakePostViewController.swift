@@ -114,28 +114,20 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
         }
         
         // unwrap user selections and check for completion
-        guard let titleField = self.form.rowBy(tag: "title")!.baseValue as! String? else {
+        guard let titleField = self.form.rowBy(tag: "title")!.baseValue as! String?,
+            let descField = self.form.rowBy(tag: "desc")!.baseValue as! String?,
+            let locField = self.form.rowBy(tag: "location")!.baseValue as! CLLocation?,
+            let imageSlots = self.form.rowBy(tag: "images")!.baseValue as! [MultiImageTableCellSlot]? else {
             WarningPopup.issueWarningOnIncompletePost(vc: self)
             return
         }
         
-        guard let descField = self.form.rowBy(tag: "desc")!.baseValue as! String? else {
-            WarningPopup.issueWarningOnIncompletePost(vc: self)
-            return
-        }
-        
-        guard let locField = self.form.rowBy(tag: "location")!.baseValue as! CLLocation? else {
+        if(titleField.isEmpty || descField.isEmpty) {
             WarningPopup.issueWarningOnIncompletePost(vc: self)
             return
         }
         
         var imageSelection = [UIImage]()
-        
-        guard let imageSlots = self.form.rowBy(tag: "images")!.baseValue as! [MultiImageTableCellSlot]? else {
-            WarningPopup.issueWarningOnIncompletePost(vc: self)
-            return
-        }
-        
         for i in imageSlots {
             switch i {
             case .image(let img):
@@ -143,11 +135,6 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
             default:
                 continue
             }
-        }
-        
-        if(titleField.isEmpty || descField.isEmpty) {
-            WarningPopup.issueWarningOnIncompletePost(vc: self)
-            return
         }
 
         // make post request
@@ -157,7 +144,8 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
             "userName": user?.displayName ?? "foo",
             "userLat": locField.coordinate.latitude,
             "userLong": locField.coordinate.longitude,
-            "timestamp": Date()
+            "timestamp": Date(),
+            "owner": Auth.auth().currentUser?.uid ?? "none"
         ]
 
         var hasher = Hasher()
@@ -168,6 +156,7 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
         let hash = hasher.finalize()
         
         data["id"] = String(describing: hash)
+        
         startAnimating(nil, message: "uploading post", messageFont: nil, type: NVActivityIndicatorType.cubeTransition, color: nil, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil, fadeInAnimation: nil)
         
         firstly {
