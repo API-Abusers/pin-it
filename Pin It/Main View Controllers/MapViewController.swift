@@ -52,6 +52,21 @@ class MapViewController: UIViewController {
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
         
+        EntriesManager.onDataChange() { (e, type) in
+            switch type {
+            case .added:
+                self.annotations.append(self.getAnnotationFromEntry(e))
+                break
+            case .modified: // TODO: Handle modified and removed posts
+                break
+            case .removed:
+                break
+            default:
+                break
+            }
+            self.map.setup(withAnnotations: self.annotations)
+        }
+            
         appendEntriesToMap()
         
         // zooom in on the current user location
@@ -83,10 +98,7 @@ class MapViewController: UIViewController {
                 return
             }
             for e in entries {
-                let viewModel = MiniEntryViewModel(entry: e)
-                let annotation = AnnotationPlus(viewModel: viewModel,
-                                                coordinate: CLLocationCoordinate2DMake(e.location[0], e.location[1]))
-                self.annotations.append(annotation)
+                self.annotations.append(self.getAnnotationFromEntry(e))
             }
             self.map.setup(withAnnotations: self.annotations)
             self.loadMoreButton.isEnabled = true
@@ -98,6 +110,14 @@ class MapViewController: UIViewController {
                 return
             }
         }
+    }
+    
+    // MARK: Returns an AnnotationPlus Object from an Entry
+    func getAnnotationFromEntry(_ e: Entry) -> AnnotationPlus {
+        let viewModel = MiniEntryViewModel(entry: e)
+        let annotation = AnnotationPlus(viewModel: viewModel,
+                                        coordinate: CLLocationCoordinate2DMake(e.location[0], e.location[1]))
+        return annotation
     }
     
     // MARK: Create an annotation

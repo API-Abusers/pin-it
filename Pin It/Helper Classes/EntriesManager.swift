@@ -17,9 +17,8 @@ class EntriesManager {
     
     static var db = Firestore.firestore()
     static var imageCache = NSCache<NSString, UIImage>()
-    static var query: Query!
+    static var query: Query?
     static var lastDoc: QueryDocumentSnapshot?
-//    static var latestDoc: QueryDocumentSnapshot?
     static var batchSize = 2
     
     // MARK: Get Id Token
@@ -33,6 +32,29 @@ class EntriesManager {
                     seal.reject(error!)
                 }
             })
+        }
+    }
+    
+    // MARK: Handel Data Change
+    static func onDataChange(execute: @escaping (Entry, DocumentChangeType) -> Void) {
+        db.collection("posts").addSnapshotListener() { (querySnapshot, err) in
+            struct Holder { static var timesCalled = 0 }
+            
+            if let err = err {
+                print("[EntriesManager.onDataChange] Error:\(err)")
+                return
+            }
+            
+            Holder.timesCalled += 1
+            if Holder.timesCalled <= 1 { return }
+            
+            print("[EntriesManager.onDataChange]: Data changed")
+            for docChange in querySnapshot!.documentChanges {
+                print(docChange.type)
+                print(docChange.document.data())
+                guard let entry = getEntry(from: docChange.document) else { continue }
+                execute(entry, docChange.type)
+            }
         }
     }
     
@@ -72,6 +94,11 @@ class EntriesManager {
                             .limit(to: batchSize)
             }
             
+            guard let query = query else {
+                seal.fulfill(nil)
+                return
+            }
+            
             query.getDocuments() { (querySnapshot, err) in
                 if let err = err { seal.reject(err) }
                 for document in querySnapshot!.documents {
@@ -80,7 +107,7 @@ class EntriesManager {
                     }
                 }
                 lastDoc = querySnapshot?.documents.last
-                print("[EntriesManager]: Retrieved Posts")
+                print("[EntriesManager.getEntriesFromServer]: Retrieved Posts")
                 entriesList.forEach { (e) in print(e) }
                 seal.fulfill(entriesList)
             }
@@ -95,7 +122,7 @@ class EntriesManager {
             ref.setData(data) { (err) in
                 if let err = err { seal.reject(err) }
                 else {
-                    print("[EntriesManager]: post uploaded\n\(data)")
+                    print("[EntriesManager.postEntry]: post uploaded\n\(data)")
                     seal.fulfill(Void())
                 }
             }
@@ -116,15 +143,15 @@ class EntriesManager {
                 upload.contentType = "image/jpeg"
                 let ref = uploadRef.putData(imageData, metadata: upload) { (dat, err) in
                     if let err = err {
-                        print("[EntriesManager] Error while uploading image:\n\(err)")
+                        print("[EntriesManager.attachImageFiles] Error while uploading image:\n\(err)")
                         seal.reject(err)
                     }
-                    print(dat as Any?)
+                    print(dat ?? "")
                 }
                 
                 if (i == files.count - 1) {
                     ref.observe(.success) { _ in
-                        print("[EntriesManager] Image upload successful for post \(id)")
+                        print("[EntriesManager.attachImageFiles] Image upload successful for post \(id)")
                         seal.fulfill(Void())
                     }
                 }
@@ -139,7 +166,7 @@ class EntriesManager {
             let ref = Storage.storage().reference(withPath: id)
             ref.listAll(completion: {(list, err) in
                 if let err = err { seal.reject(err) }
-                print("[EntriesManager]: Attempting to download images")
+                print("[EntriesManager.getPostImages]: Attempting to download images")
                 for imgRef in list.items {
                     let key = String(describing: imgRef) as NSString
                     
