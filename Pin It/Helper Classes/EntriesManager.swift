@@ -35,7 +35,7 @@ class EntriesManager {
         }
     }
     
-    // MARK: Handel Data Change
+    // MARK: Handle Data Change
     static func onDataChange(execute: @escaping (Entry, DocumentChangeType) -> Void) {
         db.collection("posts").addSnapshotListener() { (querySnapshot, err) in
             struct Holder { static var timesCalled = 0 }
@@ -160,7 +160,7 @@ class EntriesManager {
     }
     
     // MARK: Get Post Images
-    static func getPostImages (ofId id: String) -> Promise<[UIImage]> {
+    static func getPostImages(ofId id: String) -> Promise<[UIImage]> {
         return Promise { seal in
             var assets = [UIImage]()
             let ref = Storage.storage().reference(withPath: id)
@@ -192,6 +192,31 @@ class EntriesManager {
                     }
                 }
             })
+        }
+    }
+    
+    // MARK: Edit Post
+    static func editPostField<T>(ofPost id: String, field: String, value: T) -> Promise<Void>{
+        return Promise { seal in
+            db.runTransaction({ (transaction, errPointer) -> Any? in
+                transaction.updateData([field: value], forDocument: db.document("posts/\(id)"))
+                return nil
+            }) { (obj, err) in
+                if let err = err { seal.reject(err) }
+                else { seal.fulfill(Void()) }
+            }
+        }
+    }
+    
+    // MARK: Delete Post
+    static func deletePost(ofId id: String) -> Promise<Void> {
+        return Promise { seal in
+            db.document("posts/\(id)").delete() { err in
+                if let err = err {
+                    seal.reject(err)
+                }
+                seal.fulfill(Void())
+            }
         }
     }
 
