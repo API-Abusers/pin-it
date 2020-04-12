@@ -25,7 +25,7 @@ class MapViewController: UIViewController {
     let profilePage = ProfileViewController()
     
     let annotationImage = UIImage(named: "loc-icon")!.resized(toWidth: 60)!
-    var annotations = [AnnotationPlus]()
+    var activeAnnotations = Dictionary<String, AnnotationPlus>()
     
     @IBOutlet weak var findSelfButton: UIButton!
     @IBOutlet weak var loadMoreButton: UIButton!
@@ -52,22 +52,26 @@ class MapViewController: UIViewController {
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
         
+        // configuring and calling EntriesManager
         EntriesManager.onDataChange() { (e, type) in
             switch type {
             case .added:
-                self.annotations.append(self.getAnnotationFromEntry(e))
+                self.writeAnnotation(from: e)
                 break
             case .modified: // TODO: Handle modified and removed posts
+                guard let oldAnnotation = self.activeAnnotations[e.id] else { return }
+                self.map.removeAnnotation(oldAnnotation)
+                self.writeAnnotation(from: e)
                 break
             case .removed:
+                guard let annotation = self.activeAnnotations[e.id] else { return }
+                self.map.removeAnnotation(annotation)
                 break
             default:
                 break
             }
-            self.map.setup(withAnnotations: self.annotations)
         }
-            
-        appendEntriesToMap()
+        queryEntriesToMap()
         
         // zooom in on the current user location
         CLLocationManager.requestLocation().done { (loc) in
@@ -90,7 +94,7 @@ class MapViewController: UIViewController {
     }
     
     // MARK: Update Entries On Map
-    func appendEntriesToMap() {
+    func queryEntriesToMap() {
         loadMoreButton.isEnabled = false
         EntriesManager.getEntriesFromServer().done { (entries) in
             guard let entries = entries else {
@@ -98,9 +102,8 @@ class MapViewController: UIViewController {
                 return
             }
             for e in entries {
-                self.annotations.append(self.getAnnotationFromEntry(e))
+                self.writeAnnotation(from: e)
             }
-            self.map.setup(withAnnotations: self.annotations)
             self.loadMoreButton.isEnabled = true
         }.catch { (err) in
             print("[MapViewController] Error while getting entries from server: \(err)")
@@ -118,6 +121,13 @@ class MapViewController: UIViewController {
         let annotation = AnnotationPlus(viewModel: viewModel,
                                         coordinate: CLLocationCoordinate2DMake(e.location[0], e.location[1]))
         return annotation
+    }
+    
+    // MARK: Adds Annotation to HashSet and Map View
+    func writeAnnotation(from entry: Entry) {
+        let annotation = self.getAnnotationFromEntry(entry)
+        self.activeAnnotations[entry.id] = annotation
+        self.map.addAnnotation(annotation)
     }
     
     // MARK: Create an annotation
@@ -155,7 +165,7 @@ class MapViewController: UIViewController {
     
     // MARK: Load More Posts
     @IBAction func loadMorePosts(_ sender: Any) {
-        appendEntriesToMap()
+        queryEntriesToMap()
     }
     
     deinit {

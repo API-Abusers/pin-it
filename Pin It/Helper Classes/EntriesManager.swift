@@ -19,7 +19,7 @@ class EntriesManager {
     static var imageCache = NSCache<NSString, UIImage>()
     static var query: Query?
     static var lastDoc: QueryDocumentSnapshot?
-    static var batchSize = 2
+    static var batchSize = 1
     
     // MARK: Get Id Token
     static func getIdToken() -> Promise<String> {
