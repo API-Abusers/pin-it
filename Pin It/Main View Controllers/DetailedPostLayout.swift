@@ -21,6 +21,47 @@ public class DetailedPostLayout: InsetLayout<UIView> {
         let editButtonLayout = ButtonLayout(type: .system, title: "", contentEdgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), alignment: .topTrailing, flexibility: Flexibility.inflexible) { button in
             button.setBackgroundImage(UIImage(systemName: "ellipsis.circle.fill"), for: .normal)
             button.tintColor = .white
+            
+            let alert = UIAlertController(title: nil, message: "Post Edit Options", preferredStyle: .actionSheet)
+            
+            // delete
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+                print("deletion?")
+                
+                let deletionAlert = UIAlertController(title: "Are you sure you want to delete your post?", message: "This action cannot be undone.", preferredStyle: .alert)
+                
+                let confirmDeletion = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+                    EntriesManager.deletePost(ofId: entry.id).done { _ in
+                        rootvc.dismiss(animated: true)
+                    }.catch { (err) in
+                        print(err)
+                        rootvc.dismiss(animated: true)
+                    }
+                }
+                deletionAlert.addAction(confirmDeletion)
+                
+                let cancelDeletion = UIAlertAction(title: "Cancel", style: .cancel)
+                deletionAlert.addAction(cancelDeletion)
+                
+                rootvc.present(deletionAlert, animated: true)
+            }
+            alert.addAction(deleteAction)
+            
+            // edit
+            let editAction = UIAlertAction(title: "Edit", style: .default) { (action) in
+                print("edit post")
+            }
+            alert.addAction(editAction)
+            
+            // cancel
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            alert.addAction(cancelAction)
+            
+            
+            button.addTapGestureRecognizer {
+                rootvc.present(alert, animated: true)
+            }
+            
         }
         
         let exitButtonLayout = ButtonLayout(type: .system, title: "", contentEdgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), alignment: .topTrailing, flexibility: Flexibility.inflexible) { button in
@@ -85,7 +126,7 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                 axis: .vertical,
                 spacing: 25,
                 sublayouts: [
-                    StackLayout(axis: .horizontal, spacing: 5, sublayouts: topLayout),
+                    StackLayout(axis: .horizontal, spacing: 10, sublayouts: topLayout),
                     authorLayout,
                     imageSlideshow,
                     descLayout]
