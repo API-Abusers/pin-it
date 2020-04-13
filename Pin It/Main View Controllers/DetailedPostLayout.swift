@@ -18,7 +18,7 @@ public class DetailedPostLayout: InsetLayout<UIView> {
         
         let titleLayout = LabelLayout(text: entry.title, font: UIFont.boldSystemFont(ofSize: 40))
         
-        let editButtonLayout = ButtonLayout(type: .system, title: "", contentEdgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), alignment: .topTrailing, flexibility: Flexibility.inflexible) { button in
+        let editButtonLayout = SizeLayout<UIButton>(width: 40, height: 40, alignment: .topTrailing, flexibility: Flexibility.inflexible) { button in
             button.setBackgroundImage(UIImage(systemName: "ellipsis.circle.fill"), for: .normal)
             button.tintColor = .white
             
@@ -64,7 +64,7 @@ public class DetailedPostLayout: InsetLayout<UIView> {
             
         }
         
-        let exitButtonLayout = ButtonLayout(type: .system, title: "", contentEdgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), alignment: .topTrailing, flexibility: Flexibility.inflexible) { button in
+        let exitButtonLayout = SizeLayout<UIButton>(width: 40, height: 40, alignment: .topTrailing, flexibility: Flexibility.inflexible) { button in
             button.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
             button.tintColor = .white
             button.addTapGestureRecognizer { rootvc.dismiss(animated: true) }
