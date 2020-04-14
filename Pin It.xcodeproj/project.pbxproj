@@ -33,6 +33,7 @@
 		7391DC9623C655130051A1B9 /* Pin_ItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC9523C655130051A1B9 /* Pin_ItUITests.swift */; };
 		739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739638BD23C83E3200DB4D8B /* MakePostViewController.swift */; };
 		7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7399026323CE190400A10A18 /* ProfileViewController.swift */; };
+		73C0E3192444BB4700C0BC4F /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C0E3182444BB4700C0BC4F /* EditPostViewController.swift */; };
 		73C35F87243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C35F86243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift */; };
 		73E0553B2436DFFF0094253C /* DetailedPostLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */; };
 		73E2A7972412E52300DA397B /* LocationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2A7962412E52300DA397B /* LocationRow.swift */; };
@@ -96,6 +97,7 @@
 		7391DC9723C655130051A1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		739638BD23C83E3200DB4D8B /* MakePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostViewController.swift; sourceTree = "<group>"; };
 		7399026323CE190400A10A18 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		73C0E3182444BB4700C0BC4F /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		73C35F86243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerWithoutSelector.swift; sourceTree = "<group>"; };
 		73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostLayout.swift; sourceTree = "<group>"; };
 		73E2A7962412E52300DA397B /* LocationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationRow.swift; sourceTree = "<group>"; };
@@ -264,14 +266,55 @@
 		739638BF23C83E4600DB4D8B /* Main View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				731C07B923CBCDA500A64054 /* AuthViewController.swift */,
-				7391DC7423C655110051A1B9 /* MapViewController.swift */,
-				739638BD23C83E3200DB4D8B /* MakePostViewController.swift */,
-				732C024923CB832C00A512FC /* DetailedEntryViewController.swift */,
-				73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */,
-				7399026323CE190400A10A18 /* ProfileViewController.swift */,
+				73C0E31C2444BBC800C0BC4F /* Auth VC */,
+				73C0E31D2444BBD000C0BC4F /* Map VC */,
+				73C0E31A2444BB8D00C0BC4F /* Edit Post View */,
+				73C0E31B2444BBAC00C0BC4F /* Detail Post View */,
+				73C0E31E2444BBDB00C0BC4F /* Profile VC */,
 			);
 			path = "Main View Controllers";
+			sourceTree = "<group>";
+		};
+		73C0E31A2444BB8D00C0BC4F /* Edit Post View */ = {
+			isa = PBXGroup;
+			children = (
+				739638BD23C83E3200DB4D8B /* MakePostViewController.swift */,
+				73C0E3182444BB4700C0BC4F /* EditPostViewController.swift */,
+			);
+			path = "Edit Post View";
+			sourceTree = "<group>";
+		};
+		73C0E31B2444BBAC00C0BC4F /* Detail Post View */ = {
+			isa = PBXGroup;
+			children = (
+				732C024923CB832C00A512FC /* DetailedEntryViewController.swift */,
+				73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */,
+			);
+			path = "Detail Post View";
+			sourceTree = "<group>";
+		};
+		73C0E31C2444BBC800C0BC4F /* Auth VC */ = {
+			isa = PBXGroup;
+			children = (
+				731C07B923CBCDA500A64054 /* AuthViewController.swift */,
+			);
+			path = "Auth VC";
+			sourceTree = "<group>";
+		};
+		73C0E31D2444BBD000C0BC4F /* Map VC */ = {
+			isa = PBXGroup;
+			children = (
+				7391DC7423C655110051A1B9 /* MapViewController.swift */,
+			);
+			path = "Map VC";
+			sourceTree = "<group>";
+		};
+		73C0E31E2444BBDB00C0BC4F /* Profile VC */ = {
+			isa = PBXGroup;
+			children = (
+				7399026323CE190400A10A18 /* ProfileViewController.swift */,
+			);
+			path = "Profile VC";
 			sourceTree = "<group>";
 		};
 		73E2A7952412E50600DA397B /* Eureka Custom Rows */ = {
@@ -585,6 +628,7 @@
 				7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */,
 				730351D7243D364E00CBC085 /* ImageSlideshowExtension.swift in Sources */,
 				739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */,
+				73C0E3192444BB4700C0BC4F /* EditPostViewController.swift in Sources */,
 				73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */,
 				73E0553B2436DFFF0094253C /* DetailedPostLayout.swift in Sources */,
 				730351D9243D3FEF00CBC085 /* BSImagePickerRow.swift in Sources */,
