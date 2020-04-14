@@ -19,12 +19,9 @@ public class DetailedPostLayout: InsetLayout<UIView> {
         let titleLayout = LabelLayout(text: entry.title, font: UIFont.boldSystemFont(ofSize: 40))
         
         let editButtonLayout = SizeLayout<UIButton>(width: 40, height: 40, alignment: .topTrailing, flexibility: Flexibility.inflexible) { button in
-            let image = UIImage(systemName: "ellipsis.circle.fill") ?? UIImage()
-            image.size.height = 40
-            image.size.width = 40
-            button.setBackgroundImage(image, for: .normal)
+            button.setBackgroundImage(UIImage(systemName: "ellipsis.circle.fill"), for: .normal)
             button.tintColor = .white
-            button.backgroundColor = .green
+            button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             
             let alert = UIAlertController(title: nil, message: "Post Edit Options", preferredStyle: .actionSheet)
             
@@ -53,7 +50,10 @@ public class DetailedPostLayout: InsetLayout<UIView> {
             
             // edit
             let editAction = UIAlertAction(title: "Edit", style: .default) { (action) in
-                print("edit post")
+                let editvc = EditPostViewController()
+                editvc.useEntry(entry)
+                editvc.onEditComplete { rootvc.dismiss(animated: true) }
+                rootvc.present(editvc, animated: true)
             }
             alert.addAction(editAction)
             

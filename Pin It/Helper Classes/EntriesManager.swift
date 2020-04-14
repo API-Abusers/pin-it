@@ -199,14 +199,18 @@ class EntriesManager {
     }
     
     // MARK: Edit Post
-    static func editPostField<T>(ofPost id: String, field: String, value: T) -> Promise<Void>{
+    static func editPostFields(ofPost e: Entry, writes: [String : Any]) -> Promise<Void>{
         return Promise { seal in
-            db.runTransaction({ (transaction, errPointer) -> Any? in
-                transaction.updateData([field: value], forDocument: db.document("posts/\(id)"))
-                return nil
-            }) { (obj, err) in
-                if let err = err { seal.reject(err) }
-                else { seal.fulfill(Void()) }
+            let batch = db.batch()
+            let ref = db.document("posts/\(e.id)")
+            batch.updateData(writes, forDocument: ref)
+            
+            batch.commit() { err in
+                if let err = err {
+                    seal.reject(err)
+                } else {
+                    seal.fulfill(Void())
+                }
             }
         }
     }

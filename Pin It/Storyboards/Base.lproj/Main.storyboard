@@ -27,7 +27,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <state key="normal" image="message.fill" catalog="system">
+                                <state key="normal" image="mappin.and.ellipse" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -172,7 +172,7 @@
     <resources>
         <image name="location.fill" catalog="system" width="64" height="56"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="message.fill" catalog="system" width="64" height="56"/>
+        <image name="mappin.and.ellipse" catalog="system" width="58" height="64"/>
         <image name="person.crop.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>
