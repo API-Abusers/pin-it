@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var map: MapViewPlus!
     
     let manager = CLLocationManager()
+    let entryManager = EntriesManager()
     
     static var postPage = MakePostViewController()
     var calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView?
@@ -58,8 +59,10 @@ class MapViewController: UIViewController {
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
         
+        print("view did load")
+        
         // configuring and calling EntriesManager
-        EntriesManager.onDataChange() { (e, type) in
+        entryManager.onDataChange() { (e, type) in
             switch type {
             case .added:
                 if let _ = self.activeAnnotations[e.id] { return }
@@ -103,7 +106,7 @@ class MapViewController: UIViewController {
     // MARK: Update Entries On Map
     func queryEntriesToMap() {
         loadMoreButton.isEnabled = false
-        EntriesManager.getEntriesFromServer().done { (entries) in
+        entryManager.getEntriesFromServer().done { (entries) in
             guard let entries = entries else {
                 self.loadMoreButton.isEnabled = true
                 return

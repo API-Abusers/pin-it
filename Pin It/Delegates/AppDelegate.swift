@@ -136,13 +136,10 @@ extension AppDelegate: GIDSignInDelegate {
             }
             // User is signed in
             let user = authResult?.user
-            (self.mapVC as! MapViewController).prepareDeinit()
             print("signed in \(user!.uid)")
             print("\(String(describing: user!.email))")
-            print(self.mapVC)
-            print(CFGetRetainCount(self.mapVC))
+            (self.mapVC as! MapViewController).prepareDeinit()
             self.mapVC = self.storyboard.instantiateViewController(withIdentifier: "MapView")
-            print(self.mapVC)
             self.presentViewController(vc: self.mapVC!)
         }
 

@@ -17,9 +17,14 @@ class EntriesManager {
     
     static var db = Firestore.firestore()
     static var imageCache = NSCache<NSString, UIImage>()
-    static var query: Query?
-    static var lastDoc: QueryDocumentSnapshot?
-    static var batchSize = 1
+    var query: Query?
+    var lastDoc: QueryDocumentSnapshot?
+    var batchSize = 1
+    
+    // MARK: Initializer
+    init() {
+        
+    }
     
     // MARK: Get Id Token
     static func getIdToken() -> Promise<String> {
@@ -36,10 +41,11 @@ class EntriesManager {
     }
     
     // MARK: Handle Data Change
-    static func onDataChange(execute: @escaping (Entry, DocumentChangeType) -> Void) {
-        db.collection("posts").addSnapshotListener() { (querySnapshot, err) in
-            struct Holder { static var timesCalled = 0 }
-            
+    func onDataChange(execute: @escaping (Entry, DocumentChangeType) -> Void) {
+        struct Holder { static var timesCalled = 0 }
+        Holder.timesCalled = 0
+        EntriesManager.db.collection("posts").addSnapshotListener() { (querySnapshot, err) in
+            print("holder \(Holder.timesCalled)")
             if let err = err {
                 print("[EntriesManager.onDataChange] Error:\(err)")
                 return
@@ -52,7 +58,7 @@ class EntriesManager {
             for docChange in querySnapshot!.documentChanges {
                 print(docChange.type)
                 print(docChange.document.data())
-                guard let entry = getEntry(from: docChange.document) else { continue }
+                guard let entry = EntriesManager.getEntry(from: docChange.document) else { continue }
                 execute(entry, docChange.type)
             }
         }
@@ -74,7 +80,7 @@ class EntriesManager {
     }
     
     // MARK: Get Entries From Server
-    static func getEntriesFromServer() -> Promise<[Entry]?> {
+    func getEntriesFromServer() -> Promise<[Entry]?> {
         return Promise { seal in
             var entriesList = [Entry]()
             
@@ -91,7 +97,7 @@ class EntriesManager {
                                          desc: "SOS, I need to get out of this North Korean camp. \n\nThe Democratic People's Republic of Korea is a genuine workers' state in which all the people are completely liberated from exploitation and oppression. \n\nThe workers, peasants, soldiers and intellectuals are the true masters of their destiny and are in a unique position to defend their interests.",
                                          id: "some id",
                                          owner: "none"))
-                query = db.collection("posts")
+                query = EntriesManager.db.collection("posts")
                             .order(by: "timestamp", descending: true)
                             .limit(to: batchSize)
             }
@@ -104,11 +110,11 @@ class EntriesManager {
             query.getDocuments() { (querySnapshot, err) in
                 if let err = err { seal.reject(err) }
                 for document in querySnapshot!.documents {
-                    if let ent = getEntry(from: document) {
+                    if let ent = EntriesManager.getEntry(from: document) {
                         entriesList.append(ent)
                     }
                 }
-                lastDoc = querySnapshot?.documents.last
+                self.lastDoc = querySnapshot?.documents.last
                 print("[EntriesManager.getEntriesFromServer]: Retrieved Posts")
                 entriesList.forEach { (e) in print(e) }
                 seal.fulfill(entriesList)
