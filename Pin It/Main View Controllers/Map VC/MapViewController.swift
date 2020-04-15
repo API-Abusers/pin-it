@@ -56,11 +56,10 @@ class MapViewController: UIViewController {
         EntriesManager.onDataChange() { (e, type) in
             switch type {
             case .added:
+                if let _ = self.activeAnnotations[e.id] { return }
                 self.writeAnnotation(from: e)
                 break
             case .modified: // TODO: Handle modified and removed posts
-                guard let oldAnnotation = self.activeAnnotations[e.id] else { return }
-                self.map.removeAnnotation(oldAnnotation)
                 self.writeAnnotation(from: e)
                 break
             case .removed:
@@ -126,6 +125,7 @@ class MapViewController: UIViewController {
     // MARK: Adds Annotation to HashSet and Map View
     func writeAnnotation(from entry: Entry) {
         let annotation = self.getAnnotationFromEntry(entry)
+        if let a = self.activeAnnotations[entry.id] { self.map.removeAnnotation(a) }
         self.activeAnnotations[entry.id] = annotation
         self.map.addAnnotation(annotation)
     }
