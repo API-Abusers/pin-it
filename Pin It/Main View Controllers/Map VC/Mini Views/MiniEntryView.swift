@@ -15,18 +15,25 @@ class MiniEntryView: UIView, CalloutViewPlus {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var body: UILabel!
     @IBOutlet weak var button: UIButton!
-    var rootController: MapViewController?
     var entry: Entry?
+    var onTap: ((_ e: Entry) -> Void)?
     
     @IBAction func showDetail(_ sender: Any) {
-        rootController!.showDetail(entry: entry!)
+        guard let execute = onTap else { return }
+        execute(self.entry!)
+    }
+    
+    // cofigure behavior on top
+    func onTap(execute: @escaping ((_ e: Entry) -> Void)) {
+        self.onTap = execute
+        addTapGestureRecognizer {
+            self.onTap!(self.entry!)
+        }
     }
     
     func configureCallout(_ viewModel: CalloutViewModel) {
         let viewModel = viewModel as! MiniEntryViewModel
         entry = viewModel.entry
-        
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDetail)))
         
         title.resizeAndDisplayText(text: entry!.username)
         body.resizeAndDisplayText(text: entry!.title)

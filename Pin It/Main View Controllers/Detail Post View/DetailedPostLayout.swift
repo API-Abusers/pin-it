@@ -94,7 +94,7 @@ public class DetailedPostLayout: InsetLayout<UIView> {
 
                 // Adding Spinner
                 //slideshow.activityIndicator = DefaultActivityIndicator(style: .white, color: nil) // this doesn't appear to be working
-                var spinner = UIActivityIndicatorView(style: .whiteLarge)
+                let spinner = UIActivityIndicatorView(style: .whiteLarge)
                 spinner.translatesAutoresizingMaskIntoConstraints = false
                 spinner.startAnimating()
                 slideshow.addSubview(spinner)

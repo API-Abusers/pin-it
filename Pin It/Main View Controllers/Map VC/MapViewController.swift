@@ -20,7 +20,7 @@ class MapViewController: UIViewController {
     let manager = CLLocationManager()
     
     static var postPage = MakePostViewController()
-    var calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView
+    var calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView?
     var detailPage = DetailedEntryViewController()
     let profilePage = ProfileViewController()
     
@@ -36,15 +36,21 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        overrideUserInterfaceStyle = .light
         
+        // configurations for map
         map.delegate = self
         map.anchorViewCustomizerDelegate = self
         map.showsCompass = false
         
+        // config buttons
         findSelfButton.isEnabled = false
         loadMoreButton.isEnabled = false
         
-        calloutView.rootController = self
+        // configure callout view
+        calloutView!.onTap { e in
+            self.showDetail(entry: e)
+        }
         
         // setting up the manager
         manager.delegate = self
@@ -76,6 +82,8 @@ class MapViewController: UIViewController {
         CLLocationManager.requestLocation().done { (loc) in
             self.moveTo(location: loc[0])
             self.findSelfButton.isEnabled = true
+        }.catch { err in
+            print(err)
         }
         
     }
@@ -168,6 +176,12 @@ class MapViewController: UIViewController {
         queryEntriesToMap()
     }
     
+    // MARK: Prepare Deinit
+    func prepareDeinit() {
+        calloutView!.onTap = nil
+        calloutView = nil
+    }
+    
     deinit {
         print("Deinitializing MapViewController")
     }
@@ -186,7 +200,7 @@ extension MapViewController: MapViewPlusDelegate {
     }
 
     func mapView(_ mapView: MapViewPlus, calloutViewFor annotationView: AnnotationViewPlus) -> CalloutViewPlus{
-        return calloutView
+        return calloutView!
     }
 
     func mapView(_ mapView: MapViewPlus, didAddAnnotations annotations: [AnnotationPlus]) {
@@ -195,6 +209,6 @@ extension MapViewController: MapViewPlusDelegate {
 
 extension MapViewController: AnchorViewCustomizerDelegate {
     func mapView(_ mapView: MapViewPlus, fillColorForAnchorOf calloutView: CalloutViewPlus) -> UIColor {
-        return self.calloutView.backgroundColor!
+        return self.calloutView!.backgroundColor!
     }
 }

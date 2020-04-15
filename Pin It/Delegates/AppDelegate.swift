@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var authVC: UIViewController!
     var mapVC: UIViewController!
+    var storyboard = UIStoryboard(name: "Main", bundle: nil)
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -29,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // selecting inital view controller
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         authVC = storyboard.instantiateViewController(withIdentifier: "AuthView")
         mapVC = storyboard.instantiateViewController(withIdentifier: "MapView")
         
@@ -136,8 +136,13 @@ extension AppDelegate: GIDSignInDelegate {
             }
             // User is signed in
             let user = authResult?.user
+            (self.mapVC as! MapViewController).prepareDeinit()
             print("signed in \(user!.uid)")
-            print("\(String(describing: user?.email))")
+            print("\(String(describing: user!.email))")
+            print(self.mapVC)
+            print(CFGetRetainCount(self.mapVC))
+            self.mapVC = self.storyboard.instantiateViewController(withIdentifier: "MapView")
+            print(self.mapVC)
             self.presentViewController(vc: self.mapVC!)
         }
 
