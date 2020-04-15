@@ -59,8 +59,6 @@ class MapViewController: UIViewController {
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
         
-        print("view did load")
-        
         // configuring and calling EntriesManager
         entryManager.onDataChange() { (e, type) in
             switch type {

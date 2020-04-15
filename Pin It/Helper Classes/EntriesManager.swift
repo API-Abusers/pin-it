@@ -22,9 +22,7 @@ class EntriesManager {
     var batchSize = 1
     
     // MARK: Initializer
-    init() {
-        
-    }
+    init() {}
     
     // MARK: Get Id Token
     static func getIdToken() -> Promise<String> {
