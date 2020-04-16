@@ -172,6 +172,8 @@ class MapViewController: UIViewController {
     // MARK: Show Detail of an Entry View
     func showDetail(entry: Entry) {
         detailPage.useEntry(entry: entry)
+        detailPage.modalPresentationStyle = .pageSheet
+        detailPage.modalTransitionStyle = .coverVertical
         self.present(detailPage, animated: true)
     }
     

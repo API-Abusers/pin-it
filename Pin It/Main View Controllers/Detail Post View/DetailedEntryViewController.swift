@@ -18,8 +18,9 @@ class DetailedEntryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .dark
-        view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        overrideUserInterfaceStyle = .light
+        view.backgroundColor = UIColor.white.withAlphaComponent(CGFloat(0.98))
+        view.isOpaque = false
         
         scrollView = UIScrollView(frame: CGRect(origin: CGPoint(x: 0, y: 0),
                                                 size: CGSize(width: view.frame.width, height: view.frame.height)))

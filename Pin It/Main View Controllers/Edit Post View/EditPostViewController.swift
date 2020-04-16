@@ -23,8 +23,7 @@ class EditPostViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .dark
-        view.backgroundColor = #colorLiteral(red: 0.1260543499, green: 0.1356953156, blue: 0.1489139211, alpha: 1)
+        overrideUserInterfaceStyle = .light
         self.isModalInPresentation = true
         createForm()
         // Do any additional setup after loading the view.
@@ -44,22 +43,7 @@ class EditPostViewController: FormViewController {
     func createForm() {
         form
             // Title and description fields
-            +++ Section() { section in
-                section.header = {
-                    var header = HeaderFooterView<UIView>(.callback({
-                        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-                        let title = UILabel(frame: CGRect(x: 16, y: 0, width: 500, height: 100))
-                        title.font = .boldSystemFont(ofSize: 40)
-                        title.text = "Edit Post"
-                        title.textColor = .white
-                        view.addSubview(title)
-                        return view
-                    }))
-                    header.height = { 100 }
-                    return header
-                    }()
-            }
-
+            +++ Section("Edit Title")
             <<< TextRow() { row in
                 row.placeholder = "Write a title..."
                 row.value = e.title
@@ -69,6 +53,7 @@ class EditPostViewController: FormViewController {
                 cell.tintColor = .white
             }
             
+            +++ Section("Edit Description")
             <<< TextAreaRow() { row in
                 row.placeholder = "Write a description..."
                 row.value = e.desc
@@ -78,13 +63,20 @@ class EditPostViewController: FormViewController {
                 cell.height = { 150 }
             }
             
+            +++ Section("Edit Location")
+            <<< LocationRow(){
+                $0.title = "Location"
+                $0.value = MapViewController.userLoc
+                $0.validationOptions = .validatesOnChange //2
+            }
+            
             // Button rows
             +++ Section()
             <<< ButtonRow { button in
                 button.title = "Save"
             }
             .cellSetup { cell, row in
-                cell.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+                cell.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
                 cell.tintColor = .white
             }
             .onCellSelection { cell, row in
@@ -106,7 +98,7 @@ class EditPostViewController: FormViewController {
                 row.title = "Cancel"
             }
             .cellSetup{ cell, row in
-                cell.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+                cell.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
                 cell.tintColor = .white
             }
             .onCellSelection { cell, row in

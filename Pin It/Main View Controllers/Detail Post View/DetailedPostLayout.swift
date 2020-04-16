@@ -20,7 +20,7 @@ public class DetailedPostLayout: InsetLayout<UIView> {
         
         let editButtonLayout = SizeLayout<UIButton>(width: 40, height: 40, alignment: .topTrailing, flexibility: Flexibility.inflexible) { button in
             button.setBackgroundImage(UIImage(systemName: "ellipsis.circle.fill"), for: .normal)
-            button.tintColor = .white
+            button.tintColor = .systemGray4
             button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             
             let alert = UIAlertController(title: nil, message: "Post Edit Options", preferredStyle: .actionSheet)
@@ -70,12 +70,14 @@ public class DetailedPostLayout: InsetLayout<UIView> {
         
         let exitButtonLayout = SizeLayout<UIButton>(width: 40, height: 40, alignment: .topTrailing, flexibility: Flexibility.inflexible) { button in
             button.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
-            button.tintColor = .white
+            button.tintColor = .systemGray4
             button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             button.addTapGestureRecognizer { rootvc.dismiss(animated: true) }
         }
         
-        let authorLayout = LabelLayout(text: entry.username, font: UIFont.italicSystemFont(ofSize: 15))
+        let authorLayout = LabelLayout(text: entry.username, font: UIFont.italicSystemFont(ofSize: 15)) { label in
+            label.textColor = .secondaryLabel
+        }
         let descLayout = LabelLayout(text: entry.desc, font: UIFont.systemFont(ofSize: 20))
         
         let imageSlideshow = SizeLayout<ImageSlideshow>(
@@ -83,6 +85,7 @@ public class DetailedPostLayout: InsetLayout<UIView> {
             height: rootvc.view.frame.size.width - 50,
             config: { slideshow in
                 // Add ImageSlideShow
+                slideshow.backgroundColor = .systemGray5
                 slideshow.slideshowInterval = 5.0
                 slideshow.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
                 slideshow.contentScaleMode = UIViewContentMode.scaleAspectFill
@@ -94,7 +97,7 @@ public class DetailedPostLayout: InsetLayout<UIView> {
 
                 // Adding Spinner
                 //slideshow.activityIndicator = DefaultActivityIndicator(style: .white, color: nil) // this doesn't appear to be working
-                let spinner = UIActivityIndicatorView(style: .whiteLarge)
+                let spinner = UIActivityIndicatorView(style: .gray)
                 spinner.translatesAutoresizingMaskIntoConstraints = false
                 spinner.startAnimating()
                 slideshow.addSubview(spinner)
@@ -110,6 +113,7 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                     slideshow.addTapGestureRecognizer {
                         slideshow.presentFullScreenControllerForIos13(from: rootvc)
                     }
+                    slideshow.backgroundColor = .clear
                 }.catch { (err) in
                     print("[DetailedPostLayout] Error while loading images: \(err)")
                     spinner.stopAnimating()

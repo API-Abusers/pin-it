@@ -24,8 +24,7 @@ class ProfileViewController: LBTAFormController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .dark
-        view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        overrideUserInterfaceStyle = .light
         
         let user = Auth.auth().currentUser
         
@@ -35,7 +34,7 @@ class ProfileViewController: LBTAFormController {
         formContainerStackView.layoutMargins = .init(top: 25, left: 25, bottom: 0, right: 25)
         
         // Title label
-        titleLabel = UILabel(text: user?.displayName!, font: UIFont.boldSystemFont(ofSize: 40), textColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), textAlignment: .natural, numberOfLines: 0)
+        titleLabel = UILabel(text: user?.displayName!, font: UIFont.boldSystemFont(ofSize: 40), textColor: .black, textAlignment: .natural, numberOfLines: 0)
         titleLabel.resizeAndDisplayText(text: user!.displayName!)
         formContainerStackView.addArrangedSubview(titleLabel)
         
