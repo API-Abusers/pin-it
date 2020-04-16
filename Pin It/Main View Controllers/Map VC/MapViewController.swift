@@ -41,7 +41,7 @@ class MapViewController: UIViewController {
     var detailPage = DetailedEntryViewController()
     let profilePage = ProfileViewController()
     
-    let annotationImage = UIImage(named: "loc-icon")!.resized(toWidth: 40)!
+    let annotationImage = UIImage(named: "loc-icon")!.resized(toHeight: 40)!
     var activeAnnotations = Dictionary<String, MKAnnotation>()
     
     @IBOutlet weak var findSelfButton: UIButton!
@@ -171,7 +171,6 @@ class MapViewController: UIViewController {
     
     // MARK: Show Detail of an Entry View
     func showDetail(entry: Entry) {
-        detailPage = DetailedEntryViewController()
         detailPage.useEntry(entry: entry)
         self.present(detailPage, animated: true)
     }
@@ -214,41 +213,30 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isEqual(mapView.userLocation) { return nil } // do not modify user pin
-        guard let _ = annotation as? PinAnnotation else { return nil } // do not modify cluster view
+        guard let annotation = annotation as? PinAnnotation else { return nil } // do not modify cluster view
     
         let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
         annotationView.image = annotationImage
         annotationView.centerOffset = CGPoint(x: 0, y: -annotationImage.size.height / 2)
+        
         annotationView.canShowCallout = true
+        
+        let button = UIButton(type: .detailDisclosure)
+        button.addTapGestureRecognizer { self.showDetail(entry: annotation.e) }
+        annotationView.rightCalloutAccessoryView = button
+        
         annotationView.clusteringIdentifier = "regular-pin"
+        
         return annotationView
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard let annotation = view.annotation! as? PinAnnotation else { return }
-        guard let calloutView = calloutView else { return }
         
-        calloutView.configureCallout(annotation.e)
-        calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
-        view.addSubview(calloutView)
-        NSLayoutConstraint.activate([
-            calloutView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            calloutView.widthAnchor.constraint(equalToConstant: 60),
-            calloutView.heightAnchor.constraint(equalToConstant: 30),
-            calloutView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: view.calloutOffset.x)
-        ])
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let annotation = view.annotation as? PinAnnotation else { return }
         self.showDetail(entry: annotation.e)
-    }
-    
-    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView)
-    {
-        for childView:AnyObject in view.subviews{
-            childView.removeFromSuperview();
-        }
     }
     
 }

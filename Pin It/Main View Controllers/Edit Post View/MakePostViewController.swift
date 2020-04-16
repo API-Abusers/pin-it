@@ -20,8 +20,8 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .dark
-        view.backgroundColor = #colorLiteral(red: 0.1260543499, green: 0.1356953156, blue: 0.1489139211, alpha: 1)
+//        overrideUserInterfaceStyle = .dark
+//        view.backgroundColor = #colorLiteral(red: 0.1260543499, green: 0.1356953156, blue: 0.1489139211, alpha: 1)
         self.isModalInPresentation = true
         createForm()
     }
@@ -37,7 +37,7 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
                         let title = UILabel(frame: CGRect(x: 16, y: 0, width: 500, height: 100))
                         title.font = .boldSystemFont(ofSize: 40)
                         title.text = "Make a Post"
-                        title.textColor = .white
+//                        title.textColor = .black
                         view.addSubview(title)
                         return view
                     }))
