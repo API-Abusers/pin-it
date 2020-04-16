@@ -162,7 +162,6 @@
 		73013D1423C965CE000817E4 /* Mini Views */ = {
 			isa = PBXGroup;
 			children = (
-				7341C9C323C995120019CC6B /* MiniEntryView.swift */,
 			);
 			path = "Mini Views";
 			sourceTree = "<group>";
@@ -307,6 +306,7 @@
 			children = (
 				7391DC7423C655110051A1B9 /* MapViewController.swift */,
 				73013D1423C965CE000817E4 /* Mini Views */,
+				7341C9C323C995120019CC6B /* MiniEntryView.swift */,
 				73442A322447ED4700A0FD44 /* ClusterAnnotationView.swift */,
 			);
 			path = "Map VC";

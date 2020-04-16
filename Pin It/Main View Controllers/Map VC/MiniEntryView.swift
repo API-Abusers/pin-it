@@ -8,9 +8,8 @@
 
 import Foundation
 import UIKit
-import MapViewPlus
 
-class MiniEntryView: UIView, CalloutViewPlus {
+class MiniEntryView: UIView {
     
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var body: UILabel!
@@ -31,12 +30,11 @@ class MiniEntryView: UIView, CalloutViewPlus {
         }
     }
     
-    func configureCallout(_ viewModel: CalloutViewModel) {
-        let viewModel = viewModel as! MiniEntryViewModel
-        entry = viewModel.entry
+    func configureCallout(_ entry: Entry) {
+        self.entry = entry
         
-        title.resizeAndDisplayText(text: entry!.username)
-        body.resizeAndDisplayText(text: entry!.title)
+        title.resizeAndDisplayText(text: entry.username)
+        body.resizeAndDisplayText(text: entry.title)
 
         self.layer.cornerRadius = 5
         self.layer.masksToBounds = true

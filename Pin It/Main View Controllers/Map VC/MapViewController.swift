@@ -16,11 +16,13 @@ final class PinAnnotation : NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
+    var e: Entry
     
-    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String) {
+    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String, e: Entry) {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
+        self.e = e
         
         super.init()
     }
@@ -142,9 +144,11 @@ class MapViewController: UIViewController {
     // MARK: Returns an AnnotationPlus Object from an Entry
     func getAnnotationFromEntry(_ e: Entry) -> MKAnnotation {
         let viewModel = MiniEntryViewModel(entry: e)
-        let annotation = PinAnnotation(coordinate: CLLocationCoordinate2DMake(e.location[0], e.location[1]),
+        let annotation = PinAnnotation(coordinate: CLLocationCoordinate2DMake(e.location[0],
+                                                                              e.location[1]),
                                        title: e.title,
-                                       subtitle: e.username)
+                                       subtitle: e.username,
+                                       e: e)
         return annotation
     }
     
@@ -181,6 +185,8 @@ class MapViewController: UIViewController {
     @IBAction func findSelf(_ sender: Any) {
         CLLocationManager.requestLocation().done { (loc) in
             self.moveTo(location: loc[0])
+        }.catch { err in
+            print(err)
         }
     }
     
@@ -207,22 +213,44 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation.isEqual(mapView.userLocation) { return nil }
-        
-        guard let _ = annotation as? PinAnnotation else { return nil }
-        
-//        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView {
+        if annotation.isEqual(mapView.userLocation) { return nil } // do not modify user pin
+        guard let _ = annotation as? PinAnnotation else { return nil } // do not modify cluster view
+    
         let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
-//            annotationView.animatesWhenAdded = true
-//            annotationView.titleVisibility = .adaptive
-            annotationView.image = annotationImage
+        annotationView.image = annotationImage
         annotationView.centerOffset = CGPoint(x: 0, y: -annotationImage.size.height / 2)
-            annotationView.canShowCallout = true
+        annotationView.canShowCallout = true
         annotationView.clusteringIdentifier = "regular-pin"
-            return annotationView
-//        }
-        return nil
+        return annotationView
     }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation! as? PinAnnotation else { return }
+        guard let calloutView = calloutView else { return }
+        
+        calloutView.configureCallout(annotation.e)
+        calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
+        view.addSubview(calloutView)
+        NSLayoutConstraint.activate([
+            calloutView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            calloutView.widthAnchor.constraint(equalToConstant: 60),
+            calloutView.heightAnchor.constraint(equalToConstant: 30),
+            calloutView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: view.calloutOffset.x)
+        ])
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let annotation = view.annotation as? PinAnnotation else { return }
+        self.showDetail(entry: annotation.e)
+    }
+    
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView)
+    {
+        for childView:AnyObject in view.subviews{
+            childView.removeFromSuperview();
+        }
+    }
+    
 }
 
 extension MapViewController: CLLocationManagerDelegate {
