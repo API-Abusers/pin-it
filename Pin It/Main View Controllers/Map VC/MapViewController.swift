@@ -9,13 +9,27 @@
 import UIKit
 import MapKit
 import CoreLocation
-import MapViewPlus
 import Alamofire
 import PromiseKit
 
+final class PinAnnotation : NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String) {
+        self.coordinate = coordinate
+        self.title = title
+        self.subtitle = subtitle
+        
+        super.init()
+    }
+    
+}
+
 class MapViewController: UIViewController {
     
-    @IBOutlet weak var map: MapViewPlus!
+    @IBOutlet weak var map: MKMapView!
     
     let manager = CLLocationManager()
     let entryManager = EntriesManager()
@@ -25,8 +39,8 @@ class MapViewController: UIViewController {
     var detailPage = DetailedEntryViewController()
     let profilePage = ProfileViewController()
     
-    let annotationImage = UIImage(named: "loc-icon")!.resized(toWidth: 60)!
-    var activeAnnotations = Dictionary<String, AnnotationPlus>()
+    let annotationImage = UIImage(named: "loc-icon")!.resized(toWidth: 40)!
+    var activeAnnotations = Dictionary<String, MKAnnotation>()
     
     @IBOutlet weak var findSelfButton: UIButton!
     @IBOutlet weak var loadMoreButton: UIButton!
@@ -41,8 +55,10 @@ class MapViewController: UIViewController {
         
         // configurations for map
         map.delegate = self
-        map.anchorViewCustomizerDelegate = self
         map.showsCompass = false
+        
+        map.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        map.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
         
         // config buttons
         findSelfButton.isEnabled = false
@@ -124,10 +140,11 @@ class MapViewController: UIViewController {
     }
     
     // MARK: Returns an AnnotationPlus Object from an Entry
-    func getAnnotationFromEntry(_ e: Entry) -> AnnotationPlus {
+    func getAnnotationFromEntry(_ e: Entry) -> MKAnnotation {
         let viewModel = MiniEntryViewModel(entry: e)
-        let annotation = AnnotationPlus(viewModel: viewModel,
-                                        coordinate: CLLocationCoordinate2DMake(e.location[0], e.location[1]))
+        let annotation = PinAnnotation(coordinate: CLLocationCoordinate2DMake(e.location[0], e.location[1]),
+                                       title: e.title,
+                                       subtitle: e.username)
         return annotation
     }
     
@@ -188,28 +205,28 @@ class MapViewController: UIViewController {
     }
 }
 
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation.isEqual(mapView.userLocation) { return nil }
+        
+        guard let _ = annotation as? PinAnnotation else { return nil }
+        
+//        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView {
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
+//            annotationView.animatesWhenAdded = true
+//            annotationView.titleVisibility = .adaptive
+            annotationView.image = annotationImage
+        annotationView.centerOffset = CGPoint(x: 0, y: -annotationImage.size.height / 2)
+            annotationView.canShowCallout = true
+        annotationView.clusteringIdentifier = "regular-pin"
+            return annotationView
+//        }
+        return nil
+    }
+}
 
 extension MapViewController: CLLocationManagerDelegate {
     // Extracting Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    }
-}
-
-extension MapViewController: MapViewPlusDelegate {
-    func mapView(_ mapView: MapViewPlus, imageFor annotation: AnnotationPlus) -> UIImage {
-        return annotationImage
-    }
-
-    func mapView(_ mapView: MapViewPlus, calloutViewFor annotationView: AnnotationViewPlus) -> CalloutViewPlus{
-        return calloutView!
-    }
-
-    func mapView(_ mapView: MapViewPlus, didAddAnnotations annotations: [AnnotationPlus]) {
-    }
-}
-
-extension MapViewController: AnchorViewCustomizerDelegate {
-    func mapView(_ mapView: MapViewPlus, fillColorForAnchorOf calloutView: CalloutViewPlus) -> UIColor {
-        return self.calloutView!.backgroundColor!
     }
 }

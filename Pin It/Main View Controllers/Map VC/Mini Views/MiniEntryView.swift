@@ -46,6 +46,4 @@ class MiniEntryView: UIView, CalloutViewPlus {
         self.frame = newFrame
     }
     
-    
-    
 }

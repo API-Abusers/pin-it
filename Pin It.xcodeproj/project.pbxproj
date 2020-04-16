@@ -24,6 +24,7 @@
 		732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024923CB832C00A512FC /* DetailedEntryViewController.swift */; };
 		732C024C23CB895C00A512FC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024B23CB895C00A512FC /* UILabelExtension.swift */; };
 		7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341C9C323C995120019CC6B /* MiniEntryView.swift */; };
+		73442A332447ED4700A0FD44 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73442A322447ED4700A0FD44 /* ClusterAnnotationView.swift */; };
 		734E6E7B243447520096497C /* WarningPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E6E7A243447520096497C /* WarningPopup.swift */; };
 		7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7023C655110051A1B9 /* AppDelegate.swift */; };
 		7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7423C655110051A1B9 /* MapViewController.swift */; };
@@ -81,6 +82,7 @@
 		732C024923CB832C00A512FC /* DetailedEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEntryViewController.swift; sourceTree = "<group>"; };
 		732C024B23CB895C00A512FC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		7341C9C323C995120019CC6B /* MiniEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniEntryView.swift; sourceTree = "<group>"; };
+		73442A322447ED4700A0FD44 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		734E6E7A243447520096497C /* WarningPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningPopup.swift; sourceTree = "<group>"; };
 		7391DC6D23C655110051A1B9 /* Pin It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pin It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7391DC7023C655110051A1B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,11 +190,11 @@
 		730A785423C8DCD000EED69B /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7325BC252433BBBA006837F7 /* Connectivity.swift */,
+				734E6E7A243447520096497C /* WarningPopup.swift */,
 				73013D0223C93C7B000817E4 /* Entry.swift */,
 				73013D0423C93CA8000817E4 /* EntriesManager.swift */,
 				73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */,
-				7325BC252433BBBA006837F7 /* Connectivity.swift */,
-				734E6E7A243447520096497C /* WarningPopup.swift */,
 			);
 			path = "Helper Classes";
 			sourceTree = "<group>";
@@ -305,6 +307,7 @@
 			children = (
 				7391DC7423C655110051A1B9 /* MapViewController.swift */,
 				73013D1423C965CE000817E4 /* Mini Views */,
+				73442A322447ED4700A0FD44 /* ClusterAnnotationView.swift */,
 			);
 			path = "Map VC";
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */,
 				73C0E3192444BB4700C0BC4F /* EditPostViewController.swift in Sources */,
 				73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */,
+				73442A332447ED4700A0FD44 /* ClusterAnnotationView.swift in Sources */,
 				73E0553B2436DFFF0094253C /* DetailedPostLayout.swift in Sources */,
 				730351D9243D3FEF00CBC085 /* BSImagePickerRow.swift in Sources */,
 				73E2A7972412E52300DA397B /* LocationRow.swift in Sources */,

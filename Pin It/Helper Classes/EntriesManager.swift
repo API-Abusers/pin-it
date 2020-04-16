@@ -19,7 +19,7 @@ class EntriesManager {
     static var imageCache = NSCache<NSString, UIImage>()
     var query: Query?
     var lastDoc: QueryDocumentSnapshot?
-    var batchSize = 1
+    var batchSize = 15
     
     // MARK: Initializer
     init() {}
