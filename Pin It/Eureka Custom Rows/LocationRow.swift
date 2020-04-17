@@ -72,9 +72,9 @@ public class EmbeddedMapViewController : UIViewController, TypedRowControllerTyp
     
     lazy var pinView: UIImageView = { [unowned self] in
         let v = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        v.image = UIImage(named: "map_pin", in: Bundle(for: EmbeddedMapViewController.self), compatibleWith: nil)
+        v.image = UIImage(named: "loc-icon", in: Bundle(for: EmbeddedMapViewController.self), compatibleWith: nil)?.resized(toHeight: 40)
         v.image = v.image?.withRenderingMode(.alwaysTemplate)
-        v.tintColor = self.view.tintColor
+        v.tintColor = #colorLiteral(red: 0.9973643422, green: 0.4707460999, blue: 0.4720540643, alpha: 1)
         v.backgroundColor = .clear
         v.clipsToBounds = true
         v.contentMode = .scaleAspectFit

@@ -12,23 +12,6 @@ import CoreLocation
 import Alamofire
 import PromiseKit
 
-final class PinAnnotation : NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    var title: String?
-    var subtitle: String?
-    var e: Entry
-    
-    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String, e: Entry) {
-        self.coordinate = coordinate
-        self.title = title
-        self.subtitle = subtitle
-        self.e = e
-        
-        super.init()
-    }
-    
-}
-
 class MapViewController: UIViewController {
     
     @IBOutlet weak var map: MKMapView!
@@ -109,7 +92,7 @@ class MapViewController: UIViewController {
     
     // MARK: Move To Location on Map
     func moveTo (location loc: CLLocation) {
-        let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30) // Zoom
+        let span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1) // Zoom
         let currLoc: CLLocationCoordinate2D = CLLocationCoordinate2DMake(loc.coordinate.latitude, loc.coordinate.longitude) // Location
         let region: MKCoordinateRegion = MKCoordinateRegion(center: currLoc, span: span) // Set region
         map.setRegion(region, animated: true) // Update map
@@ -143,7 +126,7 @@ class MapViewController: UIViewController {
     
     // MARK: Returns an AnnotationPlus Object from an Entry
     func getAnnotationFromEntry(_ e: Entry) -> MKAnnotation {
-        let viewModel = MiniEntryViewModel(entry: e)
+//        let viewModel = MiniEntryViewModel(entry: e)
         let annotation = PinAnnotation(coordinate: CLLocationCoordinate2DMake(e.location[0],
                                                                               e.location[1]),
                                        title: e.title,
@@ -215,21 +198,33 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isEqual(mapView.userLocation) { return nil } // do not modify user pin
-        guard let annotation = annotation as? PinAnnotation else { return nil } // do not modify cluster view
-    
-        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
-        annotationView.image = annotationImage
-        annotationView.centerOffset = CGPoint(x: 0, y: -annotationImage.size.height / 2)
         
-        annotationView.canShowCallout = true
-        
-        let button = UIButton(type: .detailDisclosure)
-        button.addTapGestureRecognizer { self.showDetail(entry: annotation.e) }
-        annotationView.rightCalloutAccessoryView = button
-        
-        annotationView.clusteringIdentifier = "regular-pin"
-        
-        return annotationView
+        if let annotation = annotation as? PinAnnotation {
+            let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
+            annotationView.image = annotationImage
+            annotationView.centerOffset = CGPoint(x: 0, y: -annotationImage.size.height / 2)
+            
+            annotationView.canShowCallout = true
+            
+            let button = UIButton(type: .detailDisclosure)
+            button.addTapGestureRecognizer { self.showDetail(entry: annotation.e) }
+            annotationView.rightCalloutAccessoryView = button
+            
+            annotationView.clusteringIdentifier = "regular-pin"
+            
+            return annotationView
+        } else if let annotation = annotation as? MKClusterAnnotation {
+            guard let annotationView = map.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier) else { return nil }
+            annotationView.canShowCallout = true
+            
+            let button = UIButton(type: .detailDisclosure)
+            button.addTapGestureRecognizer { print("cluster view")  }
+            annotationView.rightCalloutAccessoryView = button
+            
+            return annotationView
+        } else {
+            return nil
+        }
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -237,8 +232,13 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let annotation = view.annotation as? PinAnnotation else { return }
-        self.showDetail(entry: annotation.e)
+        if let annotation = view.annotation as? PinAnnotation { // handle regular annotations
+            self.showDetail(entry: annotation.e)
+
+        } else if let view = view as? ClusterAnnotationView { // handle cluster views
+            print("cluster view")
+//            self.showList(view.cluster.memberAnnotations)
+        }
     }
     
 }

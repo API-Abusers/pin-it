@@ -20,6 +20,7 @@
 		731C07B823CBBE2000A64054 /* QueryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B723CBBE2000A64054 /* QueryConfig.swift */; };
 		731C07BA23CBCDA500A64054 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B923CBCDA500A64054 /* AuthViewController.swift */; };
 		731C07C023CBD6B900A64054 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 731C07BF23CBD6B800A64054 /* GoogleService-Info.plist */; };
+		7320B94624495FE70080192F /* PinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7320B94524495FE70080192F /* PinAnnotation.swift */; };
 		7325BC262433BBBA006837F7 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325BC252433BBBA006837F7 /* Connectivity.swift */; };
 		732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024923CB832C00A512FC /* DetailedEntryViewController.swift */; };
 		732C024C23CB895C00A512FC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024B23CB895C00A512FC /* UILabelExtension.swift */; };
@@ -78,6 +79,7 @@
 		731C07B723CBBE2000A64054 /* QueryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryConfig.swift; sourceTree = "<group>"; };
 		731C07B923CBCDA500A64054 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		731C07BF23CBD6B800A64054 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7320B94524495FE70080192F /* PinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotation.swift; sourceTree = "<group>"; };
 		7325BC252433BBBA006837F7 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		732C024923CB832C00A512FC /* DetailedEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEntryViewController.swift; sourceTree = "<group>"; };
 		732C024B23CB895C00A512FC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
@@ -159,13 +161,6 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		73013D1423C965CE000817E4 /* Mini Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Mini Views";
-			sourceTree = "<group>";
-		};
 		73013D1B23C970D0000817E4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,7 +188,6 @@
 				734E6E7A243447520096497C /* WarningPopup.swift */,
 				73013D0223C93C7B000817E4 /* Entry.swift */,
 				73013D0423C93CA8000817E4 /* EntriesManager.swift */,
-				73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */,
 			);
 			path = "Helper Classes";
 			sourceTree = "<group>";
@@ -204,6 +198,16 @@
 				731C07B723CBBE2000A64054 /* QueryConfig.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		7320B94424495B210080192F /* Map Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7341C9C323C995120019CC6B /* MiniEntryView.swift */,
+				73442A322447ED4700A0FD44 /* ClusterAnnotationView.swift */,
+				7320B94524495FE70080192F /* PinAnnotation.swift */,
+			);
+			path = "Map Helper Classes";
 			sourceTree = "<group>";
 		};
 		7391DC6423C655110051A1B9 = {
@@ -278,6 +282,7 @@
 		73C0E31A2444BB8D00C0BC4F /* Edit Post View */ = {
 			isa = PBXGroup;
 			children = (
+				73013D1223C9644A000817E4 /* MiniEntryViewModel.swift */,
 				739638BD23C83E3200DB4D8B /* MakePostViewController.swift */,
 				73C0E3182444BB4700C0BC4F /* EditPostViewController.swift */,
 			);
@@ -305,9 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				7391DC7423C655110051A1B9 /* MapViewController.swift */,
-				73013D1423C965CE000817E4 /* Mini Views */,
-				7341C9C323C995120019CC6B /* MiniEntryView.swift */,
-				73442A322447ED4700A0FD44 /* ClusterAnnotationView.swift */,
+				7320B94424495B210080192F /* Map Helper Classes */,
 			);
 			path = "Map VC";
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				73E2A7972412E52300DA397B /* LocationRow.swift in Sources */,
 				732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */,
 				7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */,
+				7320B94624495FE70080192F /* PinAnnotation.swift in Sources */,
 				73C35F87243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift in Sources */,
 				73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */,
 				7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */,
