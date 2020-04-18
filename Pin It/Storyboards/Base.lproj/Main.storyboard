@@ -238,6 +238,7 @@
                         <viewLayoutGuide key="safeArea" id="bKB-vf-RPN"/>
                     </view>
                     <connections>
+                        <outlet property="embeddedView" destination="fWK-Ik-xb2" id="zde-3F-QHf"/>
                         <outlet property="tableView" destination="AOi-Gw-LxH" id="tsr-sj-sWS"/>
                     </connections>
                 </viewController>

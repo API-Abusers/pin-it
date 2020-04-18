@@ -13,11 +13,16 @@ class PopupViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var itemsList: [Entry]!
+    @IBOutlet weak var embeddedView: UIView!
+    var onSelection: ((Entry)->())?
     
     override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
+        
+        embeddedView.layer.cornerRadius = 5
+        
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         self.showAnimation()
@@ -30,6 +35,10 @@ class PopupViewController: UIViewController {
                 itemsList.append(annotation.e)
             }
         }
+    }
+    
+    func onSelection(_ execute: @escaping ((Entry)->())) {
+        self.onSelection = execute
     }
 
     @IBAction func exit(_ sender: Any) {
@@ -57,7 +66,6 @@ class PopupViewController: UIViewController {
 }
 
 extension PopupViewController: UITableViewDelegate {
-    
 }
 
 extension PopupViewController: UITableViewDataSource {
@@ -77,6 +85,11 @@ extension PopupViewController: UITableViewDataSource {
         cell.authorLabel.resizeAndDisplayText(text: e.username)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.onSelection!(itemsList[indexPath.row])
+        self.removeAnimation()
     }
 }
 

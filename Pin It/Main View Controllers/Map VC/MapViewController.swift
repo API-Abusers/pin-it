@@ -164,6 +164,9 @@ class MapViewController: UIViewController {
     func showClusteOptions(for annotations: [MKAnnotation]) {
         let popupPage = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popupvc") as! PopupViewController
         popupPage.useAnnotations(annotations: annotations)
+        popupPage.onSelection { e in
+            self.showDetail(entry: e)
+        }
         self.addChild(popupPage)
         popupPage.view.frame = self.view.frame
         self.view.addSubview(popupPage.view)
