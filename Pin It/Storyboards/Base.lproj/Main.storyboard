@@ -138,7 +138,7 @@
         <!--Popup View Controller-->
         <scene sceneID="MaA-7B-IA5">
             <objects>
-                <viewController id="rG5-G4-saM" customClass="PopupViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="popupvc" id="rG5-G4-saM" customClass="PopupViewController" customModule="Pin_It" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s4a-I4-ihZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -152,16 +152,16 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFu-tb-1RW">
-                                <rect key="frame" x="67.666666666666686" y="256" width="240" height="30"/>
+                                <rect key="frame" x="67.666666666666686" y="256" width="240" height="40"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="xEa-xU-72s"/>
+                                    <constraint firstAttribute="height" constant="40" id="xEa-xU-72s"/>
                                 </constraints>
                                 <state key="normal" title="Close">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="dismiss:" destination="rG5-G4-saM" eventType="touchUpInside" id="JjZ-Bl-z3S"/>
+                                    <action selector="exit:" destination="rG5-G4-saM" eventType="touchUpInside" id="eUu-Hm-Gt2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -178,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ug1-ym-6Hg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2140" y="103.44827586206897"/>
+            <point key="canvasLocation" x="1986" y="103"/>
         </scene>
         <!--Auth View Controller-->
         <scene sceneID="ucZ-Bm-pWc">

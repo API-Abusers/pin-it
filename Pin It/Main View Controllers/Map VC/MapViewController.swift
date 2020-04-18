@@ -19,11 +19,10 @@ class MapViewController: UIViewController {
     let manager = CLLocationManager()
     let entryManager = EntriesManager()
 
-    var postPage = MakePostViewController()
+    static var postPage = MakePostViewController()
     var calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView?
     var detailPage = DetailedEntryViewController()
     let profilePage = ProfileViewController()
-    let popupPage = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopupViewController") as? PopupViewController?
     
     let annotationImage = UIImage(named: "loc-icon")!.resized(toHeight: 40)!
     var activeAnnotations = Dictionary<String, MKAnnotation>()
@@ -161,9 +160,18 @@ class MapViewController: UIViewController {
         self.present(detailPage, animated: true)
     }
     
+    // MARK: Show Pins in Cluster
+    func showClusteOptions(for annotations: [MKAnnotation]) {
+        let popupPage = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popupvc") as! PopupViewController
+        self.addChild(popupPage)
+        popupPage.view.frame = self.view.frame
+        self.view.addSubview(popupPage.view)
+        popupPage.didMove(toParent: self)
+    }
+    
     // MARK: Show Post View
     @IBAction func showPostView(_ sender: Any) {
-        self.present(postPage, animated: true)
+        self.present(MapViewController.postPage, animated: true)
     }
     
     // MARK: Zoom in on the User
@@ -219,7 +227,7 @@ extension MapViewController: MKMapViewDelegate {
             annotationView.canShowCallout = true
             
             let button = UIButton(type: .detailDisclosure)
-            button.addTapGestureRecognizer { print("cluster view")  }
+            button.addTapGestureRecognizer { self.showClusteOptions(for: annotation.memberAnnotations) }
             annotationView.rightCalloutAccessoryView = button
             
             return annotationView
@@ -235,10 +243,9 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation as? PinAnnotation { // handle regular annotations
             self.showDetail(entry: annotation.e)
-
         } else if let view = view as? ClusterAnnotationView { // handle cluster views
-            print("cluster view")
-//            self.showList(view.cluster.memberAnnotations)
+            guard let cluster = view.annotation as? MKClusterAnnotation else { return }
+            self.showClusteOptions(for: cluster.memberAnnotations)
         }
     }
     
