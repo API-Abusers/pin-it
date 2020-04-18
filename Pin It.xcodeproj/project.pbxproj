@@ -27,6 +27,7 @@
 		7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341C9C323C995120019CC6B /* MiniEntryView.swift */; };
 		73442A332447ED4700A0FD44 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73442A322447ED4700A0FD44 /* ClusterAnnotationView.swift */; };
 		734E6E7B243447520096497C /* WarningPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E6E7A243447520096497C /* WarningPopup.swift */; };
+		73702330244B86AF00D38E94 /* PinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370232F244B86AF00D38E94 /* PinTableViewCell.swift */; };
 		7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7023C655110051A1B9 /* AppDelegate.swift */; };
 		7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7423C655110051A1B9 /* MapViewController.swift */; };
 		7391DC7D23C655130051A1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7391DC7C23C655130051A1B9 /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 		7341C9C323C995120019CC6B /* MiniEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniEntryView.swift; sourceTree = "<group>"; };
 		73442A322447ED4700A0FD44 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		734E6E7A243447520096497C /* WarningPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningPopup.swift; sourceTree = "<group>"; };
+		7370232F244B86AF00D38E94 /* PinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTableViewCell.swift; sourceTree = "<group>"; };
 		7391DC6D23C655110051A1B9 /* Pin It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pin It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7391DC7023C655110051A1B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7391DC7423C655110051A1B9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 			children = (
 				7391DC7423C655110051A1B9 /* MapViewController.swift */,
 				73D6DF00244ABDF3008F052C /* PopupViewController.swift */,
+				7370232F244B86AF00D38E94 /* PinTableViewCell.swift */,
 				7320B94424495B210080192F /* Map Helper Classes */,
 			);
 			path = "Map VC";
@@ -630,6 +633,7 @@
 				734E6E7B243447520096497C /* WarningPopup.swift in Sources */,
 				73013D0323C93C7B000817E4 /* Entry.swift in Sources */,
 				7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */,
+				73702330244B86AF00D38E94 /* PinTableViewCell.swift in Sources */,
 				7325BC262433BBBA006837F7 /* Connectivity.swift in Sources */,
 				73013D0523C93CA8000817E4 /* EntriesManager.swift in Sources */,
 				731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */,
