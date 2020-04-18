@@ -12,8 +12,8 @@ import MapKit
 class PopupViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var itemsList: [Entry]!
     @IBOutlet weak var embeddedView: UIView!
+    var itemsList: [Entry]!
     var onSelection: ((Entry)->())?
     
     override func viewDidLoad() {
@@ -22,10 +22,19 @@ class PopupViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         embeddedView.layer.cornerRadius = 5
+        embeddedView.clipsToBounds = true
         
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         self.showAnimation()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        guard let location = touch?.location(in: self.view) else { return }
+        if !embeddedView.frame.contains(location) {
+            self.removeAnimation()
+        }
     }
     
     func useAnnotations(annotations: [MKAnnotation]) {

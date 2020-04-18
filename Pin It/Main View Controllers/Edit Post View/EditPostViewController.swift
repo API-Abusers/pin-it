@@ -50,7 +50,6 @@ class EditPostViewController: FormViewController {
                 row.tag = "title"
             }
             .cellSetup{ cell, row in
-                cell.tintColor = .white
             }
             
             +++ Section("Edit Description")
