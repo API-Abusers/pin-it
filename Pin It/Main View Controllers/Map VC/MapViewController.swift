@@ -18,11 +18,12 @@ class MapViewController: UIViewController {
     
     let manager = CLLocationManager()
     let entryManager = EntriesManager()
-    
-    static var postPage = MakePostViewController()
+
+    var postPage = MakePostViewController()
     var calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView?
     var detailPage = DetailedEntryViewController()
     let profilePage = ProfileViewController()
+    let popupPage = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopupViewController") as? PopupViewController?
     
     let annotationImage = UIImage(named: "loc-icon")!.resized(toHeight: 40)!
     var activeAnnotations = Dictionary<String, MKAnnotation>()
@@ -162,7 +163,7 @@ class MapViewController: UIViewController {
     
     // MARK: Show Post View
     @IBAction func showPostView(_ sender: Any) {
-        self.present(MapViewController.postPage, animated: true)
+        self.present(postPage, animated: true)
     }
     
     // MARK: Zoom in on the User

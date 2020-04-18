@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,14 +12,14 @@
             <objects>
                 <viewController storyboardIdentifier="MapView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MapViewController" customModule="Pin_It" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ROf-rs-b2q">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFA-Eb-kHp">
-                                <rect key="frame" x="334" y="64" width="60" height="60"/>
+                                <rect key="frame" x="295" y="64" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.20993490576744078" green="0.20993490576744078" blue="0.20993490576744078" alpha="0.79427957214765099" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="3fK-rQ-L6f"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6z-EO-giM">
-                                <rect key="frame" x="334" y="144" width="60" height="60"/>
+                                <rect key="frame" x="295" y="144" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.7942795721" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="0WN-3g-dtw"/>
@@ -85,7 +85,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvf-7n-bcH">
-                                <rect key="frame" x="334" y="224" width="60" height="60"/>
+                                <rect key="frame" x="295" y="224" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.7942795721" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="mB9-lB-5dI"/>
@@ -135,19 +135,64 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="103.79464285714285"/>
         </scene>
+        <!--Popup View Controller-->
+        <scene sceneID="MaA-7B-IA5">
+            <objects>
+                <viewController id="rG5-G4-saM" customClass="PopupViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s4a-I4-ihZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fWK-Ik-xb2">
+                                <rect key="frame" x="67.666666666666686" y="256" width="240" height="300"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="WHN-oP-Kdg"/>
+                                    <constraint firstAttribute="height" constant="300" id="iYt-fC-NwJ"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFu-tb-1RW">
+                                <rect key="frame" x="67.666666666666686" y="256" width="240" height="30"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="xEa-xU-72s"/>
+                                </constraints>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismiss:" destination="rG5-G4-saM" eventType="touchUpInside" id="JjZ-Bl-z3S"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="fWK-Ik-xb2" firstAttribute="centerY" secondItem="s4a-I4-ihZ" secondAttribute="centerY" id="3i7-Oz-lC1"/>
+                            <constraint firstItem="fWK-Ik-xb2" firstAttribute="trailing" secondItem="NFu-tb-1RW" secondAttribute="trailing" id="m5A-rv-YOR"/>
+                            <constraint firstItem="NFu-tb-1RW" firstAttribute="top" secondItem="fWK-Ik-xb2" secondAttribute="top" id="usM-xw-XPy"/>
+                            <constraint firstItem="NFu-tb-1RW" firstAttribute="leading" secondItem="fWK-Ik-xb2" secondAttribute="leading" id="wFN-On-2aC"/>
+                            <constraint firstItem="fWK-Ik-xb2" firstAttribute="centerX" secondItem="s4a-I4-ihZ" secondAttribute="centerX" id="zRY-cY-ESq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bKB-vf-RPN"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ug1-ym-6Hg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2140" y="103.44827586206897"/>
+        </scene>
         <!--Auth View Controller-->
         <scene sceneID="ucZ-Bm-pWc">
             <objects>
                 <viewController storyboardIdentifier="AuthView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A6M-mO-8qc" customClass="AuthViewController" customModule="Pin_It" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2OA-zX-ewC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IAu-Qv-Z4M">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caL-ca-8Zs" customClass="GIDSignInButton">
-                                <rect key="frame" x="90" y="423" width="234" height="50"/>
+                                <rect key="frame" x="90" y="381" width="195" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="EV2-Yb-OQ8"/>

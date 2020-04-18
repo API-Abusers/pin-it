@@ -37,6 +37,7 @@
 		7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7399026323CE190400A10A18 /* ProfileViewController.swift */; };
 		73C0E3192444BB4700C0BC4F /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C0E3182444BB4700C0BC4F /* EditPostViewController.swift */; };
 		73C35F87243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C35F86243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift */; };
+		73D6DF01244ABDF3008F052C /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6DF00244ABDF3008F052C /* PopupViewController.swift */; };
 		73E0553B2436DFFF0094253C /* DetailedPostLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */; };
 		73E2A7972412E52300DA397B /* LocationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2A7962412E52300DA397B /* LocationRow.swift */; };
 		73E2A8582412F99D00DA397B /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E2A8562412F99D00DA397B /* ImageRow.swift */; };
@@ -103,6 +104,7 @@
 		7399026323CE190400A10A18 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		73C0E3182444BB4700C0BC4F /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		73C35F86243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerWithoutSelector.swift; sourceTree = "<group>"; };
+		73D6DF00244ABDF3008F052C /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		73E0553A2436DFFF0094253C /* DetailedPostLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedPostLayout.swift; sourceTree = "<group>"; };
 		73E2A7962412E52300DA397B /* LocationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationRow.swift; sourceTree = "<group>"; };
 		73E2A8562412F99D00DA397B /* ImageRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
@@ -203,9 +205,9 @@
 		7320B94424495B210080192F /* Map Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
-				7341C9C323C995120019CC6B /* MiniEntryView.swift */,
 				73442A322447ED4700A0FD44 /* ClusterAnnotationView.swift */,
 				7320B94524495FE70080192F /* PinAnnotation.swift */,
+				7341C9C323C995120019CC6B /* MiniEntryView.swift */,
 			);
 			path = "Map Helper Classes";
 			sourceTree = "<group>";
@@ -310,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				7391DC7423C655110051A1B9 /* MapViewController.swift */,
+				73D6DF00244ABDF3008F052C /* PopupViewController.swift */,
 				7320B94424495B210080192F /* Map Helper Classes */,
 			);
 			path = "Map VC";
@@ -647,6 +650,7 @@
 				73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */,
 				7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */,
 				73E2A8592412F99D00DA397B /* ImagePickerController.swift in Sources */,
+				73D6DF01244ABDF3008F052C /* PopupViewController.swift in Sources */,
 				731C07BA23CBCDA500A64054 /* AuthViewController.swift in Sources */,
 				731C07B823CBBE2000A64054 /* QueryConfig.swift in Sources */,
 				732C024C23CB895C00A512FC /* UILabelExtension.swift in Sources */,
