@@ -140,9 +140,13 @@ class EntriesManager {
             for i in 0 ... files.count - 1 {
                 guard let uid = Auth.auth().currentUser?.uid else { continue }
                 let uploadRef = Storage.storage().reference(withPath: "/users/\(uid)/\(id)/img-\(i).jpg")
-                guard let imageData = files[i].jpegData(compressionQuality: 0.75) else { continue }
+                guard let imageData = files[i].jpegImage(maxSize: 1024 * 1024,
+                                                         minSize: Int(0.9 * 1024 * 1024),
+                                                         times: 2) else { continue }
+                print("[EntriesManager.attachImageFiles] Uploading image of size \(imageData.count)")
                 let upload = StorageMetadata.init()
                 upload.contentType = "image/jpeg"
+                
                 let ref = uploadRef.putData(imageData, metadata: upload) { (dat, err) in
                     if let err = err {
                         print("[EntriesManager.attachImageFiles] Error while uploading image:\n\(err)")
@@ -150,6 +154,10 @@ class EntriesManager {
                     }
                     print(dat ?? "")
                 }
+                
+                let img = UIImage(data: imageData)!
+                let key = String(describing: ref) as NSString
+                imageCache.setObject(img, forKey: key)
                 
                 if (i == files.count - 1) {
                     ref.observe(.success) { _ in
