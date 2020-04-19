@@ -41,16 +41,11 @@ class EntriesManager {
     // MARK: Handle Data Change
     func onDataChange(execute: @escaping (Entry, DocumentChangeType) -> Void) {
         struct Holder { static var timesCalled = 0 }
-        Holder.timesCalled = 0
         EntriesManager.db.collection("posts").addSnapshotListener() { (querySnapshot, err) in
-            print("holder \(Holder.timesCalled)")
             if let err = err {
                 print("[EntriesManager.onDataChange] Error:\(err)")
                 return
             }
-            
-            Holder.timesCalled += 1
-            if Holder.timesCalled <= 1 { return }
             
             print("[EntriesManager.onDataChange]: Data changed")
             for docChange in querySnapshot!.documentChanges {

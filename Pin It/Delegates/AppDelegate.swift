@@ -27,6 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
+        // The default cache size threshold is 100 MB. Configure "cacheSizeBytes"
+        let settings = Firestore.firestore().settings
+        settings.cacheSizeBytes = 5 * 1024 * 1024
+        Firestore.firestore().settings = settings
+        
         // selecting inital view controller
         self.window = UIWindow(frame: UIScreen.main.bounds)
         

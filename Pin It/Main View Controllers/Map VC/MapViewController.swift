@@ -48,6 +48,7 @@ class MapViewController: UIViewController {
         // config buttons
         findSelfButton.isEnabled = false
         loadMoreButton.isEnabled = false
+//        loadMoreButton.isHidden = true
         
         // configure callout view
         calloutView!.onTap { e in
@@ -78,7 +79,7 @@ class MapViewController: UIViewController {
                 break
             }
         }
-        queryEntriesToMap()
+//        queryEntriesToMap()
         
         // zooom in on the current user location
         CLLocationManager.requestLocation().done { (loc) in
