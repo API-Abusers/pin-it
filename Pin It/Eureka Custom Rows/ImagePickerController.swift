@@ -36,6 +36,7 @@ open class ImagePickerController : UIImagePickerController, TypedRowControllerTy
     
     open override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         delegate = self
     }
 

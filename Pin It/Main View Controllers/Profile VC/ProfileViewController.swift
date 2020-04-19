@@ -12,53 +12,16 @@ import Alamofire
 import Firebase
 import GoogleSignIn
 
-class ProfileViewController: LBTAFormController {
-
-    var titleLabel = UILabel()
-    var authorLabel = UILabel()
-    var descLabel = UILabel()
-    
-    let logoutButton = UIButton(title: "Log Out", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1), target: self, action: #selector(logOut))
-    
-    var lineView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 1))
+class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
+        view.backgroundColor = .white
         
-        let user = Auth.auth().currentUser
-        
-        // Setting up view layout
-        formContainerStackView.axis = .vertical
-        formContainerStackView.spacing = 25
-        formContainerStackView.layoutMargins = .init(top: 25, left: 25, bottom: 0, right: 25)
-        
-        // Title label
-        titleLabel = UILabel(text: user?.displayName!, font: UIFont.boldSystemFont(ofSize: 40), textColor: .black, textAlignment: .natural, numberOfLines: 0)
-        titleLabel.resizeAndDisplayText(text: user!.displayName!)
-        formContainerStackView.addArrangedSubview(titleLabel)
-        
-        // Author label
-//        authorLabel = UILabel(text: entry?.username, font: UIFont.italicSystemFont(ofSize: 15), textColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), textAlignment: .natural, numberOfLines: 0)
-//        authorLabel.resizeAndDisplayText(text: entry!.username)
-//        formContainerStackView.addArrangedSubview(authorLabel)
-        
-        // Description label
-//        descLabel = UILabel(text: entry?.description, font: UIFont.systemFont(ofSize: 20), textColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), textAlignment: .natural, numberOfLines: 0)
-//        descLabel.resizeAndDisplayText(text: entry!.description)
-//        formContainerStackView.addArrangedSubview(descLabel)
-        
-        // Buttons
-        formContainerStackView.addArrangedSubview(logoutButton)
-        
-    }
-    
-    // MARK: Log Out
-    @objc fileprivate func logOut() {
-        self.dismiss(animated: true) {
-            let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-            appDelegate!.signOutCurrentUser()
-        }
+        let pfpage = ProfilePageLayout(self)
+        let arrangment = pfpage.arrangement(width: self.view.frame.width)
+        arrangment.makeViews(in: self.view)
     }
     
 }

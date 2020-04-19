@@ -258,9 +258,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caL-ca-8Zs" customClass="GIDSignInButton">
-                                <rect key="frame" x="90" y="381" width="195" height="50"/>
+                                <rect key="frame" x="87.666666666666686" y="381" width="200" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="3uW-4N-CZN"/>
                                     <constraint firstAttribute="height" constant="50" id="EV2-Yb-OQ8"/>
                                 </constraints>
                             </view>
@@ -271,8 +272,6 @@
                             <constraint firstItem="caL-ca-8Zs" firstAttribute="centerX" secondItem="2OA-zX-ewC" secondAttribute="centerX" id="79v-O1-Axj"/>
                             <constraint firstItem="IAu-Qv-Z4M" firstAttribute="trailing" secondItem="9n9-05-Zfr" secondAttribute="trailing" id="KZS-bf-lcb"/>
                             <constraint firstAttribute="bottom" secondItem="IAu-Qv-Z4M" secondAttribute="bottom" id="XMt-LD-3Wt"/>
-                            <constraint firstItem="9n9-05-Zfr" firstAttribute="trailing" secondItem="caL-ca-8Zs" secondAttribute="trailing" constant="90" id="gqD-hK-EHI"/>
-                            <constraint firstItem="caL-ca-8Zs" firstAttribute="leading" secondItem="9n9-05-Zfr" secondAttribute="leading" constant="90" id="iTI-ZN-qXX"/>
                             <constraint firstItem="IAu-Qv-Z4M" firstAttribute="leading" secondItem="9n9-05-Zfr" secondAttribute="leading" id="maP-Td-0EP"/>
                             <constraint firstItem="caL-ca-8Zs" firstAttribute="centerY" secondItem="2OA-zX-ewC" secondAttribute="centerY" id="nNX-JE-Dbo"/>
                         </constraints>

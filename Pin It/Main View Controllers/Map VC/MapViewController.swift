@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import Alamofire
 import PromiseKit
+import SPStorkController
 
 class MapViewController: UIViewController {
     
@@ -21,7 +22,7 @@ class MapViewController: UIViewController {
 
     static var postPage = MakePostViewController()
     var calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView?
-    var detailPage = DetailedEntryViewController()
+    var detailPage: DetailedEntryViewController!
     let profilePage = ProfileViewController()
     
     let annotationImage = UIImage(named: "loc-icon")!.resized(toHeight: 40)!
@@ -155,6 +156,7 @@ class MapViewController: UIViewController {
     
     // MARK: Show Detail of an Entry View
     func showDetail(entry: Entry) {
+        detailPage = DetailedEntryViewController()
         detailPage.useEntry(entry: entry)
         detailPage.modalPresentationStyle = .pageSheet
         detailPage.modalTransitionStyle = .coverVertical
@@ -190,7 +192,14 @@ class MapViewController: UIViewController {
     
     // MARK: Show Profile
     @IBAction func showProfile(_ sender: Any) {
-        self.present(profilePage, animated: true)
+        let transitionDelegate = SPStorkTransitioningDelegate()
+        transitionDelegate.storkDelegate = self
+        transitionDelegate.customHeight = 200
+        transitionDelegate.showCloseButton = true
+        transitionDelegate.translateForDismiss = 20
+        profilePage.transitioningDelegate = transitionDelegate
+        profilePage.modalPresentationStyle = .custom
+        self.present(profilePage, animated: true, completion: nil)
     }
     
     // MARK: Load More Posts
@@ -259,5 +268,16 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController: CLLocationManagerDelegate {
     // Extracting Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    }
+}
+
+extension MapViewController: SPStorkControllerDelegate {
+    
+    func didDismissStorkByTap() {
+        print("SPStorkControllerDelegate - didDismissStorkByTap")
+    }
+    
+    func didDismissStorkBySwipe() {
+        print("SPStorkControllerDelegate - didDismissStorkBySwipe")
     }
 }

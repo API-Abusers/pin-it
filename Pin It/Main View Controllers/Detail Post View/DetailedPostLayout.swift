@@ -32,6 +32,12 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                 
                 let deletionAlert = UIAlertController(title: "Are you sure you want to delete your post?", message: "This action cannot be undone.", preferredStyle: .alert)
                 
+                if let popoverPresentationController = deletionAlert.popoverPresentationController {
+                    popoverPresentationController.sourceView = rootvc.view
+                    popoverPresentationController.sourceRect = CGRect(x: rootvc.view.bounds.midX, y: rootvc.view.bounds.midY, width: 0, height: 0)
+                    popoverPresentationController.permittedArrowDirections = .init(rawValue: 0)
+                }
+                
                 let confirmDeletion = UIAlertAction(title: "Delete", style: .destructive) { (action) in
 
                     rootvc.dismiss(animated: true)
@@ -68,6 +74,12 @@ public class DetailedPostLayout: InsetLayout<UIView> {
             
             
             button.addTapGestureRecognizer {
+                if let popoverPresentationController = alert.popoverPresentationController {
+                    popoverPresentationController.sourceView = rootvc.view
+                    popoverPresentationController.sourceRect = CGRect(x: rootvc.view.bounds.midX, y: rootvc.view.bounds.midY, width: 0, height: 0)
+                    popoverPresentationController.permittedArrowDirections = .init(rawValue: 0)
+                }
+                
                 rootvc.present(alert, animated: true)
             }
             
