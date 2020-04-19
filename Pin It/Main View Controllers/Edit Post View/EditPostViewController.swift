@@ -15,6 +15,7 @@ import AwaitKit
 import Eureka
 import MultiImageRow
 import NVActivityIndicatorView
+import NotificationBannerSwift
 
 class EditPostViewController: FormViewController {
     
@@ -65,7 +66,7 @@ class EditPostViewController: FormViewController {
             +++ Section("Edit Location")
             <<< LocationRow(){
                 $0.title = "Location"
-                $0.value = MapViewController.userLoc
+                $0.value = CLLocation(latitude: e.location[0], longitude: e.location[1])
                 $0.tag = "location"
                 $0.validationOptions = .validatesOnChange //2
             }
@@ -86,14 +87,22 @@ class EditPostViewController: FormViewController {
                     WarningPopup.issueWarningOnIncompletePost(vc: self)
                     return
                 }
+                self.dismiss(animated: true) {
+                    if let completion = self.completion { completion() }
+                }
                 EntriesManager.editPostFields(ofPost: self.e, writes: ["title" : titleField,
                                                                        "description" : descField,
                                                                        "userLat": locField.coordinate.latitude,
                                                                        "userLong": locField.coordinate.longitude]).done { _ in
+                    FloatingNotificationBanner(title: "Post updated! 😃", style: .success).show()
                     self.dismiss(animated: true) {
                         if let completion = self.completion { completion() }
                     }
                 }.catch { (err) in
+                    let errorIndicator = FloatingNotificationBanner(title: "Post could not be edited:", subtitle: "\(err)", style: .danger)
+                    errorIndicator.autoDismiss = false
+                    errorIndicator.show()
+                    
                     WarningPopup.issueWarning(title: "Error", description: err as! String, vc: self)
                 }
             }
@@ -102,7 +111,7 @@ class EditPostViewController: FormViewController {
                 row.title = "Cancel"
             }
             .cellSetup{ cell, row in
-                cell.backgroundColor = .systemPink
+                cell.backgroundColor = .systemRed
                 cell.tintColor = .white
             }
             .onCellSelection { cell, row in

@@ -24,6 +24,8 @@ target 'Pin It' do
   pod 'NVActivityIndicatorView'
   pod "ImageSlideshow"
   pod 'LayoutKit', :git => 'https://github.com/linkedin/LayoutKit.git', :branch => 'master'
+  pod 'NotificationBannerSwift'
+  pod 'SPStorkController'
   
   target 'Pin ItTests' do
     inherit! :search_paths

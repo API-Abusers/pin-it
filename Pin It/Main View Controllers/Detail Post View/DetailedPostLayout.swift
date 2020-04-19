@@ -11,6 +11,7 @@ import LayoutKit
 import ImageSlideshow
 import PromiseKit
 import Firebase
+import NotificationBannerSwift
 
 public class DetailedPostLayout: InsetLayout<UIView> {
 
@@ -32,11 +33,15 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                 let deletionAlert = UIAlertController(title: "Are you sure you want to delete your post?", message: "This action cannot be undone.", preferredStyle: .alert)
                 
                 let confirmDeletion = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+
+                    rootvc.dismiss(animated: true)
+                    
                     EntriesManager.deletePost(entry).done { _ in
-                        rootvc.dismiss(animated: true)
+                        FloatingNotificationBanner(title: "Post deleted!", style: .success).show()
                     }.catch { (err) in
-                        print(err)
-                        rootvc.dismiss(animated: true)
+                        let errorIndicator = FloatingNotificationBanner(title: "Post could not be deleted:", subtitle: "\(err)", style: .danger)
+                        errorIndicator.autoDismiss = false
+                        errorIndicator.show()
                     }
                 }
                 deletionAlert.addAction(confirmDeletion)

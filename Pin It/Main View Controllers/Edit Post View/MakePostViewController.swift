@@ -15,6 +15,7 @@ import AwaitKit
 import Eureka
 import MultiImageRow
 import NVActivityIndicatorView
+import NotificationBannerSwift
 
 class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
     
@@ -78,7 +79,7 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
                 row.title = "Exit"
             }
             .cellSetup{ cell, row in
-                cell.backgroundColor = .systemPink
+                cell.backgroundColor = .systemRed
                 cell.tintColor = .white
             }
             .onCellSelection { cell, row in
@@ -140,23 +141,32 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
         
         data["id"] = String(describing: hash)
         
-        startAnimating(nil, message: "uploading post", messageFont: nil, type: NVActivityIndicatorType.cubeTransition, color: nil, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil, fadeInAnimation: nil)
+//        startAnimating(nil, message: "uploading post", messageFont: nil, type: NVActivityIndicatorType.cubeTransition, color: nil, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil, fadeInAnimation: nil)
+        
+        
+        self.dismiss(animated: true) { MapViewController.postPage = MakePostViewController() }
+        
+        let uploadIndicator = FloatingNotificationBanner(title: "Uploading Post", style: .info)
+        uploadIndicator.show()
         
         firstly {
             EntriesManager.postEntry(data: data)
         }.then {_ in
             EntriesManager.attachImageFiles(files: imageSelection, addTo: data["id"] as! String)
         }.done { _ in
-            self.stopAnimating()
-            self.dismiss(animated: true) {
-                MapViewController.postPage = MakePostViewController()
-            }
+            uploadIndicator.dismiss()
+            FloatingNotificationBanner(title: "Post uploaded! 😃", style: .success).show()
         }.catch { err in
-            self.stopAnimating()
+            uploadIndicator.dismiss()
+
+            let errorIndicator = FloatingNotificationBanner(title: "Error 😵", subtitle: "\(err)", style: .danger)
+            errorIndicator.autoDismiss = false
+            errorIndicator.show()
+            
             let _ = EntriesManager.deletePost(ofId: data["id"] as! String)
-            let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+//            let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
+//            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+//            self.present(alert, animated: true, completion: nil)
             return
         }
     }

@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double ClusterVersionNumber;
-FOUNDATION_EXPORT const unsigned char ClusterVersionString[];
+FOUNDATION_EXPORT double SPStorkControllerVersionNumber;
+FOUNDATION_EXPORT const unsigned char SPStorkControllerVersionString[];
 

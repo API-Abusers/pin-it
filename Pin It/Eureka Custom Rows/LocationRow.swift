@@ -124,13 +124,13 @@ public class EmbeddedMapViewController : UIViewController, TypedRowControllerTyp
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mapView)
+        overrideUserInterfaceStyle = .light
         
         mapView.delegate = self
         mapView.addSubview(pinView)
         mapView.layer.insertSublayer(ellipsisLayer, below: pinView.layer)
         
 //        view.addSubview(UINavigationBar())
-        
 //        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(EmbeddedMapViewController.tappedDone(_:)))
 //        button.title = "Done"
 //        navigationItem.rightBarButtonItem = button
