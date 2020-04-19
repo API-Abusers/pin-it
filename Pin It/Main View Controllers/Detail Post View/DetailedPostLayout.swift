@@ -32,7 +32,7 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                 let deletionAlert = UIAlertController(title: "Are you sure you want to delete your post?", message: "This action cannot be undone.", preferredStyle: .alert)
                 
                 let confirmDeletion = UIAlertAction(title: "Delete", style: .destructive) { (action) in
-                    EntriesManager.deletePost(ofId: entry.id).done { _ in
+                    EntriesManager.deletePost(entry).done { _ in
                         rootvc.dismiss(animated: true)
                     }.catch { (err) in
                         print(err)

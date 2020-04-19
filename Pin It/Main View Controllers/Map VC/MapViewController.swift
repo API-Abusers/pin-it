@@ -48,7 +48,7 @@ class MapViewController: UIViewController {
         // config buttons
         findSelfButton.isEnabled = false
         loadMoreButton.isEnabled = false
-//        loadMoreButton.isHidden = true
+        loadMoreButton.isHidden = true
         
         // configure callout view
         calloutView!.onTap { e in

@@ -215,6 +215,27 @@ class EntriesManager {
     }
     
     // MARK: Delete Post
+    static func deletePost(_ e: Entry) -> Promise<Void> {
+        return Promise { seal in
+            db.document("posts/\(e.id)").delete() { err in
+                if let err = err {
+                    seal.reject(err)
+                }
+                
+                let imageRef = Storage.storage().reference(withPath: "/users/\(e.owner)/\(e.id)/")
+                imageRef.listAll() { (res, err) in
+                    if let err = err { seal.reject(err) }
+                    res.items.forEach { (ref) in
+                        ref.delete { err in
+                            if let err = err { print(err) }
+                        }
+                    }
+                }
+                seal.fulfill(Void())
+            }
+        }
+    }
+    
     static func deletePost(ofId id: String) -> Promise<Void> {
         return Promise { seal in
             db.document("posts/\(id)").delete() { err in

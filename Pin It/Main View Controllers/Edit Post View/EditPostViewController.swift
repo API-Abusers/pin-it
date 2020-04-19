@@ -66,6 +66,7 @@ class EditPostViewController: FormViewController {
             <<< LocationRow(){
                 $0.title = "Location"
                 $0.value = MapViewController.userLoc
+                $0.tag = "location"
                 $0.validationOptions = .validatesOnChange //2
             }
             
@@ -80,11 +81,15 @@ class EditPostViewController: FormViewController {
             }
             .onCellSelection { cell, row in
                 guard let titleField = self.form.rowBy(tag: "title")!.baseValue as! String?,
-                    let descField = self.form.rowBy(tag: "desc")!.baseValue as! String? else {
+                    let descField = self.form.rowBy(tag: "desc")!.baseValue as! String?,
+                    let locField = self.form.rowBy(tag: "location")!.baseValue as! CLLocation? else {
                     WarningPopup.issueWarningOnIncompletePost(vc: self)
                     return
                 }
-                EntriesManager.editPostFields(ofPost: self.e, writes: ["title" : titleField, "description" : descField]).done { _ in
+                EntriesManager.editPostFields(ofPost: self.e, writes: ["title" : titleField,
+                                                                       "description" : descField,
+                                                                       "userLat": locField.coordinate.latitude,
+                                                                       "userLong": locField.coordinate.longitude]).done { _ in
                     self.dismiss(animated: true) {
                         if let completion = self.completion { completion() }
                     }
