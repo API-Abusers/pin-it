@@ -140,9 +140,23 @@ class EntriesManager {
             for i in 0 ... files.count - 1 {
                 guard let uid = Auth.auth().currentUser?.uid else { continue }
                 let uploadRef = Storage.storage().reference(withPath: "/users/\(uid)/\(id)/img-\(i).jpg")
-                guard let imageData = files[i].jpegImage(maxSize: 1024 * 1024,
-                                                         minSize: Int(0.9 * 1024 * 1024),
-                                                         times: 2) else { continue }
+                
+                var dat: Data?
+                let f = files[i]
+                if(f.size.height > f.size.width && f.size.height > 1024) {
+                    if let resizedImage = f.resized(toHeight: 1024) {
+                        dat = resizedImage.jpegData(compressionQuality: 0.75)
+                    }
+                } else if (f.size.width >= f.size.height && f.size.width > 1024) {
+                    if let resizedImage = f.resized(toWidth: 1024) {
+                        dat = resizedImage.jpegData(compressionQuality: 0.75)
+                    }
+                } else {
+                    dat = f.pngData()!
+                }
+                
+                guard let imageData = dat else { continue }
+                
                 print("[EntriesManager.attachImageFiles] Uploading image of size \(imageData.count)")
                 let upload = StorageMetadata.init()
                 upload.contentType = "image/jpeg"

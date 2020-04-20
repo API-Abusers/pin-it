@@ -20,7 +20,7 @@
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFA-Eb-kHp">
                                 <rect key="frame" x="295" y="678" width="60" height="60"/>
-                                <color key="backgroundColor" red="0.20993490576744078" green="0.20993490576744078" blue="0.20993490576744078" alpha="0.79427957214765099" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.20993490576744078" green="0.20993490576744078" blue="0.20993490576744078" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="CnV-0O-9xj"/>
                                     <constraint firstAttribute="height" constant="60" id="o2F-S5-WoO"/>
@@ -42,13 +42,14 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3G-WO-ydp">
                                 <rect key="frame" x="20" y="678" width="60" height="60"/>
-                                <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.7942795721" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="5lA-6h-zHq"/>
                                     <constraint firstAttribute="width" constant="60" id="nH3-El-vqz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="titleShadowOffset" width="2" height="2"/>
                                 <state key="normal" image="person.crop.circle.fill" catalog="system">
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
@@ -64,7 +65,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvf-7n-bcH">
                                 <rect key="frame" x="295" y="518" width="60" height="60"/>
-                                <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.7942795721" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="O4M-X1-r5D"/>
                                     <constraint firstAttribute="width" constant="60" id="Y0r-k1-JoP"/>
@@ -86,7 +87,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6z-EO-giM">
                                 <rect key="frame" x="295" y="598" width="60" height="60"/>
-                                <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.7942795721" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.20993490579999999" green="0.20993490579999999" blue="0.20993490579999999" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="fBB-K1-9di"/>
                                     <constraint firstAttribute="height" constant="60" id="xND-uE-rZN"/>
