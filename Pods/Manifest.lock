@@ -352,6 +352,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - GoogleSignIn
   - ImageSlideshow
+  - Kingfisher
   - LayoutKit (from `https://github.com/linkedin/LayoutKit.git`, branch `master`)
   - LBTATools
   - MapViewPlus
@@ -471,6 +472,6 @@ SPEC CHECKSUMS:
   SPStorkController: d809adb3e333ec07760f8bf1b4c628a2801675ac
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 3d3145a725fb0cb7e2ea8c5ef75810989e720907
+PODFILE CHECKSUM: 41f5c409249505463afa7217925792492862e5fc
 
 COCOAPODS: 1.8.4

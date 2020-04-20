@@ -23,7 +23,7 @@ class MapViewController: UIViewController {
     static var postPage = MakePostViewController()
     var calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView?
     var detailPage: DetailedEntryViewController!
-    let profilePage = ProfileViewController()
+    var profilePage = ProfileViewController()
     
     let annotationImage = UIImage(named: "loc-icon")!.resized(toHeight: 40)!
     var activeAnnotations = Dictionary<String, MKAnnotation>()
@@ -89,6 +89,7 @@ class MapViewController: UIViewController {
         }.catch { err in
             print(err)
         }
+        
         
     }
     
@@ -192,11 +193,16 @@ class MapViewController: UIViewController {
     
     // MARK: Show Profile
     @IBAction func showProfile(_ sender: Any) {
+        self.profilePage = ProfileViewController()
         let transitionDelegate = SPStorkTransitioningDelegate()
         transitionDelegate.storkDelegate = self
         transitionDelegate.customHeight = 200
-        transitionDelegate.showCloseButton = true
+        transitionDelegate.showCloseButton = false
         transitionDelegate.translateForDismiss = 20
+        profilePage.renderView { arrangment in
+            transitionDelegate.customHeight = arrangment.frame.height + 30
+        }
+        
         profilePage.transitioningDelegate = transitionDelegate
         profilePage.modalPresentationStyle = .custom
         self.present(profilePage, animated: true, completion: nil)

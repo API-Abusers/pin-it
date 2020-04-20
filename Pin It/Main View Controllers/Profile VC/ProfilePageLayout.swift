@@ -12,27 +12,36 @@ import ImageSlideshow
 import PromiseKit
 import Firebase
 import NotificationBannerSwift
+import Kingfisher
 
 public class ProfilePageLayout: InsetLayout<UIView> {
 
     init(_ rootvc: UIViewController) {
         let user = Auth.auth().currentUser!
         
-//        let pfp = SizeLayout<UIImageView>(
-//            width: 50,
-//            height: 50,
-//            alignment: .topCenter,
-//            config: { imageView in
-//                imageView.image = UIImage(named: imageName)
-//                imageView.layer.cornerRadius = imageView.frame.width
-//                imageView.layer.masksToBounds = true
-//            }
-//        )
-                
-        let usernameLayout = LabelLayout(text: user.displayName, font: UIFont.systemFont(ofSize: 40), alignment: .topCenter)
+        let pfpLayout = SizeLayout<UIImageView>(
+            width: 50,
+            height: 50,
+            alignment: .centerTrailing) { imageView in
+            let processor = RoundCornerImageProcessor(cornerRadius: imageView.frame.width)
+            imageView.kf.setImage(with: user.photoURL!,
+                                  options: [.processor(processor)])
+        }
         
-        let exitButtonLayout = SizeLayout<UIButton>(width: 360, height: 40, alignment: .bottomCenter, flexibility: Flexibility.inflexible) { button in
-            
+        let usernameLayout = LabelLayout(text: user.displayName!,
+                                         font: .boldSystemFont(ofSize: 40),
+                                         alignment: .centerLeading)
+        
+        let userBarLayout = InsetLayout<UIView>(insets: EdgeInsets(top: 0, left: 0, bottom: 0, right: 0),
+                                                alignment: .center,
+                                                sublayout: StackLayout(axis: .horizontal,
+                                                                       spacing: 10,
+                                                                       sublayouts: [pfpLayout, usernameLayout]))
+        
+        let exitButtonLayout = SizeLayout<UIButton>(width: 360,
+                                                    height: 40,
+                                                    alignment: .bottomCenter,
+                                                    flexibility: .inflexible) { button in
             button.layer.cornerRadius = 4
             button.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             button.titleLabel?.font = .boldSystemFont(ofSize: 16)
@@ -45,8 +54,6 @@ public class ProfilePageLayout: InsetLayout<UIView> {
                 }
             }
         }
-        
-
             
         super.init(
             insets: UIEdgeInsets(top: 25, left: 25, bottom: 0, right: 25),
@@ -54,7 +61,7 @@ public class ProfilePageLayout: InsetLayout<UIView> {
                 axis: .vertical,
                 spacing: 25,
                 sublayouts: [
-                    StackLayout(axis: .horizontal, spacing: 10, sublayouts: [usernameLayout]),
+                    userBarLayout,
                     exitButtonLayout]
             )
         )
