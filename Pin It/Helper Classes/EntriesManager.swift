@@ -152,7 +152,7 @@ class EntriesManager {
                         dat = resizedImage.jpegData(compressionQuality: 0.75)
                     }
                 } else {
-                    dat = f.pngData()!
+                    dat = f.jpegData(compressionQuality: 1)
                 }
                 
                 guard let imageData = dat else { continue }
