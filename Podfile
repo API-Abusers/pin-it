@@ -26,6 +26,7 @@ target 'Pin It' do
   pod 'LayoutKit', :git => 'https://github.com/linkedin/LayoutKit.git', :branch => 'master'
   pod 'NotificationBannerSwift'
   pod 'SPStorkController'
+  pod 'SPFakeBar'
   pod 'Kingfisher'
   
   target 'Pin ItTests' do

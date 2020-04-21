@@ -16,21 +16,38 @@ import Eureka
 import MultiImageRow
 import NVActivityIndicatorView
 import NotificationBannerSwift
+import SPFakeBar
 
 class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
+    
+    let navBar = SPFakeBarView(style: .stork)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
         self.isModalInPresentation = true
+        
+        self.navBar.titleLabel.text = "Make a Post"
+        self.navBar.leftButton.setTitle("Cancel", for: .normal)
+        self.navBar.leftButton.addTapGestureRecognizer { self.exitView() }
+        
+        self.navBar.rightButton.setTitle("Post", for: .normal)
+        self.navBar.rightButton.addTapGestureRecognizer { self.sendPost() }
+
+        self.view.addSubview(self.navBar)
+        
         createForm()
     }
     
     // MARK: Create Form
     func createForm() {
         form
-            // Title and description fields
-            +++ Section("Write a Post") 
+            +++ Section(){ section in
+                var header = HeaderFooterView(title: "")
+                header?.height = { self.navBar.height + 10 }
+                section.header = header
+            }
+            
             // Image selector
             <<< MultiImagePickerRow(fromController: .specific(self)) { row in
                 row.descriptionTitle = "Select images"
@@ -38,6 +55,17 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
                 row.value = [.empty,.empty,.empty]
             }
             
+            +++ Section()
+            // Location selector
+            <<< LocationRow(){
+                $0.title = "Select Location"
+                $0.value = MapViewController.userLoc
+                $0.tag = "location"
+                $0.validationOptions = .validatesOnChange //2
+            }
+            
+            // Text inputs
+            +++ Section()
             <<< TextRow() { row in
                 row.placeholder = "Write a title..."
                 row.tag = "title"
@@ -53,42 +81,33 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
                 cell.height = { 150 }
             }
             
-            // Location selector
-            +++ Section("Selection a Location")
-            <<< LocationRow(){
-                $0.title = "Location"
-                $0.value = MapViewController.userLoc
-                $0.tag = "location"
-                $0.validationOptions = .validatesOnChange //2
-            }
-            
             // Button rows
-            +++ Section()
-            <<< ButtonRow { button in
-                button.title = "Post"
-            }
-            .cellSetup { cell, row in
-                cell.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-                cell.tintColor = .white
-            }
-            .onCellSelection { cell, row in
-                self.sendPost()
-            }
-            
-            <<< ButtonRow { (row: ButtonRow) -> Void in
-                row.title = "Exit"
-            }
-            .cellSetup{ cell, row in
-                cell.backgroundColor = .systemRed
-                cell.tintColor = .white
-            }
-            .onCellSelection { cell, row in
-                self.exitView()
-            }
+//            +++ Section()
+//            <<< ButtonRow { button in
+//                button.title = "Post"
+//            }
+//            .cellSetup { cell, row in
+//                cell.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+//                cell.tintColor = .white
+//            }
+//            .onCellSelection { cell, row in
+//                self.sendPost()
+//            }
+//
+//            <<< ButtonRow { (row: ButtonRow) -> Void in
+//                row.title = "Exit"
+//            }
+//            .cellSetup{ cell, row in
+//                cell.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+//                cell.tintColor = .white
+//            }
+//            .onCellSelection { cell, row in
+//                self.exitView()
+//            }
     }
     
     // MARK: Sending Post
-    @objc fileprivate func sendPost() {
+    @objc func sendPost() {
         let user = Auth.auth().currentUser
 
         if !Connectivity.isConnectedToInternet {
@@ -141,10 +160,7 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
         
         data["id"] = String(describing: hash)
         
-//        startAnimating(nil, message: "uploading post", messageFont: nil, type: NVActivityIndicatorType.cubeTransition, color: nil, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil, fadeInAnimation: nil)
-        
-        
-        self.dismiss(animated: true) { MapViewController.postPage = MakePostViewController() }
+        self.dismiss(animated: true)
         
         let uploadIndicator = FloatingNotificationBanner(title: "Uploading Post", style: .info)
         uploadIndicator.show()
@@ -164,9 +180,6 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
             errorIndicator.show()
             
             let _ = EntriesManager.deletePost(ofId: data["id"] as! String)
-//            let alert = UIAlertController(title: "Error", message: "\(err)", preferredStyle: UIAlertController.Style.alert)
-//            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-//            self.present(alert, animated: true, completion: nil)
             return
         }
     }

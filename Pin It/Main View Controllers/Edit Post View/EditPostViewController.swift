@@ -16,18 +16,29 @@ import Eureka
 import MultiImageRow
 import NVActivityIndicatorView
 import NotificationBannerSwift
+import SPFakeBar
 
 class EditPostViewController: FormViewController {
     
     var e: Entry!
     var completion: (() -> Void)?
+    let navBar = SPFakeBarView(style: .stork)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
         self.isModalInPresentation = true
+        
+        self.navBar.titleLabel.text = "Edit Post"
+        self.navBar.leftButton.setTitle("Cancel", for: .normal)
+        self.navBar.leftButton.addTapGestureRecognizer { self.dismiss(animated: true) }
+        
+        self.navBar.rightButton.setTitle("Save", for: .normal)
+        self.navBar.rightButton.addTapGestureRecognizer { self.uploadEdits() }
+
+        self.view.addSubview(self.navBar)
+        
         createForm()
-        // Do any additional setup after loading the view.
     }
     
     // MARK: Get Entry
@@ -39,11 +50,46 @@ class EditPostViewController: FormViewController {
     func onEditComplete(_ completion : @escaping (() -> Void)) {
         self.completion = completion
     }
+    
+    func uploadEdits() {
+        guard let titleField = self.form.rowBy(tag: "title")!.baseValue as! String?,
+            let descField = self.form.rowBy(tag: "desc")!.baseValue as! String?,
+            let locField = self.form.rowBy(tag: "location")!.baseValue as! CLLocation? else {
+            WarningPopup.issueWarningOnIncompletePost(vc: self)
+            return
+        }
+        
+        self.dismiss(animated: true) {
+            if let completion = self.completion { completion() }
+        }
+        
+        EntriesManager.editPostFields(ofPost: self.e, writes: ["title" : titleField,
+                                                               "description" : descField,
+                                                               "userLat": locField.coordinate.latitude,
+                                                               "userLong": locField.coordinate.longitude]).done { _ in
+            FloatingNotificationBanner(title: "Post updated! 😃", style: .success).show()
+            self.dismiss(animated: true) {
+                if let completion = self.completion { completion() }
+            }
+        }.catch { (err) in
+            let errorIndicator = FloatingNotificationBanner(title: "Post could not be edited:", subtitle: "\(err)", style: .danger)
+            errorIndicator.autoDismiss = false
+            errorIndicator.show()
+            
+            WarningPopup.issueWarning(title: "Error", description: err as! String, vc: self)
+        }
+    }
 
     // MARK: Create Form
     func createForm() {
         form
             // Title and description fields
+            +++ Section() { section in
+                var header = HeaderFooterView(title: "")
+                header?.height = { self.navBar.height + 10 }
+                section.header = header
+            }
+            
             +++ Section("Edit Title")
             <<< TextRow() { row in
                 row.placeholder = "Write a title..."
@@ -70,53 +116,5 @@ class EditPostViewController: FormViewController {
                 $0.tag = "location"
                 $0.validationOptions = .validatesOnChange //2
             }
-            
-            // Button rows
-            +++ Section()
-            <<< ButtonRow { button in
-                button.title = "Save"
-            }
-            .cellSetup { cell, row in
-                cell.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-                cell.tintColor = .white
-            }
-            .onCellSelection { cell, row in
-                guard let titleField = self.form.rowBy(tag: "title")!.baseValue as! String?,
-                    let descField = self.form.rowBy(tag: "desc")!.baseValue as! String?,
-                    let locField = self.form.rowBy(tag: "location")!.baseValue as! CLLocation? else {
-                    WarningPopup.issueWarningOnIncompletePost(vc: self)
-                    return
-                }
-                self.dismiss(animated: true) {
-                    if let completion = self.completion { completion() }
-                }
-                EntriesManager.editPostFields(ofPost: self.e, writes: ["title" : titleField,
-                                                                       "description" : descField,
-                                                                       "userLat": locField.coordinate.latitude,
-                                                                       "userLong": locField.coordinate.longitude]).done { _ in
-                    FloatingNotificationBanner(title: "Post updated! 😃", style: .success).show()
-                    self.dismiss(animated: true) {
-                        if let completion = self.completion { completion() }
-                    }
-                }.catch { (err) in
-                    let errorIndicator = FloatingNotificationBanner(title: "Post could not be edited:", subtitle: "\(err)", style: .danger)
-                    errorIndicator.autoDismiss = false
-                    errorIndicator.show()
-                    
-                    WarningPopup.issueWarning(title: "Error", description: err as! String, vc: self)
-                }
-            }
-            
-            <<< ButtonRow { (row: ButtonRow) -> Void in
-                row.title = "Cancel"
-            }
-            .cellSetup{ cell, row in
-                cell.backgroundColor = .systemRed
-                cell.tintColor = .white
-            }
-            .onCellSelection { cell, row in
-                self.dismiss(animated: true)
-            }
     }
-
 }

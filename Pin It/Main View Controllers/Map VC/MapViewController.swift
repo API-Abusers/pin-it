@@ -20,7 +20,6 @@ class MapViewController: UIViewController {
     let manager = CLLocationManager()
     let entryManager = EntriesManager()
 
-    static var postPage = MakePostViewController()
     var calloutView = Bundle.main.loadNibNamed("MiniEntryView", owner: nil, options: nil)!.first as! MiniEntryView?
     var detailPage: DetailedEntryViewController!
     var profilePage = ProfileViewController()
@@ -179,7 +178,8 @@ class MapViewController: UIViewController {
     
     // MARK: Show Post View
     @IBAction func showPostView(_ sender: Any) {
-        self.present(MapViewController.postPage, animated: true)
+        let postPage = MakePostViewController()
+        self.present(postPage, animated: true, completion: nil)
     }
     
     // MARK: Zoom in on the User

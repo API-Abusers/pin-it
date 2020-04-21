@@ -130,11 +130,6 @@ public class EmbeddedMapViewController : UIViewController, TypedRowControllerTyp
         mapView.addSubview(pinView)
         mapView.layer.insertSublayer(ellipsisLayer, below: pinView.layer)
         
-//        view.addSubview(UINavigationBar())
-//        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(EmbeddedMapViewController.tappedDone(_:)))
-//        button.title = "Done"
-//        navigationItem.rightBarButtonItem = button
-        
         let pinButton = UIButton(title: "Done", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), target: self, action: #selector(tappedDone))
         pinButton.frame = CGRect(x: 10, y: 10, width: 80, height: 35)
         pinButton.layer.cornerRadius = 5

@@ -339,6 +339,7 @@ PODS:
   - PromiseKit/UIKit (6.12.0):
     - PromiseKit/CorePromise
   - SnapKit (5.0.1)
+  - SPFakeBar (1.0.9)
   - SPStorkController (1.8.2)
   - SwiftyJSON (5.0.0)
 
@@ -362,6 +363,7 @@ DEPENDENCIES:
   - PromiseKit
   - PromiseKit/Alamofire
   - PromiseKit/CoreLocation
+  - SPFakeBar
   - SPStorkController
   - SwiftyJSON
 
@@ -407,6 +409,7 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - PromiseKit
     - SnapKit
+    - SPFakeBar
     - SPStorkController
     - SwiftyJSON
 
@@ -469,9 +472,10 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   PromiseKit: c06835ba442ce5454ce3cdde470232804a6e4ff8
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SPFakeBar: b74ebaa7ff9ca06a39f13dbe668238f15825ee88
   SPStorkController: d809adb3e333ec07760f8bf1b4c628a2801675ac
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 41f5c409249505463afa7217925792492862e5fc
+PODFILE CHECKSUM: f0aab345cbab6136b3d7e36e1aac3888c04e0afb
 
 COCOAPODS: 1.8.4
