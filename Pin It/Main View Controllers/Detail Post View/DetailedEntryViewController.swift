@@ -20,7 +20,7 @@ class DetailedEntryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
-        view.backgroundColor = UIColor.white.withAlphaComponent(CGFloat(0.98))
+        view.backgroundColor = .white
         view.isOpaque = false
     }
     
