@@ -184,13 +184,15 @@ class EntriesManager {
     }
     
     // MARK: Get Post Images
-    static func getPostImages(ofEntry e: Entry) -> Promise<[UIImage]> {
+    static func getPostImages(ofEntry e: Entry) -> Promise<[UIImage]?> {
         return Promise { seal in
             var assets = [UIImage]()
             let ref = Storage.storage().reference(withPath: "/users/\(e.owner)/\(e.id)")
             ref.listAll(completion: {(list, err) in
                 if let err = err { seal.reject(err) }
                 print("[EntriesManager.getPostImages]: Attempting to download images")
+                if list.items.isEmpty { seal.fulfill(nil) }
+                
                 for imgRef in list.items {
                     let key = String(describing: imgRef) as NSString
                     

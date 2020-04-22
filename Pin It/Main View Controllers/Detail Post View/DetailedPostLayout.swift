@@ -122,6 +122,18 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                 spinner.centerYAnchor.constraint(equalTo: slideshow.centerYAnchor).isActive = true
                 
                 EntriesManager.getPostImages(ofEntry: entry).done { (images) in
+                    guard let images = images else {
+                        // if there are no images
+                        slideshow.backgroundColor = #colorLiteral(red: 0.9216559553, green: 0.9216559553, blue: 0.9216559553, alpha: 1)
+                        let label = UILabel(text: "no image(s) found", font: .italicSystemFont(ofSize: 20), textColor: .secondaryLabel, textAlignment: .center, numberOfLines: 1)
+                        label.frame = CGRect(x: 10, y: 30, width: 200, height: 25)
+                        label.translatesAutoresizingMaskIntoConstraints = false
+                        slideshow.addSubview(label)
+                        label.centerXAnchor.constraint(equalTo: slideshow.centerXAnchor).isActive = true
+                        label.centerYAnchor.constraint(equalTo: slideshow.centerYAnchor).isActive = true
+                        return
+                    }
+                    
                     var imgSource = [ImageSource]()
                     images.forEach { (img) in imgSource.append(ImageSource(image: img))}
                     slideshow.setImageInputs(imgSource)

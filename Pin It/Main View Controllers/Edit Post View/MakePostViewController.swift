@@ -116,19 +116,11 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
         }
         
         // unwrap user selections and check for completion
-        guard let titleField = self.form.rowBy(tag: "title")!.baseValue as! String?,
-            let descField = self.form.rowBy(tag: "desc")!.baseValue as! String?,
-            let locField = self.form.rowBy(tag: "location")!.baseValue as! CLLocation?,
-            let imageSlots = self.form.rowBy(tag: "images")!.baseValue as! [MultiImageTableCellSlot]? else {
-            WarningPopup.issueWarningOnIncompletePost(vc: self)
+        guard let imageSlots = self.form.rowBy(tag: "images")!.baseValue as! [MultiImageTableCellSlot]? else {
+            WarningPopup.issueWarning(title: "Incomplete Post", description: "Please add images to your post", vc: self)
             return
         }
-        
-        if(titleField.isEmpty || descField.isEmpty) {
-            WarningPopup.issueWarningOnIncompletePost(vc: self)
-            return
-        }
-        
+    
         var imageSelection = [UIImage]()
         for i in imageSlots {
             switch i {
@@ -138,6 +130,33 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
                 continue
             }
         }
+        
+        if imageSelection.isEmpty {
+            WarningPopup.issueWarning(title: "Incomplete Post", description: "Please add images to your post", vc: self)
+            return
+        }
+        
+        guard let locField = self.form.rowBy(tag: "location")!.baseValue as! CLLocation? else {
+            WarningPopup.issueWarning(title: "Incomplete Post", description: "Please add a location", vc: self)
+            return
+        }
+        
+        guard let titleField = self.form.rowBy(tag: "title")!.baseValue as! String? else {
+            WarningPopup.issueWarning(title: "Incomplete Post", description: "Please add a title", vc: self)
+            return
+        }
+        
+        guard let descField = self.form.rowBy(tag: "desc")!.baseValue as! String? else {
+            WarningPopup.issueWarning(title: "Incomplete Post", description: "Please add a description", vc: self)
+            return
+        }
+        
+        
+        if(titleField.isEmpty || descField.isEmpty) {
+            WarningPopup.issueWarningOnIncompletePost(vc: self)
+            return
+        }
+    
 
         // make post request
         var data: [String: Any] = [
