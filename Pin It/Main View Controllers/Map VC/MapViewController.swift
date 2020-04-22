@@ -256,8 +256,16 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        // disable callout view for user location
+        for v in views {
+            if let annotation = v.annotation {
+                if annotation.isEqual(mapView.userLocation) {
+                    v.canShowCallout = false
+                    return
+                }
+            }
+        }
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
