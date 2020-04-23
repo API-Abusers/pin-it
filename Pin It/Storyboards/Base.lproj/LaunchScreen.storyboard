@@ -15,24 +15,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdS-Bw-ELc">
-                                <rect key="frame" x="175" y="174" width="64" height="33"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Pin It">
-                                        <attributes>
-                                            <color key="NSColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="28" name="Cambria-Italic"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pin It" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wse-Wo-zja">
+                                <rect key="frame" x="162" y="422" width="90.5" height="52"/>
+                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="40"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.91333905192355669" green="0.91537667869188211" blue="0.94647058819999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fdS-Bw-ELc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="130" id="Nn3-Hd-ayB"/>
-                            <constraint firstItem="fdS-Bw-ELc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="koP-k9-OO9"/>
+                            <constraint firstItem="Wse-Wo-zja" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Glv-O3-ilZ"/>
+                            <constraint firstItem="Wse-Wo-zja" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="psV-b8-32s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
