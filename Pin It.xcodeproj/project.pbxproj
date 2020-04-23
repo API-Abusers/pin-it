@@ -28,6 +28,7 @@
 		73442A332447ED4700A0FD44 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73442A322447ED4700A0FD44 /* ClusterAnnotationView.swift */; };
 		734A1A98244CB88D00FA097F /* ProfilePageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734A1A97244CB88D00FA097F /* ProfilePageLayout.swift */; };
 		734E6E7B243447520096497C /* WarningPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E6E7A243447520096497C /* WarningPopup.swift */; };
+		735692422450AF5500530130 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735692412450AF5500530130 /* IntExtension.swift */; };
 		73702330244B86AF00D38E94 /* PinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370232F244B86AF00D38E94 /* PinTableViewCell.swift */; };
 		7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7023C655110051A1B9 /* AppDelegate.swift */; };
 		7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7423C655110051A1B9 /* MapViewController.swift */; };
@@ -90,6 +91,7 @@
 		73442A322447ED4700A0FD44 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		734A1A97244CB88D00FA097F /* ProfilePageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageLayout.swift; sourceTree = "<group>"; };
 		734E6E7A243447520096497C /* WarningPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningPopup.swift; sourceTree = "<group>"; };
+		735692412450AF5500530130 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		7370232F244B86AF00D38E94 /* PinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTableViewCell.swift; sourceTree = "<group>"; };
 		7391DC6D23C655110051A1B9 /* Pin It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pin It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7391DC7023C655110051A1B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				732C024B23CB895C00A512FC /* UILabelExtension.swift */,
 				73013D1C23C970DD000817E4 /* UIImageExtension.swift */,
 				730351D6243D364E00CBC085 /* ImageSlideshowExtension.swift */,
+				735692412450AF5500530130 /* IntExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				7320B94624495FE70080192F /* PinAnnotation.swift in Sources */,
 				73C35F87243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift in Sources */,
 				73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */,
+				735692422450AF5500530130 /* IntExtension.swift in Sources */,
 				7341C9C423C995130019CC6B /* MiniEntryView.swift in Sources */,
 				73E2A8592412F99D00DA397B /* ImagePickerController.swift in Sources */,
 				73D6DF02244AC737008F052C /* PopupViewController.swift in Sources */,
