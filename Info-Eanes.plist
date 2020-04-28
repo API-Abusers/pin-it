@@ -75,5 +75,7 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>requiresAudit</key>
+	<true/>
 </dict>
 </plist>
