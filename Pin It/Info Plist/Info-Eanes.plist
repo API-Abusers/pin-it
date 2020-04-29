@@ -23,7 +23,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.814507739885-isf13uq3p6jb1gppfaf495na7aink43k</string>
+				<string>com.googleusercontent.apps.1013440518684-2s1h8l847aeseqnp7m9atoahvj7tr3bk</string>
 			</array>
 		</dict>
 	</array>
@@ -75,6 +75,8 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>fbConf</key>
+	<string>EanesConf</string>
 	<key>requiresAudit</key>
 	<true/>
 </dict>

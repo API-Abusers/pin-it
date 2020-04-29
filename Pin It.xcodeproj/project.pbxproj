@@ -20,6 +20,10 @@
 		731C07B823CBBE2000A64054 /* QueryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B723CBBE2000A64054 /* QueryConfig.swift */; };
 		731C07BA23CBCDA500A64054 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B923CBCDA500A64054 /* AuthViewController.swift */; };
 		7320B94624495FE70080192F /* PinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7320B94524495FE70080192F /* PinAnnotation.swift */; };
+		73235018245931C30020E573 /* Info-Eanes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73235015245930390020E573 /* Info-Eanes.plist */; };
+		73235019245931CC0020E573 /* GeneralConf.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73A9C4C12457ECFC00D00685 /* GeneralConf.plist */; };
+		7323501B245931D10020E573 /* Info-General.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7391DC8123C655130051A1B9 /* Info-General.plist */; };
+		7323501C245931D30020E573 /* Info-Eanes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73235015245930390020E573 /* Info-Eanes.plist */; };
 		7325BC262433BBBA006837F7 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325BC252433BBBA006837F7 /* Connectivity.swift */; };
 		732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024923CB832C00A512FC /* DetailedEntryViewController.swift */; };
 		732C024C23CB895C00A512FC /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732C024B23CB895C00A512FC /* UILabelExtension.swift */; };
@@ -64,6 +68,8 @@
 		73699F942457E35200F80E3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7391DC7C23C655130051A1B9 /* Assets.xcassets */; };
 		73699F962457E35200F80E3D /* MiniEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73013D1023C96426000817E4 /* MiniEntryView.xib */; };
 		73702330244B86AF00D38E94 /* PinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370232F244B86AF00D38E94 /* PinTableViewCell.swift */; };
+		73778EE62459369700910459 /* EanesConf.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7379E608245936210003BAF6 /* EanesConf.plist */; };
+		7379E609245936210003BAF6 /* EanesConf.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7379E608245936210003BAF6 /* EanesConf.plist */; };
 		7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7023C655110051A1B9 /* AppDelegate.swift */; };
 		7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7423C655110051A1B9 /* MapViewController.swift */; };
 		7391DC7D23C655130051A1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7391DC7C23C655130051A1B9 /* Assets.xcassets */; };
@@ -72,8 +78,10 @@
 		7391DC9623C655130051A1B9 /* Pin_ItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC9523C655130051A1B9 /* Pin_ItUITests.swift */; };
 		739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739638BD23C83E3200DB4D8B /* MakePostViewController.swift */; };
 		7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7399026323CE190400A10A18 /* ProfileViewController.swift */; };
-		73A9C4C02457ECEC00D00685 /* EanesConf.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73A9C4BF2457ECEC00D00685 /* EanesConf.plist */; };
 		73A9C4C22457ECFC00D00685 /* GeneralConf.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73A9C4C12457ECFC00D00685 /* GeneralConf.plist */; };
+		73A9C4C42457EDC100D00685 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9C4C32457EDC000D00685 /* AppConfigs.swift */; };
+		73A9C4C52457EDC100D00685 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9C4C32457EDC000D00685 /* AppConfigs.swift */; };
+		73AB57F82458A64F00A22AEC /* Info-General.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7391DC8123C655130051A1B9 /* Info-General.plist */; };
 		73C0E3192444BB4700C0BC4F /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C0E3182444BB4700C0BC4F /* EditPostViewController.swift */; };
 		73C35F87243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C35F86243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift */; };
 		73D6DF02244AC737008F052C /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D6DF00244ABDF3008F052C /* PopupViewController.swift */; };
@@ -119,6 +127,7 @@
 		731C07B723CBBE2000A64054 /* QueryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryConfig.swift; sourceTree = "<group>"; };
 		731C07B923CBCDA500A64054 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		7320B94524495FE70080192F /* PinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotation.swift; sourceTree = "<group>"; };
+		73235015245930390020E573 /* Info-Eanes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Eanes.plist"; sourceTree = "<group>"; };
 		7325BC252433BBBA006837F7 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		732C024923CB832C00A512FC /* DetailedEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedEntryViewController.swift; sourceTree = "<group>"; };
 		732C024B23CB895C00A512FC /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
@@ -128,8 +137,8 @@
 		734E6E7A243447520096497C /* WarningPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningPopup.swift; sourceTree = "<group>"; };
 		735692412450AF5500530130 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		73699F9C2457E35200F80E3D /* Pin It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pin It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		73699F9D2457E35300F80E3D /* Info-Eanes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-Eanes.plist"; path = "/Users/josephjin/Documents/Coding/APC Projects/Pin It/Info-Eanes.plist"; sourceTree = "<absolute>"; };
 		7370232F244B86AF00D38E94 /* PinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTableViewCell.swift; sourceTree = "<group>"; };
+		7379E608245936210003BAF6 /* EanesConf.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EanesConf.plist; sourceTree = "<group>"; };
 		7391DC6D23C655110051A1B9 /* Pin It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pin It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7391DC7023C655110051A1B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7391DC7423C655110051A1B9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -145,8 +154,8 @@
 		7391DC9723C655130051A1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		739638BD23C83E3200DB4D8B /* MakePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostViewController.swift; sourceTree = "<group>"; };
 		7399026323CE190400A10A18 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		73A9C4BF2457ECEC00D00685 /* EanesConf.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EanesConf.plist; sourceTree = "<group>"; };
 		73A9C4C12457ECFC00D00685 /* GeneralConf.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GeneralConf.plist; sourceTree = "<group>"; };
+		73A9C4C32457EDC000D00685 /* AppConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppConfigs.swift; path = "/Users/josephjin/Documents/Coding/APC Projects/Pin It/Pin It/Helper Classes/AppConfigs.swift"; sourceTree = "<absolute>"; };
 		73C0E3182444BB4700C0BC4F /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		73C35F86243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerWithoutSelector.swift; sourceTree = "<group>"; };
 		73D6DF00244ABDF3008F052C /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +249,7 @@
 		730A785423C8DCD000EED69B /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
+				73A9C4C32457EDC000D00685 /* AppConfigs.swift */,
 				7325BC252433BBBA006837F7 /* Connectivity.swift */,
 				734E6E7A243447520096497C /* WarningPopup.swift */,
 				73013D0223C93C7B000817E4 /* Entry.swift */,
@@ -270,7 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				73A9C4C12457ECFC00D00685 /* GeneralConf.plist */,
-				73A9C4BF2457ECEC00D00685 /* EanesConf.plist */,
+				7379E608245936210003BAF6 /* EanesConf.plist */,
 			);
 			path = FBConfigs;
 			sourceTree = "<group>";
@@ -279,7 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				7391DC8123C655130051A1B9 /* Info-General.plist */,
-				73699F9D2457E35300F80E3D /* Info-Eanes.plist */,
+				73235015245930390020E573 /* Info-Eanes.plist */,
 			);
 			path = "Info Plist";
 			sourceTree = "<group>";
@@ -560,6 +570,10 @@
 				73699F922457E35200F80E3D /* LaunchScreen.storyboard in Resources */,
 				73699F932457E35200F80E3D /* Main.storyboard in Resources */,
 				73699F942457E35200F80E3D /* Assets.xcassets in Resources */,
+				73778EE62459369700910459 /* EanesConf.plist in Resources */,
+				7323501B245931D10020E573 /* Info-General.plist in Resources */,
+				73235018245931C30020E573 /* Info-Eanes.plist in Resources */,
+				73235019245931CC0020E573 /* GeneralConf.plist in Resources */,
 				73699F962457E35200F80E3D /* MiniEntryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,11 +583,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7391DC8023C655130051A1B9 /* LaunchScreen.storyboard in Resources */,
+				73AB57F82458A64F00A22AEC /* Info-General.plist in Resources */,
 				73A9C4C22457ECFC00D00685 /* GeneralConf.plist in Resources */,
+				7379E609245936210003BAF6 /* EanesConf.plist in Resources */,
 				73E4B5CD23CC15D300A2F636 /* Main.storyboard in Resources */,
 				7391DC7D23C655130051A1B9 /* Assets.xcassets in Resources */,
-				73A9C4C02457ECEC00D00685 /* EanesConf.plist in Resources */,
 				73013D1123C96426000817E4 /* MiniEntryView.xib in Resources */,
+				7323501C245931D30020E573 /* Info-Eanes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +827,7 @@
 				73699F822457E35200F80E3D /* LocationRow.swift in Sources */,
 				73699F832457E35200F80E3D /* DetailedEntryViewController.swift in Sources */,
 				73699F842457E35200F80E3D /* AppDelegate.swift in Sources */,
+				73A9C4C52457EDC100D00685 /* AppConfigs.swift in Sources */,
 				73699F852457E35200F80E3D /* PinAnnotation.swift in Sources */,
 				73699F862457E35200F80E3D /* TapGestureRecognizerWithoutSelector.swift in Sources */,
 				73699F872457E35200F80E3D /* MiniEntryViewModel.swift in Sources */,
@@ -848,6 +865,7 @@
 				73E2A7972412E52300DA397B /* LocationRow.swift in Sources */,
 				732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */,
 				7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */,
+				73A9C4C42457EDC100D00685 /* AppConfigs.swift in Sources */,
 				7320B94624495FE70080192F /* PinAnnotation.swift in Sources */,
 				73C35F87243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift in Sources */,
 				73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */,
@@ -919,7 +937,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR8L2XE3A;
-				INFOPLIST_FILE = "$(SRCROOT)/Info-Eanes.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Pin It/Info Plist/Info-Eanes.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -940,7 +958,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR8L2XE3A;
-				INFOPLIST_FILE = "$(SRCROOT)/Info-Eanes.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Pin It/Info Plist/Info-Eanes.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

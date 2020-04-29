@@ -32,8 +32,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .darkContent
         
+        // load in conf based on info plist
+        guard let fbconf = AppConfigs.getConfig(forKey: "fbConf") as? String else {
+            assert(false, "Couldn't load config file")
+        }
+        let filePath = Bundle.main.path(forResource: fbconf, ofType: "plist")
+        guard let fileopts = FirebaseOptions(contentsOfFile: filePath!) else {
+            assert(false, "Couldn't load config file")
+        }
+        print("[AppDelegate]: Loading firebase config from \(fbconf)")
+        FirebaseApp.configure(options: fileopts)
+    
         // Use Firebase library to configure APIs
-        FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         

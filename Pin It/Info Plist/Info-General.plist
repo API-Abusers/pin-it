@@ -77,5 +77,7 @@
 	<false/>
 	<key>requiresAudit</key>
 	<false/>
+	<key>fbConf</key>
+	<string>GeneralConf</string>
 </dict>
 </plist>
