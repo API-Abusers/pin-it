@@ -167,7 +167,7 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
             "userLong": locField.coordinate.longitude,
             "timestamp": Date(),
             "owner": Auth.auth().currentUser?.uid ?? "none",
-            "approved": true
+            "action": "create"
         ]
 
         var hasher = Hasher()
@@ -196,9 +196,14 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
 
             let errorIndicator = FloatingNotificationBanner(title: "Error 😵", subtitle: "\(err)", style: .danger)
             errorIndicator.autoDismiss = false
+            errorIndicator.dismissOnSwipeUp = true
+            errorIndicator.dismissOnTap = true
             errorIndicator.show()
             
-            let _ = EntriesManager.deletePost(ofId: data["id"] as! String)
+            print("[MakePostViewController]: Attempted to delete uploaded post data after upload failure.")
+            EntriesManager.deleteFailedPost(ofId: data["id"] as! String).catch { (err) in
+                print("[MakePostViewController]: Post could not be deleted after deletion attempt.")
+            }
             return
         }
     }

@@ -74,6 +74,8 @@ class EditPostViewController: FormViewController {
         }.catch { (err) in
             let errorIndicator = FloatingNotificationBanner(title: "Post could not be edited:", subtitle: "\(err)", style: .danger)
             errorIndicator.autoDismiss = false
+            errorIndicator.dismissOnSwipeUp = true
+            errorIndicator.dismissOnTap = true
             errorIndicator.show()
             
             WarningPopup.issueWarning(title: "Error", description: err as! String, vc: self)

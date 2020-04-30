@@ -47,6 +47,8 @@ public class DetailedPostLayout: InsetLayout<UIView> {
                     }.catch { (err) in
                         let errorIndicator = FloatingNotificationBanner(title: "Post could not be deleted:", subtitle: "\(err)", style: .danger)
                         errorIndicator.autoDismiss = false
+                        errorIndicator.dismissOnSwipeUp = true
+                        errorIndicator.dismissOnTap = true
                         errorIndicator.show()
                     }
                 }

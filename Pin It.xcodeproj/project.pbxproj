@@ -69,6 +69,8 @@
 		73699F962457E35200F80E3D /* MiniEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73013D1023C96426000817E4 /* MiniEntryView.xib */; };
 		73702330244B86AF00D38E94 /* PinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7370232F244B86AF00D38E94 /* PinTableViewCell.swift */; };
 		73778EE62459369700910459 /* EanesConf.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7379E608245936210003BAF6 /* EanesConf.plist */; };
+		73778EE924593ACD00910459 /* SessionConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73778EE824593ACD00910459 /* SessionConfig.swift */; };
+		73778EEA2459D74500910459 /* SessionConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73778EE824593ACD00910459 /* SessionConfig.swift */; };
 		7379E609245936210003BAF6 /* EanesConf.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7379E608245936210003BAF6 /* EanesConf.plist */; };
 		7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7023C655110051A1B9 /* AppDelegate.swift */; };
 		7391DC7523C655110051A1B9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7391DC7423C655110051A1B9 /* MapViewController.swift */; };
@@ -138,6 +140,7 @@
 		735692412450AF5500530130 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		73699F9C2457E35200F80E3D /* Pin It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pin It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7370232F244B86AF00D38E94 /* PinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTableViewCell.swift; sourceTree = "<group>"; };
+		73778EE824593ACD00910459 /* SessionConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionConfig.swift; sourceTree = "<group>"; };
 		7379E608245936210003BAF6 /* EanesConf.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EanesConf.plist; sourceTree = "<group>"; };
 		7391DC6D23C655110051A1B9 /* Pin It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pin It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7391DC7023C655110051A1B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -249,7 +252,6 @@
 		730A785423C8DCD000EED69B /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
-				73A9C4C32457EDC000D00685 /* AppConfigs.swift */,
 				7325BC252433BBBA006837F7 /* Connectivity.swift */,
 				734E6E7A243447520096497C /* WarningPopup.swift */,
 				73013D0223C93C7B000817E4 /* Entry.swift */,
@@ -262,6 +264,8 @@
 			isa = PBXGroup;
 			children = (
 				731C07B723CBBE2000A64054 /* QueryConfig.swift */,
+				73A9C4C32457EDC000D00685 /* AppConfigs.swift */,
+				73778EE824593ACD00910459 /* SessionConfig.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -815,6 +819,7 @@
 				73699F762457E35200F80E3D /* Connectivity.swift in Sources */,
 				73699F772457E35200F80E3D /* EntriesManager.swift in Sources */,
 				73699F782457E35200F80E3D /* UITextViewPlaceholder.swift in Sources */,
+				73778EEA2459D74500910459 /* SessionConfig.swift in Sources */,
 				73699F792457E35200F80E3D /* ImageRow.swift in Sources */,
 				73699F7A2457E35200F80E3D /* ProfileViewController.swift in Sources */,
 				73699F7B2457E35200F80E3D /* ImageSlideshowExtension.swift in Sources */,
@@ -853,6 +858,7 @@
 				7325BC262433BBBA006837F7 /* Connectivity.swift in Sources */,
 				73013D0523C93CA8000817E4 /* EntriesManager.swift in Sources */,
 				731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */,
+				73778EE924593ACD00910459 /* SessionConfig.swift in Sources */,
 				73E2A8582412F99D00DA397B /* ImageRow.swift in Sources */,
 				7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */,
 				730351D7243D364E00CBC085 /* ImageSlideshowExtension.swift in Sources */,

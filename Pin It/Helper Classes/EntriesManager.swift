@@ -17,12 +17,20 @@ class EntriesManager {
     
     static var db = Firestore.firestore()
     static var imageCache = NSCache<NSString, UIImage>()
+    static var requiresAudit: Bool!
     var query: Query?
     var lastDoc: QueryDocumentSnapshot?
     var batchSize = 5
     
     // MARK: Initializer
-    init() {}
+    init() {
+        guard let b = AppConfigs.getConfig(forKey: "requiresAudit") as? Bool else {
+            EntriesManager.requiresAudit = false
+            print("[EntriesManager]: Could not load auditing options, defaulting to false")
+            return
+        }
+        EntriesManager.requiresAudit = b
+    }
     
     // MARK: Get Id Token
     static func getIdToken() -> Promise<String> {
@@ -41,7 +49,8 @@ class EntriesManager {
     // MARK: Handle Data Change
     func onDataChange(execute: @escaping (Entry, DocumentChangeType) -> Void) {
         struct Holder { static var timesCalled = 0 }
-        EntriesManager.db.collection("posts").addSnapshotListener() { (querySnapshot, err) in
+        
+        EntriesManager.db.collection(Path.publicPosts).addSnapshotListener() { (querySnapshot, err) in
             if let err = err {
                 print("[EntriesManager.onDataChange] Error:\(err)")
                 return
@@ -90,7 +99,7 @@ class EntriesManager {
                                          desc: "SOS, I need to get out of this North Korean camp. \n\nThe Democratic People's Republic of Korea is a genuine workers' state in which all the people are completely liberated from exploitation and oppression. \n\nThe workers, peasants, soldiers and intellectuals are the true masters of their destiny and are in a unique position to defend their interests.",
                                          id: "some id",
                                          owner: "none"))
-                query = EntriesManager.db.collection("posts")
+                query = EntriesManager.db.collection(Path.publicPosts)
                             .order(by: "timestamp", descending: true)
                             .limit(to: batchSize)
             }
@@ -119,7 +128,12 @@ class EntriesManager {
     // MARK: Post Data
     static func postEntry(data: [String: Any]) -> Promise<Void> {
         return Promise { seal in
-            let ref = db.document("posts/\(data["id"] as! String)")
+            let ref = requiresAudit ?
+                db.document(Path.pendingPosts + "\(data["id"] as! String)") :
+                db.document(Path.publicPosts + "\(data["id"] as! String)")
+            
+            print(ref)
+            
             ref.setData(data) { (err) in
                 if let err = err { seal.reject(err) }
                 else {
@@ -139,7 +153,9 @@ class EntriesManager {
             }
             for i in 0 ... files.count - 1 {
                 guard let uid = Auth.auth().currentUser?.uid else { continue }
-                let uploadRef = Storage.storage().reference(withPath: "/users/\(uid)/\(id)/img-\(i).jpg")
+                let uploadRef = requiresAudit ?
+                    Storage.storage().reference(withPath: Path.pendingAttatchments + "users/\(uid)/\(id)/img-\(i).jpg") :
+                    Storage.storage().reference(withPath: Path.publicAttatchments + "users/\(uid)/\(id)/img-\(i).jpg")
                 
                 var dat: Data?
                 let f = files[i]
@@ -187,7 +203,7 @@ class EntriesManager {
     static func getPostImages(ofEntry e: Entry) -> Promise<[UIImage]?> {
         return Promise { seal in
             var assets = [UIImage]()
-            let ref = Storage.storage().reference(withPath: "/users/\(e.owner)/\(e.id)")
+            let ref = Storage.storage().reference(withPath: Path.publicAttatchments + "users/\(e.owner)/\(e.id)")
             ref.listAll(completion: {(list, err) in
                 if let err = err { seal.reject(err) }
                 print("[EntriesManager.getPostImages]: Attempting to download images")
@@ -223,9 +239,13 @@ class EntriesManager {
     
     // MARK: Edit Post
     static func editPostFields(ofPost e: Entry, writes: [String : Any]) -> Promise<Void>{
+        if requiresAudit {
+            return requestEdit(for: e, with: writes)
+        }
+        
         return Promise { seal in
             let batch = db.batch()
-            let ref = db.document("posts/\(e.id)")
+            let ref = db.document(Path.publicPosts + "\(e.id)")
             batch.updateData(writes, forDocument: ref)
             
             batch.commit() { err in
@@ -238,15 +258,44 @@ class EntriesManager {
         }
     }
     
+    static func requestEdit(for e: Entry, with writes: [String : Any]) -> Promise<Void> {
+        return Promise { seal in
+            let ref = db.document(Path.pendingPosts + "\(e.id)")
+            
+            var data: [String: Any] = [
+                "title" : e.title,
+                "description" : e.description,
+                "userName": e.username,
+                "userLat": e.location[0],
+                "userLong": e.location[1],
+                "timestamp": Date(),
+                "owner": e.owner,
+                "action": "edit"
+            ]
+            
+            writes.keys.forEach{ (k) in
+                data[k] = writes[k]
+            }
+            
+            ref.setData(data) { (err) in
+                if let err = err { seal.reject(err) }
+                else {
+                    print("[EntriesManager.requestEdit]: post uploaded\n\(data)")
+                    seal.fulfill(Void())
+                }
+            }
+        }
+    }
+    
     // MARK: Delete Post
     static func deletePost(_ e: Entry) -> Promise<Void> {
         return Promise { seal in
-            db.document("posts/\(e.id)").delete() { err in
+            db.document(Path.publicPosts + "\(e.id)").delete() { err in
                 if let err = err {
                     seal.reject(err)
                 }
                 
-                let imageRef = Storage.storage().reference(withPath: "/users/\(e.owner)/\(e.id)/")
+                let imageRef = Storage.storage().reference(withPath: Path.publicAttatchments + "users/\(e.owner)/\(e.id)/")
                 imageRef.listAll() { (res, err) in
                     if let err = err { seal.reject(err) }
                     res.items.forEach { (ref) in
@@ -260,9 +309,13 @@ class EntriesManager {
         }
     }
     
-    static func deletePost(ofId id: String) -> Promise<Void> {
+    // delete uploaded post date if image upload fails
+    static func deleteFailedPost(ofId id: String) -> Promise<Void> {
         return Promise { seal in
-            db.document("posts/\(id)").delete() { err in
+            let ref = requiresAudit ?
+                Path.pendingPosts + "/\(id)" :
+                Path.publicPosts + "/\(id)"
+            db.document(ref).delete() { err in
                 if let err = err {
                     seal.reject(err)
                 }
