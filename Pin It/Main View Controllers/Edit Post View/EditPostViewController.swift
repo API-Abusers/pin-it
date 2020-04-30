@@ -67,7 +67,15 @@ class EditPostViewController: FormViewController {
                                                                "description" : descField,
                                                                "userLat": locField.coordinate.latitude,
                                                                "userLong": locField.coordinate.longitude]).done { _ in
-            FloatingNotificationBanner(title: "Post updated! 😃", style: .success).show()
+            if(AppConfigs.requiresAuditing) {
+                let updateNotif = FloatingNotificationBanner(title: "Post updated! 😃", subtitle: "Your edits will become visible once they are approved.", style: .success)
+                updateNotif.autoDismiss = false
+                updateNotif.dismissOnTap = true
+                updateNotif.dismissOnSwipeUp = true
+                updateNotif.show()
+            } else {
+                FloatingNotificationBanner(title: "Post updated! 😃", style: .success).show()
+            }
             self.dismiss(animated: true) {
                 if let completion = self.completion { completion() }
             }
@@ -77,8 +85,6 @@ class EditPostViewController: FormViewController {
             errorIndicator.dismissOnSwipeUp = true
             errorIndicator.dismissOnTap = true
             errorIndicator.show()
-            
-            WarningPopup.issueWarning(title: "Error", description: err as! String, vc: self)
         }
     }
 

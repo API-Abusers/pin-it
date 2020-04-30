@@ -17,20 +17,13 @@ class EntriesManager {
     
     static var db = Firestore.firestore()
     static var imageCache = NSCache<NSString, UIImage>()
-    static var requiresAudit: Bool!
+    static var requiresAudit = AppConfigs.requiresAuditing
     var query: Query?
     var lastDoc: QueryDocumentSnapshot?
     var batchSize = 5
     
     // MARK: Initializer
-    init() {
-        guard let b = AppConfigs.getConfig(forKey: "requiresAudit") as? Bool else {
-            EntriesManager.requiresAudit = false
-            print("[EntriesManager]: Could not load auditing options, defaulting to false")
-            return
-        }
-        EntriesManager.requiresAudit = b
-    }
+    init() { }
     
     // MARK: Get Id Token
     static func getIdToken() -> Promise<String> {

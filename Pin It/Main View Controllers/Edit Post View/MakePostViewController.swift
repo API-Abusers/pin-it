@@ -190,7 +190,15 @@ class MakePostViewController: FormViewController, NVActivityIndicatorViewable {
             EntriesManager.attachImageFiles(files: imageSelection, addTo: data["id"] as! String)
         }.done { _ in
             uploadIndicator.dismiss()
-            FloatingNotificationBanner(title: "Post uploaded! 😃", style: .success).show()
+            if AppConfigs.requiresAuditing {
+                let uploadNotif = FloatingNotificationBanner(title: "Post uploaded! 😃", subtitle: "Your post will become visible once it is approved.", style: .success)
+                uploadNotif.autoDismiss = false
+                uploadNotif.dismissOnTap = true
+                uploadNotif.dismissOnSwipeUp = true
+                uploadNotif.show()
+            } else {
+                FloatingNotificationBanner(title: "Post uploaded! 😃", style: .success).show()
+            }
         }.catch { err in
             uploadIndicator.dismiss()
 
