@@ -18,6 +18,7 @@ class EntriesManager {
     static var db = Firestore.firestore()
     static var imageCache = NSCache<NSString, UIImage>()
     static var requiresAudit = AppConfigs.requiresAuditing
+    var listener: ListenerRegistration?
     var query: Query?
     var lastDoc: QueryDocumentSnapshot?
     var batchSize = 5
@@ -43,7 +44,9 @@ class EntriesManager {
     func onDataChange(execute: @escaping (Entry, DocumentChangeType) -> Void) {
         struct Holder { static var timesCalled = 0 }
         
-        EntriesManager.db.collection(Path.publicPosts).addSnapshotListener() { (querySnapshot, err) in
+        if listener != nil { return }
+        
+        listener = EntriesManager.db.collection(Path.publicPosts).addSnapshotListener() { (querySnapshot, err) in
             if let err = err {
                 print("[EntriesManager.onDataChange] Error:\(err)")
                 return
@@ -57,6 +60,12 @@ class EntriesManager {
                 execute(entry, docChange.type)
             }
         }
+    }
+    
+    func detatchListeners() {
+        guard let listener = listener else { return }
+        print("[EntriesManager]: Removing listener")
+        listener.remove()
     }
     
     // MARK: Return An Entry For A Given Document

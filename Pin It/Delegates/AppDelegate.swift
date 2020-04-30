@@ -67,6 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func applicationWillTerminate(_ application: UIApplication) {
+        if let mapVC = mapVC as? MapViewController { mapVC.entryManager.detatchListeners() }
+    }
+    
     // MARK: Set Main View Controller
     func presentViewController(vc : UIViewController) {
         self.window?.rootViewController = vc

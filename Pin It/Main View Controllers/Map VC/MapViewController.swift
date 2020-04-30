@@ -220,6 +220,7 @@ class MapViewController: UIViewController {
     }
     
     deinit {
+        entryManager.detatchListeners()
         print("Deinitializing MapViewController")
     }
 }

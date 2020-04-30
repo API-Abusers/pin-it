@@ -16,6 +16,8 @@
 		73013D1D23C970DD000817E4 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73013D1C23C970DD000817E4 /* UIImageExtension.swift */; };
 		730351D7243D364E00CBC085 /* ImageSlideshowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730351D6243D364E00CBC085 /* ImageSlideshowExtension.swift */; };
 		730351D9243D3FEF00CBC085 /* BSImagePickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730351D8243D3FEF00CBC085 /* BSImagePickerRow.swift */; };
+		7306BDCD245A8261001BAD6E /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7306BDCC245A8261001BAD6E /* AppConfigs.swift */; };
+		7306BDCE245A8261001BAD6E /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7306BDCC245A8261001BAD6E /* AppConfigs.swift */; };
 		731C07B523CB9C6600A64054 /* UITextViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */; };
 		731C07B823CBBE2000A64054 /* QueryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B723CBBE2000A64054 /* QueryConfig.swift */; };
 		731C07BA23CBCDA500A64054 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C07B923CBCDA500A64054 /* AuthViewController.swift */; };
@@ -81,8 +83,6 @@
 		739638BE23C83E3200DB4D8B /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739638BD23C83E3200DB4D8B /* MakePostViewController.swift */; };
 		7399026423CE190400A10A18 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7399026323CE190400A10A18 /* ProfileViewController.swift */; };
 		73A9C4C22457ECFC00D00685 /* GeneralConf.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73A9C4C12457ECFC00D00685 /* GeneralConf.plist */; };
-		73A9C4C42457EDC100D00685 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9C4C32457EDC000D00685 /* AppConfigs.swift */; };
-		73A9C4C52457EDC100D00685 /* AppConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A9C4C32457EDC000D00685 /* AppConfigs.swift */; };
 		73AB57F82458A64F00A22AEC /* Info-General.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7391DC8123C655130051A1B9 /* Info-General.plist */; };
 		73C0E3192444BB4700C0BC4F /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C0E3182444BB4700C0BC4F /* EditPostViewController.swift */; };
 		73C35F87243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C35F86243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift */; };
@@ -125,6 +125,7 @@
 		73013D1C23C970DD000817E4 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		730351D6243D364E00CBC085 /* ImageSlideshowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSlideshowExtension.swift; sourceTree = "<group>"; };
 		730351D8243D3FEF00CBC085 /* BSImagePickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSImagePickerRow.swift; sourceTree = "<group>"; };
+		7306BDCC245A8261001BAD6E /* AppConfigs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppConfigs.swift; path = "Pin It/Helper Classes/AppConfigs.swift"; sourceTree = SOURCE_ROOT; };
 		731C07B423CB9C6500A64054 /* UITextViewPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceholder.swift; sourceTree = "<group>"; };
 		731C07B723CBBE2000A64054 /* QueryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryConfig.swift; sourceTree = "<group>"; };
 		731C07B923CBCDA500A64054 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
@@ -158,7 +159,6 @@
 		739638BD23C83E3200DB4D8B /* MakePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostViewController.swift; sourceTree = "<group>"; };
 		7399026323CE190400A10A18 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		73A9C4C12457ECFC00D00685 /* GeneralConf.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GeneralConf.plist; sourceTree = "<group>"; };
-		73A9C4C32457EDC000D00685 /* AppConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppConfigs.swift; path = "/Users/josephjin/Documents/Coding/APC Projects/Pin It/Pin It/Helper Classes/AppConfigs.swift"; sourceTree = "<absolute>"; };
 		73C0E3182444BB4700C0BC4F /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		73C35F86243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerWithoutSelector.swift; sourceTree = "<group>"; };
 		73D6DF00244ABDF3008F052C /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				731C07B723CBBE2000A64054 /* QueryConfig.swift */,
-				73A9C4C32457EDC000D00685 /* AppConfigs.swift */,
+				7306BDCC245A8261001BAD6E /* AppConfigs.swift */,
 				73778EE824593ACD00910459 /* SessionConfig.swift */,
 			);
 			path = Config;
@@ -832,7 +832,7 @@
 				73699F822457E35200F80E3D /* LocationRow.swift in Sources */,
 				73699F832457E35200F80E3D /* DetailedEntryViewController.swift in Sources */,
 				73699F842457E35200F80E3D /* AppDelegate.swift in Sources */,
-				73A9C4C52457EDC100D00685 /* AppConfigs.swift in Sources */,
+				7306BDCE245A8261001BAD6E /* AppConfigs.swift in Sources */,
 				73699F852457E35200F80E3D /* PinAnnotation.swift in Sources */,
 				73699F862457E35200F80E3D /* TapGestureRecognizerWithoutSelector.swift in Sources */,
 				73699F872457E35200F80E3D /* MiniEntryViewModel.swift in Sources */,
@@ -871,7 +871,7 @@
 				73E2A7972412E52300DA397B /* LocationRow.swift in Sources */,
 				732C024A23CB832C00A512FC /* DetailedEntryViewController.swift in Sources */,
 				7391DC7123C655110051A1B9 /* AppDelegate.swift in Sources */,
-				73A9C4C42457EDC100D00685 /* AppConfigs.swift in Sources */,
+				7306BDCD245A8261001BAD6E /* AppConfigs.swift in Sources */,
 				7320B94624495FE70080192F /* PinAnnotation.swift in Sources */,
 				73C35F87243C42E500859C81 /* TapGestureRecognizerWithoutSelector.swift in Sources */,
 				73013D1323C9644A000817E4 /* MiniEntryViewModel.swift in Sources */,
