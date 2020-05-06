@@ -156,8 +156,8 @@ class EntriesManager {
             for i in 0 ... files.count - 1 {
                 guard let uid = Auth.auth().currentUser?.uid else { continue }
                 let uploadRef = requiresAudit ?
-                    Storage.storage().reference(withPath: Path.pendingAttatchments + "users/\(uid)/\(id)/img-\(i).jpg") :
-                    Storage.storage().reference(withPath: Path.publicAttatchments + "users/\(uid)/\(id)/img-\(i).jpg")
+                    Storage.storage().reference(withPath: Path.pendingAttachments + "users/\(uid)/\(id)/img-\(i).jpg") :
+                    Storage.storage().reference(withPath: Path.publicAttachments + "users/\(uid)/\(id)/img-\(i).jpg")
                 
                 var dat: Data?
                 let f = files[i]
@@ -205,7 +205,7 @@ class EntriesManager {
     static func getPostImages(ofEntry e: Entry) -> Promise<[UIImage]?> {
         return Promise { seal in
             var assets = [UIImage]()
-            let ref = Storage.storage().reference(withPath: Path.publicAttatchments + "users/\(e.owner)/\(e.id)")
+            let ref = Storage.storage().reference(withPath: Path.publicAttachments + "users/\(e.owner)/\(e.id)")
             ref.listAll(completion: {(list, err) in
                 if let err = err { seal.reject(err) }
                 print("[EntriesManager.getPostImages]: Attempting to download images")
@@ -298,7 +298,7 @@ class EntriesManager {
                     seal.reject(err)
                 }
                 
-                let imageRef = Storage.storage().reference(withPath: Path.publicAttatchments + "users/\(e.owner)/\(e.id)/")
+                let imageRef = Storage.storage().reference(withPath: Path.publicAttachments + "users/\(e.owner)/\(e.id)/")
                 imageRef.listAll() { (res, err) in
                     if let err = err { seal.reject(err) }
                     res.items.forEach { (ref) in
