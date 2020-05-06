@@ -272,7 +272,8 @@ class EntriesManager {
                 "userLong": e.location[1],
                 "timestamp": Date(),
                 "owner": e.owner,
-                "action": "edit"
+                "action": "edit",
+                "id": e.id
             ]
             
             writes.keys.forEach{ (k) in
