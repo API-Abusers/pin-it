@@ -69,9 +69,7 @@ class EditPostViewController: FormViewController {
                                                                "userLong": locField.coordinate.longitude]).done { _ in
             if(AppConfigs.requiresAuditing) {
                 let updateNotif = FloatingNotificationBanner(title: "Post updated! 😃", subtitle: "Your edits will become visible once they are approved.", style: .success)
-                updateNotif.autoDismiss = false
-                updateNotif.dismissOnTap = true
-                updateNotif.dismissOnSwipeUp = true
+                updateNotif.duration = 8
                 updateNotif.show()
             } else {
                 FloatingNotificationBanner(title: "Post updated! 😃", style: .success).show()

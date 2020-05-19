@@ -940,7 +940,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BCC5DDABC02C46FE888AF18 /* Pods-Pin It.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Eanes";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR8L2XE3A;
 				INFOPLIST_FILE = "$(SRCROOT)/Pin It/Info Plist/Info-Eanes.plist";
@@ -961,7 +961,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B1ECC99E4C6AC49DF6334AF0 /* Pods-Pin It.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Eanes";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR8L2XE3A;
 				INFOPLIST_FILE = "$(SRCROOT)/Pin It/Info Plist/Info-Eanes.plist";
@@ -1096,7 +1096,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BCC5DDABC02C46FE888AF18 /* Pods-Pin It.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Main";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR8L2XE3A;
 				INFOPLIST_FILE = "$(SRCROOT)/Pin It/Info Plist/Info-General.plist";
@@ -1116,7 +1116,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B1ECC99E4C6AC49DF6334AF0 /* Pods-Pin It.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Main";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9SR8L2XE3A;
 				INFOPLIST_FILE = "$(SRCROOT)/Pin It/Info Plist/Info-General.plist";
