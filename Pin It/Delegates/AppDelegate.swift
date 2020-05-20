@@ -34,11 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // load in conf based on info plist
         guard let fbconf = AppConfigs.getConfig(forKey: "fbConf") as? String else {
-            assert(false, "Couldn't load config file")
+            print("Couldn't load config file")
+            return
         }
         let filePath = Bundle.main.path(forResource: fbconf, ofType: "plist")
         guard let fileopts = FirebaseOptions(contentsOfFile: filePath!) else {
-            assert(false, "Couldn't load config file")
+            print("Couldn't load config file")
+            return
         }
         print("[AppDelegate]: Loading firebase config from \(fbconf)")
         FirebaseApp.configure(options: fileopts)
