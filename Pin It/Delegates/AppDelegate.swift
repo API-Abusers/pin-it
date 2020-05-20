@@ -85,6 +85,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
+
+        (self.mapVC as! MapViewController).entryManager.detatchListeners()
         presentViewController(vc: authVC)
     }
     
@@ -167,8 +169,6 @@ extension AppDelegate: GIDSignInDelegate {
             let user = authResult?.user
             print("signed in \(user!.uid)")
             print("\(String(describing: user!.email))")
-            (self.mapVC as! MapViewController).prepareDeinit()
-            self.mapVC = self.storyboard.instantiateViewController(withIdentifier: "MapView")
             self.presentViewController(vc: self.mapVC!)
         }
 

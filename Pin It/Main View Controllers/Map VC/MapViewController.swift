@@ -32,9 +32,7 @@ class MapViewController: UIViewController {
     
     static var userLoc: CLLocation?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewWillAppear(_ animated: Bool) {
         // Do any additional setup after loading the view.
         overrideUserInterfaceStyle = .light
         
@@ -217,10 +215,10 @@ class MapViewController: UIViewController {
     func prepareDeinit() {
         calloutView!.onTap = nil
         calloutView = nil
+        entryManager.detatchListeners()
     }
     
     deinit {
-        entryManager.detatchListeners()
         print("Deinitializing MapViewController")
     }
 }
