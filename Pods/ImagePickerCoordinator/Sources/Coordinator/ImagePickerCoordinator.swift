@@ -58,11 +58,14 @@ public final class ImagePickerCoordinator: NSObject{
     
     public func start(){
         let sourceSelectorController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if deviceFilteredSources.contains(.camera){
-            let title = "COORDINATOR_SELECT_CAMERA".localized()
-            let cameraAction = UIAlertAction(title: title, style: .default, handler: { _ in self.launchCamera() })
-            sourceSelectorController.addAction(cameraAction)
-        }
+        
+        // TODO: Move changes into a forked repository
+        
+//        if deviceFilteredSources.contains(.camera){
+//            let title = "COORDINATOR_SELECT_CAMERA".localized()
+//            let cameraAction = UIAlertAction(title: title, style: .default, handler: { _ in self.launchCamera() })
+//            sourceSelectorController.addAction(cameraAction)
+//        }
         
         if deviceFilteredSources.contains(.photoLibrary){
             let title = "COORDINATOR_SELECT_PHOTO_LIBRARY".localized()
@@ -85,6 +88,12 @@ public final class ImagePickerCoordinator: NSObject{
         let cancelAction = UIAlertAction(title: "COORDINATOR_SELECT_CANCEL".localized(), style: .cancel, handler: nil)
         sourceSelectorController.addAction(cancelAction)
        
+        if let popoverPresentationController = sourceSelectorController.popoverPresentationController {
+            popoverPresentationController.sourceView = fromController.view
+            popoverPresentationController.sourceRect = CGRect(x: fromController.view.bounds.midX, y: fromController.view.bounds.midY, width: 0, height: 0)
+            popoverPresentationController.permittedArrowDirections = .init(rawValue: 0)
+        }
+        
         fromController.present(sourceSelectorController, animated: true, completion: nil)
         self.sourceSelectorController = sourceSelectorController
     }
